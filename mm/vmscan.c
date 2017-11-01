@@ -2050,7 +2050,8 @@ static bool inactive_list_is_low(struct lruvec *lruvec, bool file,
 	 */
 	if (!file && !total_swap_pages)
 		return false;
-
+         
+        //either file or anon
 	inactive = lruvec_lru_size(lruvec, inactive_lru, sc->reclaim_idx);
 	active = lruvec_lru_size(lruvec, active_lru, sc->reclaim_idx);
 
@@ -2274,7 +2275,7 @@ out:
 
 		switch (scan_balance) {
 		case SCAN_EQUAL:
-			/* Scan lists relative to size */
+			/* Scan lists equals to size */
 			break;
 		case SCAN_FRACT:
 			/*
@@ -2308,6 +2309,7 @@ out:
 static void shrink_node_memcg(struct pglist_data *pgdat, struct mem_cgroup *memcg,
 			      struct scan_control *sc, unsigned long *lru_pages)
 {
+        //get lru lists of memcg on node pgdat
 	struct lruvec *lruvec = mem_cgroup_lruvec(pgdat, memcg);
 	unsigned long nr[NR_LRU_LISTS];
 	unsigned long targets[NR_LRU_LISTS];
@@ -3473,6 +3475,7 @@ static int kswapd(void *p)
 {
 	unsigned int alloc_order, reclaim_order;
 	unsigned int classzone_idx = MAX_NR_ZONES - 1;
+        //each numa node pg_data_t has its own kswapd thread
 	pg_data_t *pgdat = (pg_data_t*)p;
 	struct task_struct *tsk = current;
 
