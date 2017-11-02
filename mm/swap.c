@@ -202,6 +202,9 @@ static void pagevec_lru_move_fn(struct pagevec *pvec,
 			if (pgdat)
 				spin_unlock_irqrestore(&pgdat->lru_lock, flags);
 			pgdat = pagepgdat;
+                        //lock on pgdat is required when moving pages
+                        //between different lru list, so batch the 
+                        //movement will reduce the lock contenton
 			spin_lock_irqsave(&pgdat->lru_lock, flags);
 		}
 

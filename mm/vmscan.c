@@ -2340,6 +2340,7 @@ static void shrink_node_memcg(struct pglist_data *pgdat, struct mem_cgroup *memc
 			 sc->priority == DEF_PRIORITY);
 
 	blk_start_plug(&plug);
+        //end the loop only and if only all nr[]=0
 	while (nr[LRU_INACTIVE_ANON] || nr[LRU_ACTIVE_FILE] ||
 					nr[LRU_INACTIVE_FILE]) {
 		unsigned long nr_anon, nr_file, percentage;
@@ -2379,15 +2380,20 @@ static void shrink_node_memcg(struct pglist_data *pgdat, struct mem_cgroup *memc
 		if (!nr_file || !nr_anon)
 			break;
 
+                //scanned anon is less than scanned file
 		if (nr_file > nr_anon) {
+                        //original scan target for anon
 			unsigned long scan_target = targets[LRU_INACTIVE_ANON] +
 						targets[LRU_ACTIVE_ANON] + 1;
 			lru = LRU_BASE;
+                        //剩余的百分比，???
 			percentage = nr_anon * 100 / scan_target;
 		} else {
+                        //orignal scanned target for file
 			unsigned long scan_target = targets[LRU_INACTIVE_FILE] +
 						targets[LRU_ACTIVE_FILE] + 1;
 			lru = LRU_FILE;
+                        //剩余的百分比，???
 			percentage = nr_file * 100 / scan_target;
 		}
 
@@ -2401,6 +2407,7 @@ static void shrink_node_memcg(struct pglist_data *pgdat, struct mem_cgroup *memc
 		 */
 		lru = (lru == LRU_FILE) ? LRU_BASE : LRU_FILE;
 		nr_scanned = targets[lru] - nr[lru];
+                //100 - percentage : completed scanned percentage
 		nr[lru] = targets[lru] * (100 - percentage) / 100;
 		nr[lru] -= min(nr[lru], nr_scanned);
 
@@ -3200,7 +3207,7 @@ static bool kswapd_shrink_node(pg_data_t *pgdat,
 		zone = pgdat->node_zones + z;
 		if (!managed_zone(zone))
 			continue;
-
+                //kswapd needs to reclaim the sum of high water mark across all zones
 		sc->nr_to_reclaim += max(high_wmark_pages(zone), SWAP_CLUSTER_MAX);
 	}
 
