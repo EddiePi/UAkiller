@@ -117,13 +117,16 @@ static __always_inline enum lru_list page_lru(struct page *page)
 	if (PageUnevictable(page))
 		lru = LRU_UNEVICTABLE;
 	else {
+                //the type is based on page flag either file or anon
 		lru = page_lru_base_type(page);
+                //if the active flag is set, then on active lru
 		if (PageActive(page))
 			lru += LRU_ACTIVE;
 	}
 	return lru;
 }
 
+//this macro get page from the tail of the list
 #define lru_to_page(head) (list_entry((head)->prev, struct page, lru))
 
 #endif

@@ -185,6 +185,9 @@ int get_kernel_page(unsigned long start, int write, struct page **pages)
 }
 EXPORT_SYMBOL_GPL(get_kernel_page);
 
+//this is the batched function to move pages from pagevec (per cpu cache) to lru list at lruvec
+//one important parameter for this function is the move_fn which is a the 
+//function actually performs the movement.
 static void pagevec_lru_move_fn(struct pagevec *pvec,
 	void (*move_fn)(struct page *page, struct lruvec *lruvec, void *arg),
 	void *arg)
@@ -222,6 +225,7 @@ static void pagevec_move_tail_fn(struct page *page, struct lruvec *lruvec,
 {
 	int *pgmoved = arg;
 
+        //page is on LRU and page is not evictable
 	if (PageLRU(page) && !PageUnevictable(page)) {
 		del_page_from_lru_list(page, lruvec, page_lru(page));
 		ClearPageActive(page);
@@ -255,8 +259,10 @@ void rotate_reclaimable_page(struct page *page)
 		unsigned long flags;
 
 		get_page(page);
+                //disable local irq since this function accesses the cpu local cache
 		local_irq_save(flags);
 		pvec = this_cpu_ptr(&lru_rotate_pvecs);
+                //if the pvec is full, then perform the batch movement
 		if (!pagevec_add(pvec, page) || PageCompound(page))
 			pagevec_move_tail(pvec);
 		local_irq_restore(flags);
@@ -339,6 +345,10 @@ void activate_page(struct page *page)
 }
 #endif
 
+
+//this function is used to activate page which is in the add_pagevec
+//this means this pages is newly added to add_pagevec but not moved 
+//to the lru active list yet.
 static void __lru_cache_activate_page(struct page *page)
 {
 	struct pagevec *pvec = &get_cpu_var(lru_add_pvec);
@@ -388,14 +398,20 @@ void mark_page_accessed(struct page *page)
 		 * pagevec, mark it active and it'll be moved to the active
 		 * LRU on the next drain.
 		 */
+                //after the page is activated, it is going to be 
+                //moved a page from inactive lru to active lru
 		if (PageLRU(page))
 			activate_page(page);
 		else
+                        //mark the page in add_pagevec active, so the page is going
+                        //to be moved to active lru list
 			__lru_cache_activate_page(page);
+                //why this is needed.
 		ClearPageReferenced(page);
 		if (page_is_file_cache(page))
 			workingset_activation(page);
-	} else if (!PageReferenced(page)) {
+	//page has been on active list but not referenced
+        } else if (!PageReferenced(page)) {
 		SetPageReferenced(page);
 	}
 	if (page_is_idle(page))
@@ -420,6 +436,8 @@ static void __lru_cache_add(struct page *page)
 void lru_cache_add_anon(struct page *page)
 {
 	if (PageActive(page))
+                //clear active flag, so the page 
+                //will be placed on inactive lru list
 		ClearPageActive(page);
 	__lru_cache_add(page);
 }
@@ -427,6 +445,8 @@ void lru_cache_add_anon(struct page *page)
 void lru_cache_add_file(struct page *page)
 {
 	if (PageActive(page))
+                //clear active flag, so the page 
+                //will be placed on inactive lru list
 		ClearPageActive(page);
 	__lru_cache_add(page);
 }
@@ -574,6 +594,7 @@ static void lru_deactivate_file_fn(struct page *page, struct lruvec *lruvec,
 }
 
 
+
 static void lru_lazyfree_fn(struct page *page, struct lruvec *lruvec,
 			    void *arg)
 {
@@ -607,9 +628,11 @@ void lru_add_drain_cpu(int cpu)
 {
 	struct pagevec *pvec = &per_cpu(lru_add_pvec, cpu);
 
+        //add add_pagevec
 	if (pagevec_count(pvec))
 		__pagevec_lru_add(pvec);
 
+        //add rotate_pagevec
 	pvec = &per_cpu(lru_rotate_pvecs, cpu);
 	if (pagevec_count(pvec)) {
 		unsigned long flags;
@@ -620,16 +643,21 @@ void lru_add_drain_cpu(int cpu)
 		local_irq_restore(flags);
 	}
 
+        //add deactivate_pagevec
 	pvec = &per_cpu(lru_deactivate_file_pvecs, cpu);
 	if (pagevec_count(pvec))
 		pagevec_lru_move_fn(pvec, lru_deactivate_file_fn, NULL);
 
+        //add lazyfree_pagevec
 	pvec = &per_cpu(lru_lazyfree_pvecs, cpu);
 	if (pagevec_count(pvec))
 		pagevec_lru_move_fn(pvec, lru_lazyfree_fn, NULL);
 
+        //add activate_pagevec
 	activate_page_drain(cpu);
 }
+
+
 
 /**
  * deactivate_file_page - forcefully deactivate a file page

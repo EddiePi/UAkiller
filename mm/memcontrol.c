@@ -944,6 +944,8 @@ struct lruvec *mem_cgroup_page_lruvec(struct page *page, struct pglist_data *pgd
 	struct mem_cgroup *memcg;
 	struct lruvec *lruvec;
 
+        //this is important, if cgroup is not supported, then place on the 
+        //global lru list on each num node
 	if (mem_cgroup_disabled()) {
 		lruvec = &pgdat->lruvec;
 		goto out;
@@ -953,6 +955,7 @@ struct lruvec *mem_cgroup_page_lruvec(struct page *page, struct pglist_data *pgd
 	/*
 	 * Swapcache readahead pages are added to the LRU - and
 	 * possibly migrated - before they are charged.
+         * What if the page does not belong to any cgroup ??? place on global lru list ????
 	 */
 	if (!memcg)
 		memcg = root_mem_cgroup;

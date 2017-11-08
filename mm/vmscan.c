@@ -769,6 +769,7 @@ int remove_mapping(struct address_space *mapping, struct page *page)
 
 /**
  * putback_lru_page - put previously isolated page onto appropriate LRU list
+ * must be from previously isolated page
  * @page: page to be put back to appropriate lru list
  *
  * Add previously isolated @page to appropriate LRU list.
@@ -901,7 +902,7 @@ static enum page_references page_check_references(struct page *page,
 	return PAGEREF_RECLAIM;
 }
 
-/* Check if a page is dirty or under writeback */
+/* Check if a page is dirty or under writeback or means it is writing back ??? */
 static void page_check_dirty_writeback(struct page *page,
 				       bool *dirty, bool *writeback)
 {
@@ -975,19 +976,25 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 
 		cond_resched();
 
+                //get the page
 		page = lru_to_page(page_list);
+                //delete the page from page_list (isolated list)
 		list_del(&page->lru);
 
+                //if the lock can not be hold, return the page to ret_pages
 		if (!trylock_page(page))
 			goto keep;
 
 		VM_BUG_ON_PAGE(PageActive(page), page);
 
+                //scanned++ for this page
 		sc->nr_scanned++;
 
 		if (unlikely(!page_evictable(page)))
 			goto activate_locked;
 
+                //at least one page table is mapped to this page
+                //which means this page is not file backed page cache 
 		if (!sc->may_unmap && page_mapped(page))
 			goto keep_locked;
 
@@ -996,7 +1003,9 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 		    !(PageAnon(page) && !PageSwapBacked(page)))
 			sc->nr_scanned++;
 
+                //allows to perform FS operation during reclaiming
 		may_enter_fs = (sc->gfp_mask & __GFP_FS) ||
+                        //if it is in swap cache, it is highly likely to perform io operations
 			(PageSwapCache(page) && (sc->gfp_mask & __GFP_IO));
 
 		/*
@@ -1009,6 +1018,7 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 		if (dirty || writeback)
 			nr_dirty++;
 
+                //dirty but not writeback yet!!!!
 		if (dirty && !writeback)
 			nr_unqueued_dirty++;
 
@@ -1016,7 +1026,7 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 		 * Treat this page as congested if the underlying BDI is or if
 		 * pages are cycling through the LRU so quickly that the
 		 * pages marked for immediate reclaim are making it to the
-		 * end of the LRU a second time.
+		 * end of the LRU a second time???
 		 */
 		mapping = page_mapping(page);
 		if (((dirty || writeback) && mapping &&
@@ -1032,7 +1042,10 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 		 *    under writeback and this page is both under writeback and
 		 *    PageReclaim then it indicates that pages are being queued
 		 *    for IO but are being recycled through the LRU before the
-		 *    IO can complete. Waiting on the page itself risks an
+		 *    IO can complete  
+                 *    //being queued for IO, then put back to LRU
+                 *    //because of access.
+                 *    . Waiting on the page itself risks an
 		 *    indefinite stall if it is impossible to writeback the
 		 *    page due to IO error or disconnected storage so instead
 		 *    note that the LRU is being scanned too quickly and the
@@ -1065,11 +1078,14 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 		 * Since they're marked for immediate reclaim, they won't put
 		 * memory pressure on the cache working set any longer than it
 		 * takes to write them to disk.
+                 * //if the page is under writeback
 		 */
 		if (PageWriteback(page)) {
 			/* Case 1 above */
 			if (current_is_kswapd() &&
+                            //page is under reclaim????
 			    PageReclaim(page) &&
+                            //page is under write back????
 			    test_bit(PGDAT_WRITEBACK, &pgdat->flags)) {
 				nr_immediate++;
 				goto activate_locked;
@@ -1351,6 +1367,7 @@ unsigned long reclaim_clean_pages_from_list(struct zone *zone,
 }
 
 /*
+ * //where and how to remove the page from the lru
  * Attempt to remove the specified page from its LRU.  Only take this page
  * if it is of the appropriate PageActive status.  Pages which are being
  * freed elsewhere are also ignored.
@@ -1380,7 +1397,7 @@ int __isolate_lru_page(struct page *page, isolate_mode_t mode)
 	 * blocking - clean pages for the most part.
 	 *
 	 * ISOLATE_ASYNC_MIGRATE is used to indicate that it only wants to pages
-	 * that it is possible to migrate without blocking
+	 * that it is possible to migrate without blocking, what does the blocking mean here?
 	 */
 	if (mode & ISOLATE_ASYNC_MIGRATE) {
 		/* All the caller can do on PageWriteback is block */
@@ -1478,17 +1495,25 @@ static unsigned long isolate_lru_pages(unsigned long nr_to_scan,
 	     total_scan++) {
 		struct page *page;
 
+                //get the page from the head of the list?????, I think it should be 
+                //isolated from the tail of the list, how to define the head of the list
+                //a tricky here: the src is the head of the list, lru_to_page gets the tail
+                //page of the lru:src->pre, after moves are moved (by calling list_move)
+                //its tailed pages are also updated.
 		page = lru_to_page(src);
 		prefetchw_prev_lru_page(page, src, flags);
 
 		VM_BUG_ON_PAGE(!PageLRU(page), page);
 
+                //the page is out of the maximum defined zone
 		if (page_zonenum(page) > sc->reclaim_idx) {
+                        //delete from original lru and put the page into skip list
 			list_move(&page->lru, &pages_skipped);
 			nr_skipped[page_zonenum(page)]++;
 			continue;
 		}
 
+                //note: total_scan = scan + skipped, so the skipped pages are not counted
 		/*
 		 * Do not count skipped pages because that makes the function
 		 * return with no isolated pages if the LRU mostly contains
@@ -1499,13 +1524,16 @@ static unsigned long isolate_lru_pages(unsigned long nr_to_scan,
 		switch (__isolate_lru_page(page, mode)) {
 		case 0:
 			nr_pages = hpage_nr_pages(page);
+                        //usually for regular page, it is 1
 			nr_taken += nr_pages;
 			nr_zone_taken[page_zonenum(page)] += nr_pages;
+                        //move to isolate dst, usually isolated list
 			list_move(&page->lru, dst);
 			break;
 
 		case -EBUSY:
 			/* else it is being freed elsewhere */
+                        //put back to the head of the list
 			list_move(&page->lru, src);
 			continue;
 
@@ -1524,6 +1552,7 @@ static unsigned long isolate_lru_pages(unsigned long nr_to_scan,
 	if (!list_empty(&pages_skipped)) {
 		int zid;
 
+                //place the skipped list at head of orignal lru list 
 		list_splice(&pages_skipped, src);
 		for (zid = 0; zid < MAX_NR_ZONES; zid++) {
 			if (!nr_skipped[zid])
@@ -1713,14 +1742,19 @@ shrink_inactive_list(unsigned long nr_to_scan, struct lruvec *lruvec,
 	struct pglist_data *pgdat = lruvec_pgdat(lruvec);
 	struct zone_reclaim_stat *reclaim_stat = &lruvec->reclaim_stat;
 
+        //to avoid intensive lock contention when other processes
+        //are trying to isolate pages
 	while (unlikely(too_many_isolated(pgdat, file, sc))) {
+                //wait for 100ms
 		congestion_wait(BLK_RW_ASYNC, HZ/10);
 
 		/* We are about to die and free our memory. Return now. */
+                //check if current has pending kill signal
 		if (fatal_signal_pending(current))
 			return SWAP_CLUSTER_MAX;
 	}
 
+        //put cpu cached lru pages into lru list
 	lru_add_drain();
 
 	if (!sc->may_unmap)
@@ -1728,6 +1762,7 @@ shrink_inactive_list(unsigned long nr_to_scan, struct lruvec *lruvec,
 
 	spin_lock_irq(&pgdat->lru_lock);
 
+        //isolate pages to page_list 
 	nr_taken = isolate_lru_pages(nr_to_scan, lruvec, &page_list,
 				     &nr_scanned, sc, isolate_mode, lru);
 
@@ -1740,11 +1775,13 @@ shrink_inactive_list(unsigned long nr_to_scan, struct lruvec *lruvec,
 		else
 			__count_vm_events(PGSCAN_DIRECT, nr_scanned);
 	}
+        //lock pgdat->lock
 	spin_unlock_irq(&pgdat->lru_lock);
 
 	if (nr_taken == 0)
 		return 0;
 
+        //the core part of reclaiming is here
 	nr_reclaimed = shrink_page_list(&page_list, pgdat, sc, 0,
 				&stat, false);
 
@@ -1841,6 +1878,8 @@ shrink_inactive_list(unsigned long nr_to_scan, struct lruvec *lruvec,
 	return nr_reclaimed;
 }
 
+EXPORT_SYMBOL(shrink_inactive_list);
+
 /*
  * This moves pages from the active list to the inactive list.
  *
@@ -1882,6 +1921,7 @@ static unsigned move_active_pages_to_lru(struct lruvec *lruvec,
 		update_lru_size(lruvec, lru, page_zonenum(page), nr_pages);
 		list_move(&page->lru, &lruvec->lists[lru]);
 
+                //test if the page has 0 _count
 		if (put_page_testzero(page)) {
 			__ClearPageLRU(page);
 			__ClearPageActive(page);
@@ -1914,7 +1954,9 @@ static void shrink_active_list(unsigned long nr_to_scan,
 	unsigned long nr_scanned;
 	unsigned long vm_flags;
 	LIST_HEAD(l_hold);	/* The pages which were snipped off */
+        //pages moved to head of active lru
 	LIST_HEAD(l_active);
+        //pages moved to inactive lru
 	LIST_HEAD(l_inactive);
 	struct page *page;
 	struct zone_reclaim_stat *reclaim_stat = &lruvec->reclaim_stat;
@@ -1924,13 +1966,19 @@ static void shrink_active_list(unsigned long nr_to_scan,
 	int file = is_file_lru(lru);
 	struct pglist_data *pgdat = lruvec_pgdat(lruvec);
 
+        //put cpu cached lru pages into lru list
 	lru_add_drain();
 
+        //if called from kswapd then the sc->may_unmap == 1
 	if (!sc->may_unmap)
 		isolate_mode |= ISOLATE_UNMAPPED;
 
 	spin_lock_irq(&pgdat->lru_lock);
 
+        //try to isolate some pages from lruvec, the isolated pages are put 
+        //in l_hold
+        //the isolated pages are picked out from the tail of active list
+        //page->_count++ for isolated page
 	nr_taken = isolate_lru_pages(nr_to_scan, lruvec, &l_hold,
 				     &nr_scanned, sc, isolate_mode, lru);
 
@@ -1942,25 +1990,37 @@ static void shrink_active_list(unsigned long nr_to_scan,
 	spin_unlock_irq(&pgdat->lru_lock);
 
 	while (!list_empty(&l_hold)) {
+                //I do not get why there is this
 		cond_resched();
+                //get a page
 		page = lru_to_page(&l_hold);
+                //delete this page from lru which this page resides on
 		list_del(&page->lru);
 
+                //if page is not evictable, put it back and abort
 		if (unlikely(!page_evictable(page))) {
 			putback_lru_page(page);
 			continue;
 		}
-
+                
+                
+                //if buffered pages exceeds the maximum allowed
 		if (unlikely(buffer_heads_over_limit)) {
+                        //only file page has PAGE_FLAG_PRIVATE
 			if (page_has_private(page) && trylock_page(page)) {
 				if (page_has_private(page))
+                                        //free this page cached page, we will see page
+                                        //cache in the future.
 					try_to_release_page(page, 0);
 				unlock_page(page);
 			}
 		}
 
+                //check if the page is accessed, check by mapped page table
+                //clear ACCESS from the page table
 		if (page_referenced(page, 0, sc->target_mem_cgroup,
 				    &vm_flags)) {
+                        //1 for non-huge page
 			nr_rotated += hpage_nr_pages(page);
 			/*
 			 * Identify referenced, file-backed active pages and
@@ -1971,6 +2031,8 @@ static void shrink_active_list(unsigned long nr_to_scan,
 			 * IO, plus JVM can create lots of anon VM_EXEC pages,
 			 * so we ignore them here.
 			 */
+                        //for executable files, move to the head of active lru
+                        //so that the exe files will stay in memory forever.
 			if ((vm_flags & VM_EXEC) && page_is_file_cache(page)) {
 				list_add(&page->lru, &l_active);
 				continue;
@@ -1978,11 +2040,13 @@ static void shrink_active_list(unsigned long nr_to_scan,
 		}
 
 		ClearPageActive(page);	/* we are de-activating */
+                //for the rest page, move to the inactive lru
 		list_add(&page->lru, &l_inactive);
 	}
 
 	/*
-	 * Move pages back to the lru list.
+	 * Move pages back to the lru list., so lock is required, node the cpu pagevec is not
+         * used in this case
 	 */
 	spin_lock_irq(&pgdat->lru_lock);
 	/*
@@ -1992,13 +2056,14 @@ static void shrink_active_list(unsigned long nr_to_scan,
 	 * get_scan_count.
 	 */
 	reclaim_stat->recent_rotated[file] += nr_rotated;
-
+        //use l_hold to stores the pages that are going to be released
 	nr_activate = move_active_pages_to_lru(lruvec, &l_active, &l_hold, lru);
 	nr_deactivate = move_active_pages_to_lru(lruvec, &l_inactive, &l_hold, lru - LRU_ACTIVE);
 	__mod_node_page_state(pgdat, NR_ISOLATED_ANON + file, -nr_taken);
 	spin_unlock_irq(&pgdat->lru_lock);
 
 	mem_cgroup_uncharge_list(&l_hold);
+        //try to free the rest of the pages
 	free_hot_cold_page_list(&l_hold, true);
 	trace_mm_vmscan_lru_shrink_active(pgdat->node_id, nr_taken, nr_activate,
 			nr_deactivate, nr_rotated, sc->priority, file);
@@ -2303,6 +2368,9 @@ out:
 	}
 }
 
+EXPORT_SYMBOL(get_scan_count);
+
+
 /*
  * This is a basic per-node page freer.  Used by both kswapd and direct reclaim.
  */
@@ -2348,6 +2416,7 @@ static void shrink_node_memcg(struct pglist_data *pgdat, struct mem_cgroup *memc
 
 		for_each_evictable_lru(lru) {
 			if (nr[lru]) {
+                                //scan maximum 32 pages limited by (swap_cluster_max)
 				nr_to_scan = min(nr[lru], SWAP_CLUSTER_MAX);
 				nr[lru] -= nr_to_scan;
 
