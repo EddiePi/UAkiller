@@ -1083,15 +1083,21 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 		if (PageWriteback(page)) {
 			/* Case 1 above */
 			if (current_is_kswapd() &&
-                            //page is under reclaim????
+                            //page is under reclaim, but not yet finished????
 			    PageReclaim(page) &&
                             //page is under write back????
 			    test_bit(PGDAT_WRITEBACK, &pgdat->flags)) {
 				nr_immediate++;
+                                //?? activate this page ?????
 				goto activate_locked;
 
 			/* Case 2 above */
+                        //sane_reclaim check if it is a global_reclaim
 			} else if (sane_reclaim(sc) ||
+                             //page is not under reclaim, and this reclaim 
+                             //will not cause any IO/FS, since this page 
+                             //is under writeback(finally this page 
+                             //will be recalaimed), mark this page as reclaimed.
 			    !PageReclaim(page) || !may_enter_fs) {
 				/*
 				 * This is slightly racy - end_page_writeback()
@@ -1110,9 +1116,13 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 
 			/* Case 3 above */
 			} else {
+                                //if this is the case that memcgroup 
+                                //write back a page, waits untill the page writeback is finished
 				unlock_page(page);
 				wait_on_page_writeback(page);
 				/* then go back and try same page again */
+                                //after the page is writeback, it can be released safely for next
+                                //round
 				list_add_tail(&page->lru, page_list);
 				continue;
 			}
@@ -1123,10 +1133,13 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 
 		switch (references) {
 		case PAGEREF_ACTIVATE:
+                        //activate this page, since it is referenced
 			goto activate_locked;
 		case PAGEREF_KEEP:
+                        //keep this page in inactive list.
 			nr_ref_keep++;
 			goto keep_locked;
+                        //relcaim pages if the page is not recently referenced
 		case PAGEREF_RECLAIM:
 		case PAGEREF_RECLAIM_CLEAN:
 			; /* try to reclaim the page below */
@@ -1139,13 +1152,24 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 		 */
 		if (PageAnon(page) && PageSwapBacked(page) &&
 		    !PageSwapCache(page)) {
+                        //if this reclaim can not issue any io, keep the 
+                        //ana pages in inactive list.
 			if (!(sc->gfp_mask & __GFP_IO))
 				goto keep_locked;
+                        //try to add this page to swapcache, we will see this function later.
+                        //after this page is added to swapcache, this page will be seen as file 
+                        //page, 起始就是将页描述符信息保存到以swap页槽偏移量为索引的结点
+                        //设置页描述符的private = swap页槽偏移量生成的页表项swp_entry_t，
+                        //因为后面会设置所有映射了此页的页表项为此swp_entry_t
+                        //设置页的PG_swapcache标志，表明此页在swapcache中，正在被换出
+                        //标记页page为脏页(PG_dirty)，后面就会被换出
 			if (!add_to_swap(page, page_list))
 				goto activate_locked;
+                        //mark the reclaim can possibilly enter into fs
 			may_enter_fs = 1;
 
 			/* Adding to swap updated mapping */
+                        //acquire the address_pace after the page is added to swapcache
 			mapping = page_mapping(page);
 		} else if (unlikely(PageTransHuge(page))) {
 			/* Split file THP */
@@ -1162,10 +1186,15 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 		if (page_mapped(page)) {
 			if (!try_to_unmap(page, ttu_flags | TTU_BATCH_FLUSH)) {
 				nr_unmap_fail++;
+                                //go to active lru
 				goto activate_locked;
 			}
 		}
 
+                 //1. ana pages moved to page cache are marked with dirty
+                 //2. file pages
+                 //we have talked about the files pages which are under writeback, here
+                 //we further focus on pages which are dirty but not under writeback
 		if (PageDirty(page)) {
 			/*
 			 * Only kswapd can writeback filesystem pages
@@ -1177,24 +1206,35 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 			 * the rest of the LRU for clean pages and see
 			 * the same dirty pages again (PageReclaim).
 			 */
+                        //if the page is in page cache(this page is a file mapped page)  
 			if (page_is_file_cache(page) &&
+                             //not kswapd or page is not marked with reclaim or the pgdat does 
+                             //not have too many dirty pages
 			    (!current_is_kswapd() || !PageReclaim(page) ||
 			     !test_bit(PGDAT_DIRTY, &pgdat->flags))) {
+                             //This means the reclaim is not urgent, so the kswapd 
+                             //does not have to flush many dirty pages.
 				/*
 				 * Immediately reclaim when written back.
 				 * Similar in principal to deactivate_page()
 				 * except we already have the page isolated
 				 * and know it's dirty
 				 */
+                                //increase the pages which are immediate reclaim when writeback
 				inc_node_page_state(page, NR_VMSCAN_IMMEDIATE);
+                                //set this pages to be relcaimable, actually it will be reclaimed 
+                                //after it is writeback
 				SetPageReclaim(page);
-
+                                //move this page to the head of active list, it will be put 
+                                //at tail of inactive list after writeback
 				goto activate_locked;
 			}
 
+                        //if the pgdata is not marked with dirty, the kswapd will come to here
 			if (references == PAGEREF_RECLAIM_CLEAN)
 				goto keep_locked;
 			if (!may_enter_fs)
+                                //after this, all the reclaim operations requires io
 				goto keep_locked;
 			if (!sc->may_writepage)
 				goto keep_locked;
@@ -1205,6 +1245,11 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 			 * starts and then write it out here.
 			 */
 			try_to_unmap_flush_dirty();
+                        //try to write the page to disk, put the page onto device layer
+                        //for page cache, call page->mapping->a_ops->writepage
+                        //for anaon page, call address_space->a_ops->writepage
+                        //PG_writeback PG_reclaim is set, but PG_dirty and PG_lcoked are cleared
+                        //which means the page is under writeback by device layer but not finished yet.
 			switch (pageout(page, mapping, sc)) {
 			case PAGE_KEEP:
 				goto keep_locked;
@@ -1309,6 +1354,7 @@ activate_locked:
 			try_to_free_swap(page);
 		VM_BUG_ON_PAGE(PageActive(page), page);
 		if (!PageMlocked(page)) {
+                        //set this page active, will be moved to active list
 			SetPageActive(page);
 			pgactivate++;
 		}
