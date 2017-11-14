@@ -382,6 +382,7 @@ static void __lru_cache_activate_page(struct page *page)
  * inactive,unreferenced	->	inactive,referenced
  * inactive,referenced		->	active,unreferenced
  * active,unreferenced		->	active,referenced
+ * acive, referenced            --->    ??????
  *
  * When a newly allocated page is not yet visible, so safe for non-atomic ops,
  * __SetPageReferenced(page) may be substituted for mark_page_accessed(page).
@@ -570,6 +571,7 @@ static void lru_deactivate_file_fn(struct page *page, struct lruvec *lruvec,
 	del_page_from_lru_list(page, lruvec, lru + active);
 	ClearPageActive(page);
 	ClearPageReferenced(page);
+        //add to the head of inactive pages.
 	add_page_to_lru_list(page, lruvec, lru);
 
 	if (PageWriteback(page) || PageDirty(page)) {
@@ -580,7 +582,8 @@ static void lru_deactivate_file_fn(struct page *page, struct lruvec *lruvec,
 		 */
 		SetPageReclaim(page);
 	} else {
-		/*
+		/* this is a file page, if it is not diry or under writeback, 
+                 * this is a clean page, move it to the tail
 		 * The page's writeback ends up during pagevec
 		 * We moves tha page into tail of inactive.
 		 */

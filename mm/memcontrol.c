@@ -711,6 +711,7 @@ static struct mem_cgroup *get_mem_cgroup_from_mm(struct mm_struct *mm)
 			if (unlikely(!memcg))
 				memcg = root_mem_cgroup;
 		}
+        //seem like to tell if the cgroup is online or not ?????
 	} while (!css_tryget_online(&memcg->css));
 	rcu_read_unlock();
 	return memcg;
@@ -1757,7 +1758,7 @@ static void drain_local_stock(struct work_struct *dummy)
 }
 
 /*
- * Cache charges(val) to local per_cpu area.
+ * Cache charges(val) to local per_cpu area. why need cache?????
  * This will be consumed by consume_stock() function, later.
  */
 static void refill_stock(struct mem_cgroup *memcg, unsigned int nr_pages)
@@ -1877,17 +1878,26 @@ retry:
 		return 0;
 
 	if (!do_memsw_account() ||
+            //try charge memsw
+            //the search will returned on the first oom container, stored in @container
 	    page_counter_try_charge(&memcg->memsw, batch, &counter)) {
+                //try charge memory, if succeed, it means memory cgroup stll not 
+                //reaches its limit. no need to recalaim.
 		if (page_counter_try_charge(&memcg->memory, batch, &counter))
 			goto done_restock;
+                //if the memsw is charged successfully, restored to its old value
+                //if comes here, means the memory is not successfully charged
 		if (do_memsw_account())
 			page_counter_uncharge(&memcg->memsw, batch);
+                //since the counter keeps the first oom container, return it
+                //then the memory reclaim will be performed on this container
 		mem_over_limit = mem_cgroup_from_counter(counter, memory);
 	} else {
 		mem_over_limit = mem_cgroup_from_counter(counter, memsw);
 		may_swap = false;
 	}
 
+        //retry again if less # of charged page (nr_pages) can avoid reclaim
 	if (batch > nr_pages) {
 		batch = nr_pages;
 		goto retry;
@@ -1897,7 +1907,7 @@ retry:
 	 * Unlike in global OOM situations, memcg is not in a physical
 	 * memory shortage.  Allow dying and OOM-killed tasks to
 	 * bypass the last charges so that they can exit quickly and
-	 * free their memory.
+	 * free their memory. task is killed
 	 */
 	if (unlikely(test_thread_flag(TIF_MEMDIE) ||
 		     fatal_signal_pending(current) ||
@@ -1913,17 +1923,21 @@ retry:
 	if (unlikely(current->flags & PF_MEMALLOC))
 		goto force;
 
+        //fails if this cgroup is oom
 	if (unlikely(task_in_memcg_oom(current)))
 		goto nomem;
 
+        //fails if reclaim is not allowed
 	if (!gfpflags_allow_blocking(gfp_mask))
 		goto nomem;
 
 	mem_cgroup_event(mem_over_limit, MEMCG_MAX);
 
+        //try to reclaim some during charing
 	nr_reclaimed = try_to_free_mem_cgroup_pages(mem_over_limit, nr_pages,
 						    gfp_mask, may_swap);
 
+        //if there are some margins after reclaim, then retry
 	if (mem_cgroup_margin(mem_over_limit) >= nr_pages)
 		goto retry;
 
@@ -1933,6 +1947,7 @@ retry:
 		goto retry;
 	}
 
+        //no retry, just fails
 	if (gfp_mask & __GFP_NORETRY)
 		goto nomem;
 	/*
@@ -1940,6 +1955,7 @@ retry:
 	 * may have been able to free some pages.  Retry the charge
 	 * before killing the task.
 	 *
+         * //retry after some pages are freed
 	 * Only for regular pages, though: huge pages are rather
 	 * unlikely to succeed so close to the limit, and we fall back
 	 * to regular pages anyway in case of failure.
@@ -1953,15 +1969,19 @@ retry:
 	if (mem_cgroup_wait_acct_move(mem_over_limit))
 		goto retry;
 
+        //still have chances to retry, problem is there will be multiple retrys
 	if (nr_retries--)
 		goto retry;
 
 	if (gfp_mask & __GFP_NOFAIL)
 		goto force;
 
+        //check the kill pending again
 	if (fatal_signal_pending(current))
 		goto force;
 
+        //if comes to here which means oom is not avoided for this container
+        //after multiple rounds of reclaims, then oom this container
 	mem_cgroup_event(mem_over_limit, MEMCG_OOM);
 
 	mem_cgroup_oom(mem_over_limit, gfp_mask,
@@ -5376,6 +5396,8 @@ int mem_cgroup_try_charge(struct page *page, struct mm_struct *mm,
 		if (page->mem_cgroup)
 			goto out;
 
+                //if the page is in swap cache, then normal page table mapping will be 
+                //invalid, in this case resort to swap_entry to get the cgroup has this page
 		if (do_swap_account) {
 			swp_entry_t ent = { .val = page_private(page), };
 			unsigned short id = lookup_swap_cgroup_id(ent);

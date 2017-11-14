@@ -11,6 +11,8 @@ struct swap_cgroup_ctrl {
 	spinlock_t	lock;
 };
 
+//each swap file is corresponding to each swap type, See swap types.
+//each page in swap_cgrop_ctrl is a cache to store swap_cgroup
 static struct swap_cgroup_ctrl swap_cgroup_ctrl[MAX_SWAPFILES];
 
 struct swap_cgroup {

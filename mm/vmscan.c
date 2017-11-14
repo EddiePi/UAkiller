@@ -621,8 +621,10 @@ static pageout_t pageout(struct page *page, struct address_space *mapping,
 		}
 		return PAGE_KEEP;
 	}
+        //mapping no writepage function
 	if (mapping->a_ops->writepage == NULL)
 		return PAGE_ACTIVATE;
+        //may not writeback for this inode due to device busy or other reasons
 	if (!may_write_to_inode(mapping->host, sc))
 		return PAGE_KEEP;
 
@@ -636,7 +638,9 @@ static pageout_t pageout(struct page *page, struct address_space *mapping,
 			.for_reclaim = 1,
 		};
 
+                //set this page is under reclaim, since this page is going to writeback
 		SetPageReclaim(page);
+                //writeback this page
 		res = mapping->a_ops->writepage(page, &wbc);
 		if (res < 0)
 			handle_write_error(mapping, page, res);
@@ -645,6 +649,7 @@ static pageout_t pageout(struct page *page, struct address_space *mapping,
 			return PAGE_ACTIVATE;
 		}
 
+                //this is synchronous write
 		if (!PageWriteback(page)) {
 			/* synchronous write or broken a_ops? */
 			ClearPageReclaim(page);
@@ -853,8 +858,10 @@ static enum page_references page_check_references(struct page *page,
 	int referenced_ptes, referenced_page;
 	unsigned long vm_flags;
 
+        //the number of pte that is referring the page, the pte is set by mtu(hardware)
 	referenced_ptes = page_referenced(page, 1, sc->target_mem_cgroup,
 					  &vm_flags);
+        //if the page is accessed, this flag is set by kernel
 	referenced_page = TestClearPageReferenced(page);
 
 	/*
@@ -888,6 +895,7 @@ static enum page_references page_check_references(struct page *page,
 
 		/*
 		 * Activate file-backed executable pages after first usage.
+                 * if the page is executable pages
 		 */
 		if (vm_flags & VM_EXEC)
 			return PAGEREF_ACTIVATE;
@@ -1026,7 +1034,9 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 		 * Treat this page as congested if the underlying BDI is or if
 		 * pages are cycling through the LRU so quickly that the
 		 * pages marked for immediate reclaim are making it to the
-		 * end of the LRU a second time???
+		 * end of the LRU a second time. The first reclaim marked the
+                 * page as setPageReclaim, now it is the second time the page
+                 * is still under writeback and reclaim.
 		 */
 		mapping = page_mapping(page);
 		if (((dirty || writeback) && mapping &&
@@ -1121,8 +1131,9 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 				unlock_page(page);
 				wait_on_page_writeback(page);
 				/* then go back and try same page again */
-                                //after the page is writeback, it can be released safely for next
-                                //round
+                                //after the page is writeback, it can be released safely in this
+                                //round, the page_list will be returned to which contains  
+                                //this released page
 				list_add_tail(&page->lru, page_list);
 				continue;
 			}
@@ -1170,6 +1181,7 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 
 			/* Adding to swap updated mapping */
                         //acquire the address_pace after the page is added to swapcache
+                        //the address_space is updated to the the swap partition
 			mapping = page_mapping(page);
 		} else if (unlikely(PageTransHuge(page))) {
 			/* Split file THP */
@@ -1256,8 +1268,18 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 			case PAGE_ACTIVATE:
 				goto activate_locked;
 			case PAGE_SUCCESS:
+                        //if the page survives to here, then it has been successful writeback.
+                        //For syn  writeback which means the pageout function will not return, until
+                        //the writeback completes. the page's PG_writeback, PG_dirty, PG_lock and PG_reclaim will be cleared
+                        //For asyn writeback which means the page is still under writeback
+                        //the page's PG_writeback and PG_reclaim is still set.
+     
+                            
+                                //it is a asyn write, it is still under writeback,  go keep the page in inactive list
 				if (PageWriteback(page))
 					goto keep;
+                                //this is a dirty pages because the page is written again during writeback.
+                                //or this page is an ana page, marked as dirty during ana page writeback ??????
 				if (PageDirty(page))
 					goto keep;
 
@@ -1265,20 +1287,25 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 				 * A synchronous write - probably a ramdisk.  Go
 				 * ahead and try to reclaim the page.
 				 */
+                                //lock the page again since the page is unlocked during pageout
 				if (!trylock_page(page))
 					goto keep;
 				if (PageDirty(page) || PageWriteback(page))
 					goto keep_locked;
 				mapping = page_mapping(page);
+                             //this page is clean, no writeback is needed, only for 
+                             //clean anon page when it is added to swap cache.
 			case PAGE_CLEAN:
 				; /* try to free the page below */
 			}
 		}
 
+                //if it comes to here, then the pages has been officially writeback (syn or async).
 		/*
 		 * If the page has buffers, try to free the buffer mappings
 		 * associated with this page. If we succeed we try to free
 		 * the page as well.
+                 * //if the private field of the pages points to a buffer_head, try to release it.
 		 *
 		 * We do this even if the page is PageDirty().
 		 * try_to_release_page() does not perform I/O, but it is
@@ -1299,8 +1326,11 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 		if (page_has_private(page)) {
 			if (!try_to_release_page(page, sc->gfp_mask))
 				goto activate_locked;
+                        //this is a file page
 			if (!mapping && page_count(page) == 1) {
+                                //unlock page the _count - = 1
 				unlock_page(page);
+                                //if there is no process mapping to this process
 				if (put_page_testzero(page))
 					goto free_it;
 				else {
@@ -1327,6 +1357,10 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 			}
 
 			count_vm_event(PGLAZYFREED);
+                        
+                //if comes to here, then the page _count = 2
+                //only isolated list and address_map refers this page
+                //move this page from the address_map so the _count will be 0
 		} else if (!mapping || !__remove_mapping(mapping, page, true))
 			goto keep_locked;
 		/*
@@ -1339,16 +1373,27 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 		__ClearPageLocked(page);
 free_it:
 		nr_reclaimed++;
-
-		/*
+                /*
+                 there are 3 cases if it runs to here:
+                 * 1. the page is clean could be reclaimed directly
+                 * 2. the page is dirty but it is a sync reclaim
+                 * 3. the page is dirty and a async reclaim, but 
+                 * most of the reclaim work has been done in previous reclaim.
+                 * the work done in previous reclaim includes:
+                 * (a) ana page, put the page in swap cache, reverse mapping updates the map, write the page to swap partition
+                 * (b) file page, put the page in disk, reverse mapping updates the map, write the page to file 
+		/*  end_page_writeback(struct page *page) will call rotate_reclaimable_page to move  the page 
+                 * to the tail of inactive lru.
 		 * Is there need to periodically free_page_list? It would
 		 * appear not as the counts should be low
+                 * 
 		 */
 		list_add(&page->lru, &free_pages);
 		continue;
 
 activate_locked:
 		/* Not a candidate for swapping, so reclaim swap space. */
+                //if the swap usage is over 50%,  get the page out from swapcache.
 		if (PageSwapCache(page) && (mem_cgroup_swap_full(page) ||
 						PageMlocked(page)))
 			try_to_free_swap(page);
@@ -1361,14 +1406,18 @@ activate_locked:
 keep_locked:
 		unlock_page(page);
 keep:
+                //keep the page in inactive list
 		list_add(&page->lru, &ret_pages);
 		VM_BUG_ON_PAGE(PageLRU(page) || PageUnevictable(page), page);
 	}
 
+        //update mem_Cgroup
 	mem_cgroup_uncharge_list(&free_pages);
+        //?????
 	try_to_unmap_flush();
 	free_hot_cold_page_list(&free_pages, true);
 
+        //put the ret_pages to its original list
 	list_splice(&ret_pages, page_list);
 	count_vm_events(PGACTIVATE, pgactivate);
 
@@ -1467,6 +1516,7 @@ int __isolate_lru_page(struct page *page, isolate_mode_t mode)
 	if ((mode & ISOLATE_UNMAPPED) && page_mapped(page))
 		return ret;
 
+        //this function will add 1 to the refcount of the page
 	if (likely(get_page_unless_zero(page))) {
 		/*
 		 * Be careful not to clear PageLRU until after we're
@@ -1567,6 +1617,7 @@ static unsigned long isolate_lru_pages(unsigned long nr_to_scan,
 		 * pages, triggering a premature OOM.
 		 */
 		scan++;
+                //page refcount will be added 1 for successful isolated page here
 		switch (__isolate_lru_page(page, mode)) {
 		case 0:
 			nr_pages = hpage_nr_pages(page);
@@ -1728,6 +1779,7 @@ putback_inactive_pages(struct lruvec *lruvec, struct list_head *page_list)
 		lruvec = mem_cgroup_page_lruvec(page, pgdat);
 
 		SetPageLRU(page);
+                //put page to its original lru list
 		lru = page_lru(page);
 		add_page_to_lru_list(page, lruvec, lru);
 
@@ -1736,9 +1788,12 @@ putback_inactive_pages(struct lruvec *lruvec, struct list_head *page_list)
 			int numpages = hpage_nr_pages(page);
 			reclaim_stat->recent_rotated[file] += numpages;
 		}
+                //decrease the refcount which is added at page isolation
+                //the page may happen to be released during this time.
 		if (put_page_testzero(page)) {
 			__ClearPageLRU(page);
 			__ClearPageActive(page);
+                        //delete from lru list
 			del_page_from_lru_list(page, lruvec, lru);
 
 			if (unlikely(PageCompound(page))) {
@@ -1747,6 +1802,7 @@ putback_inactive_pages(struct lruvec *lruvec, struct list_head *page_list)
 				(*get_compound_page_dtor(page))(page);
 				spin_lock_irq(&pgdat->lru_lock);
 			} else
+                                //add to the free list to be freed
 				list_add(&page->lru, &pages_to_free);
 		}
 	}
@@ -1821,18 +1877,21 @@ shrink_inactive_list(unsigned long nr_to_scan, struct lruvec *lruvec,
 		else
 			__count_vm_events(PGSCAN_DIRECT, nr_scanned);
 	}
-        //lock pgdat->lock
+        //unlock pgdat->lock
 	spin_unlock_irq(&pgdat->lru_lock);
 
 	if (nr_taken == 0)
 		return 0;
 
-        //the core part of reclaiming is here
+        //the core part of reclaiming is here, the stat about this reclaim is 
+        //stored in stat, false means it is not a force reclaim
 	nr_reclaimed = shrink_page_list(&page_list, pgdat, sc, 0,
 				&stat, false);
 
+        //lock the pgdat->lock
 	spin_lock_irq(&pgdat->lru_lock);
 
+        //update vm events
 	if (global_reclaim(sc)) {
 		if (current_is_kswapd())
 			__count_vm_events(PGSTEAL_KSWAPD, nr_reclaimed);
@@ -1840,13 +1899,16 @@ shrink_inactive_list(unsigned long nr_to_scan, struct lruvec *lruvec,
 			__count_vm_events(PGSTEAL_DIRECT, nr_reclaimed);
 	}
 
+        //put the rest of pg_list to the inactive list after reclaim
 	putback_inactive_pages(lruvec, &page_list);
 
 	__mod_node_page_state(pgdat, NR_ISOLATED_ANON + file, -nr_taken);
 
+        //unlock the pgdat->lock
 	spin_unlock_irq(&pgdat->lru_lock);
 
 	mem_cgroup_uncharge_list(&page_list);
+        //try to free pages???????
 	free_hot_cold_page_list(&page_list, true);
 
 	/*
@@ -1859,6 +1921,7 @@ shrink_inactive_list(unsigned long nr_to_scan, struct lruvec *lruvec,
 	 * as there is no guarantee the dirtying process is throttled in the
 	 * same way balance_dirty_pages() manages.
 	 *
+         * many pages are under writeback
 	 * Once a zone is flagged ZONE_WRITEBACK, kswapd will count the number
 	 * of pages under pages flagged for immediate reclaim and stall if any
 	 * are encountered in the nr_immediate check below.
@@ -1967,7 +2030,8 @@ static unsigned move_active_pages_to_lru(struct lruvec *lruvec,
 		update_lru_size(lruvec, lru, page_zonenum(page), nr_pages);
 		list_move(&page->lru, &lruvec->lists[lru]);
 
-                //test if the page has 0 _count
+                //decease refcount here, because we 
+                //have ever added the refcount when we are isolating the page
 		if (put_page_testzero(page)) {
 			__ClearPageLRU(page);
 			__ClearPageActive(page);
@@ -2058,7 +2122,7 @@ static void shrink_active_list(unsigned long nr_to_scan,
                                         //free this page cached page, we will see page
                                         //cache in the future.
 					try_to_release_page(page, 0);
-				unlock_page(page);
+				        unlock_page(page);
 			}
 		}
 
@@ -2649,6 +2713,12 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 
 		memcg = mem_cgroup_iter(root, NULL, &reclaim);
 		do {
+                    
+            trace_mm_vmscan_shrink_node_memcg_id(memcg->id.id,
+                                                 memcg->css.id,
+                                                 memcg->css.cgroup->id,
+                                                 memcg->css.cgroup->level);
+                        
 			unsigned long lru_pages;
 			unsigned long reclaimed;
 			unsigned long scanned;
@@ -2666,6 +2736,13 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 
 			shrink_node_memcg(pgdat, memcg, sc, &lru_pages);
 			node_lru_pages += lru_pages;
+                        
+                        
+                        //added for test
+                        if(global_reclaim(sc)){
+                        
+                          printk("global reclaim");  
+                        }
 
 			if (memcg)
 				shrink_slab(sc->gfp_mask, pgdat->node_id,
@@ -3666,6 +3743,8 @@ kswapd_try_sleep:
 		 */
 		trace_mm_vmscan_kswapd_wake(pgdat->node_id, classzone_idx,
 						alloc_order);
+                printk("reacaimed order and zone idx: %d %d",alloc_order, 
+                           classzone_idx);
 		reclaim_order = balance_pgdat(pgdat, alloc_order, classzone_idx);
 		if (reclaim_order < alloc_order)
 			goto kswapd_try_sleep;

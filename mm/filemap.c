@@ -618,12 +618,25 @@ static int __add_to_page_cache_locked(struct page *page,
 	VM_BUG_ON_PAGE(PageSwapBacked(page), page);
 
 	if (!huge) {
+                //charge memory allocation for a cgroup, this is weired, since the page
+                //cache is shared by multiple cgourps.........., need time to do more research...
 		error = mem_cgroup_try_charge(page, current->mm,
 					      gfp_mask, &memcg, false);
 		if (error)
 			return error;
 	}
 
+        //preemption is disabled in this function
+        //load some radix_tree_node, since the inserted page
+        //may not closed to existing radix tree,
+        //for example, if there are 64 pages, then insert a page 
+        //at 640000, the radix tree will be significantly enlarged
+        //like this shape
+        //                .
+        //               / \
+        //              /   \
+        //             /     \
+        //first node->        <- newly inserted node
 	error = radix_tree_maybe_preload(gfp_mask & ~__GFP_HIGHMEM);
 	if (error) {
 		if (!huge)
@@ -631,12 +644,15 @@ static int __add_to_page_cache_locked(struct page *page,
 		return error;
 	}
 
+        //increase the reference(_count) since this page is going to be placed in page cache
 	get_page(page);
 	page->mapping = mapping;
 	page->index = offset;
 
 	spin_lock_irq(&mapping->tree_lock);
+        //insert this page to proper location
 	error = page_cache_tree_insert(mapping, page, shadowp);
+        //preemption is enabled in this function.....
 	radix_tree_preload_end();
 	if (unlikely(error))
 		goto err_insert;
@@ -1187,6 +1203,7 @@ struct page *find_get_entry(struct address_space *mapping, pgoff_t offset)
 	rcu_read_lock();
 repeat:
 	page = NULL;
+        //pagep is now pointint to slots
 	pagep = radix_tree_lookup_slot(&mapping->page_tree, offset);
 	if (pagep) {
 		page = radix_tree_deref_slot(pagep);
@@ -2558,7 +2575,7 @@ filler:
 	/* Distinguish between all the cases under the safety of the lock */
 	lock_page(page);
 
-	/* Case c or d, restart the operation */
+	/* Case c or d, restart the operation possible the page is released*/
 	if (!page->mapping) {
 		unlock_page(page);
 		put_page(page);

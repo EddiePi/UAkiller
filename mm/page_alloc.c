@@ -2570,7 +2570,9 @@ void free_hot_cold_page(struct page *page, bool cold)
 	else
 		list_add_tail(&page->lru, &pcp->lists[migratetype]);
 	pcp->count++;
+        //push the pages back to buddy system
 	if (pcp->count >= pcp->high) {
+                //the # of pages needed to be depleted to buddy system in batch
 		unsigned long batch = READ_ONCE(pcp->batch);
 		free_pcppages_bulk(zone, batch, pcp);
 		pcp->count -= batch;

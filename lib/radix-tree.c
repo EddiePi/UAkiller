@@ -257,7 +257,8 @@ static unsigned int iter_offset(const struct radix_tree_iter *iter)
 }
 
 /*
- * The maximum index which can be stored in a radix tree
+ * The maximum index which can be stored in a radix tree, if shift == 1 the
+ * the height of the tree is 1 so the maxmum index = 63
  */
 static inline unsigned long shift_maxindex(unsigned int shift)
 {
@@ -479,6 +480,9 @@ static int __radix_tree_preload(gfp_t gfp_mask, unsigned nr)
 	rtp = this_cpu_ptr(&radix_tree_preloads);
 	while (rtp->nr < nr) {
 		preempt_enable();
+                //here, kmem_cache_alloc do not need preemption disable
+                //if the allocation fails, it jumps to out with preemption enabled
+                //otherwise, after the while loop, the preemption is disabled.
 		node = kmem_cache_alloc(radix_tree_node_cachep, gfp_mask);
 		if (node == NULL)
 			goto out;
@@ -602,7 +606,9 @@ static unsigned radix_tree_load_root(const struct radix_tree_root *root,
 	struct radix_tree_node *node = rcu_dereference_raw(root->rnode);
 
 	*nodep = node;
-
+        
+        //chech if the last two bits of node == 1 ????
+        //this is a pointer, how is this 
 	if (likely(radix_tree_is_internal_node(node))) {
 		node = entry_to_node(node);
 		*maxindex = node_maxindex(node);

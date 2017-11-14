@@ -42,19 +42,26 @@
 //added by wei for debugging purpose
 TRACE_EVENT(mm_vmscan_shrink_node_memcg_id,
 
-	TP_PROTO(int mem_id),
+	TP_PROTO(int mem_id,int css_id, int cg_id, int cg_level),
 
-	TP_ARGS(mem_id),
+	TP_ARGS(mem_id, cg_id, cg_level),
 
 	TP_STRUCT__entry(
 		__field(    int,	mem_id	)
+        __field(    int,	css_id	)
+        __field(    int,    cg_id   )
+        __field(    int,	cg_level)
+
 	),
 
 	TP_fast_assign(
-		__entry->mem_id	= mem_id;
+		__entry->mem_id	 = mem_id;
+        __entry->cg_id   = cg_id;
+        __entry->css_id  = css_id;
+        __entry->cg_level= cg_level;
 	),
 
-	TP_printk("mem_id=%d", __entry->mem_id)
+	TP_printk("mem_id=%d css_id=%d cg_id=%d cg_level=%d", __entry->mem_id,__entry->css_id, __entry->cg_id, __entry->cg_level)
 );
 
 
