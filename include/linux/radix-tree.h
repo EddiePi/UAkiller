@@ -92,7 +92,9 @@ static inline bool radix_tree_is_internal_node(void *ptr)
  */
 struct radix_tree_node {
 	unsigned char	shift;		/* Bits remaining in each slot */
+        //8 bits offset
 	unsigned char	offset;		/* Slot offset in parent */
+        //since the RADIDX_TREE_MAP_SIZE = 64=2^6
 	unsigned char	count;		/* Total entry count */
 	unsigned char	exceptional;	/* Exceptional entry count */
 	struct radix_tree_node *parent;		/* Used when ascending tree */
@@ -101,7 +103,10 @@ struct radix_tree_node {
 		struct list_head private_list;	/* For tree user */
 		struct rcu_head	rcu_head;	/* Used when freeing node */
 	};
+        //each slots points to either a radx_tree_node or page or exceptional entry or retry entry
 	void __rcu	*slots[RADIX_TREE_MAP_SIZE];
+        //store the tag (e.g., page_dirty or page_writeback for each intermediate node)
+        //iff. this subnode contains 1 dirty page, the corresponding tag for this subnode is set.
 	unsigned long	tags[RADIX_TREE_MAX_TAGS][RADIX_TREE_TAG_LONGS];
 };
 

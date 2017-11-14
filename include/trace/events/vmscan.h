@@ -37,6 +37,27 @@
 		(RECLAIM_WB_ASYNC) \
 	)
 
+
+
+//added by wei for debugging purpose
+TRACE_EVENT(mm_vmscan_shrink_node_memcg_id,
+
+	TP_PROTO(int mem_id),
+
+	TP_ARGS(mem_id),
+
+	TP_STRUCT__entry(
+		__field(    int,	mem_id	)
+	),
+
+	TP_fast_assign(
+		__entry->mem_id	= mem_id;
+	),
+
+	TP_printk("mem_id=%d", __entry->mem_id)
+);
+
+
 TRACE_EVENT(mm_vmscan_kswapd_sleep,
 
 	TP_PROTO(int nid),

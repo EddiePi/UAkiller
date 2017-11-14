@@ -469,7 +469,7 @@ static inline int put_page_testzero(struct page *page)
 
 /*
  * Try to grab a ref unless the page has a refcount of zero, return false if
- * that is the case.
+ * that is the case. this function will add 1 to refcount of the page
  * This can be called when MMU is off so it must not access
  * any of the virtual mappings.
  */

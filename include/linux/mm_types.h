@@ -56,6 +56,7 @@ struct page {
 
 	/* Second double word */
 	union {
+                //page offset with the disk image, used to locate the page in the radix tree
 		pgoff_t index;		/* Our offset within mapping. */
 		void *freelist;		/* sl[aou]b first free object */
 		/* page_deferred_list().prev	-- second tail page */
