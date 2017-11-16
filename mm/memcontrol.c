@@ -679,6 +679,16 @@ static void memcg_check_events(struct mem_cgroup *memcg, struct page *page)
 	}
 }
 
+unsigned int mem_cgroup_id_from_task(struct task_struct *p){
+    
+    struct mem_cgroup *mem_cg = mem_cgroup_from_task(p);
+    
+    if(unlikely(!p)){
+       return -1; 
+    }
+
+    return mem_cg->id.id;
+}
 struct mem_cgroup *mem_cgroup_from_task(struct task_struct *p)
 {
 	/*
@@ -4188,9 +4198,12 @@ static struct mem_cgroup *mem_cgroup_alloc(void)
 	if (!memcg)
 		return NULL;
 
+         
 	memcg->id.id = idr_alloc(&mem_cgroup_idr, NULL,
 				 1, MEM_CGROUP_ID_MAX,
 				 GFP_KERNEL);
+        
+         printk("New memcgroup: %d",memcg->id.id);
 	if (memcg->id.id < 0)
 		goto fail;
 

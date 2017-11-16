@@ -1539,7 +1539,6 @@
         <in>hwa-hc.mod</in>
         <in>hwa-rc.mod</in>
         <in>hwmon-vid.mod</in>
-        <in>hwpoison-inject.mod</in>
         <in>hx8357.mod</in>
         <in>hyperv-keyboard.mod</in>
         <in>hyperv_fb.mod</in>
@@ -2713,7 +2712,6 @@
         <in>panasonic-laptop.mod</in>
         <in>pandora_bl.mod</in>
         <in>panel.mod</in>
-        <in>paride.mod</in>
         <in>parkbd.mod</in>
         <in>parport.mod</in>
         <in>parport_ax88796.mod</in>
@@ -4523,7 +4521,6 @@
         <in>yellowfin.mod</in>
         <in>yenta_socket.mod</in>
         <in>yurex.mod</in>
-        <in>zatm.mod</in>
         <in>zaurus.mod</in>
         <in>zd1201.mod</in>
         <in>zd1211rw.mod</in>
@@ -33586,6 +33583,7 @@
         </df>
         <df name="mfd">
           <in>88pm800.c</in>
+          <in>88pm800.mod.c</in>
           <in>88pm805.c</in>
           <in>88pm805.mod.c</in>
           <in>88pm80x.c</in>
@@ -68398,6 +68396,7 @@
         <in>swap_slots.c</in>
         <in>swap_state.c</in>
         <in>swapfile.c</in>
+        <in>sys_pid_memcgroup.c</in>
         <in>truncate.c</in>
         <in>usercopy.c</in>
         <in>userfaultfd.c</in>

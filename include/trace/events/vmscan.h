@@ -44,7 +44,7 @@ TRACE_EVENT(mm_vmscan_shrink_node_memcg_id,
 
 	TP_PROTO(int mem_id,int css_id, int cg_id, int cg_level),
 
-	TP_ARGS(mem_id, cg_id, cg_level),
+	TP_ARGS(mem_id, css_id, cg_id, cg_level),
 
 	TP_STRUCT__entry(
 		__field(    int,	mem_id	)

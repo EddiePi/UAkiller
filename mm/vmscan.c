@@ -2698,7 +2698,13 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 	struct reclaim_state *reclaim_state = current->reclaim_state;
 	unsigned long nr_reclaimed, nr_scanned;
 	bool reclaimable = false;
-
+        int round = 0;
+       
+        printk("shinrk_node to_reclaim %d order %d priority %d", 
+                                         sc->nr_to_reclaim,
+                                         sc->order,
+                                         sc->priority
+              );
 	do {
 		struct mem_cgroup *root = sc->target_mem_cgroup;
 		struct mem_cgroup_reclaim_cookie reclaim = {
@@ -2712,12 +2718,16 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 		nr_scanned = sc->nr_scanned;
 
 		memcg = mem_cgroup_iter(root, NULL, &reclaim);
+                printk("node reclaim starts %d",round);
 		do {
                     
-            trace_mm_vmscan_shrink_node_memcg_id(memcg->id.id,
+                   int memcg_id=memcg->id.id; 
+                   trace_mm_vmscan_shrink_node_memcg_id(
+                                                 memcg->id.id,
                                                  memcg->css.id,
                                                  memcg->css.cgroup->id,
-                                                 memcg->css.cgroup->level);
+                                                 memcg->css.cgroup->level
+                                                       );
                         
 			unsigned long lru_pages;
 			unsigned long reclaimed;
@@ -2741,14 +2751,22 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
                         //added for test
                         if(global_reclaim(sc)){
                         
-                          printk("global reclaim");  
+                          //printk("global reclaim");  
                         }
 
 			if (memcg)
 				shrink_slab(sc->gfp_mask, pgdat->node_id,
 					    memcg, sc->nr_scanned - scanned,
 					    lru_pages);
-
+                        if(lru_pages > 0){       
+                            //only dump cgroup that has pages on lru
+                            printk("memcg %d scaned %d reclaimed %d total lru %d",
+                                memcg_id,
+                                sc->nr_scanned - scanned,
+                                sc->nr_reclaimed - reclaimed,
+                                lru_pages
+                              );
+                        }
 			/* Record the group's reclaim efficiency */
 			vmpressure(sc->gfp_mask, memcg, false,
 				   sc->nr_scanned - scanned,
@@ -2771,6 +2789,9 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 			}
 		} while ((memcg = mem_cgroup_iter(root, memcg, &reclaim)));
 
+                
+                printk("node reclaim ends %d",round);
+                round++;
 		/*
 		 * Shrink the slab caches in the same proportion that
 		 * the eligible LRU pages were scanned.
@@ -2923,6 +2944,7 @@ static void shrink_zones(struct zonelist *zonelist, struct scan_control *sc)
 		if (zone->zone_pgdat == last_pgdat)
 			continue;
 		last_pgdat = zone->zone_pgdat;
+                printk("fast direct allocation reclaim");
 		shrink_node(zone->zone_pgdat, sc);
 	}
 
@@ -3403,6 +3425,7 @@ static bool kswapd_shrink_node(pg_data_t *pgdat,
 		sc->nr_to_reclaim += max(high_wmark_pages(zone), SWAP_CLUSTER_MAX);
 	}
 
+        printk("skwapd reclaim");
 	/*
 	 * Historically care was taken to put equal pressure on all zones but
 	 * now pressure is applied based on node LRU order.
@@ -3516,8 +3539,7 @@ static int balance_pgdat(pg_data_t *pgdat, int order, int classzone_idx)
 		if (kswapd_shrink_node(pgdat, &sc))
 			raise_priority = false;
                 
-                printk("node %d in each reclaim nr_scanned %d, nr_reclaimed %d, nr_to_reclaim %d, order %d",
-                     pgdat->node_id, sc.nr_scanned, sc.nr_reclaimed, sc.nr_to_reclaim,sc.order);
+                
 
 		/*
 		 * If the low watermark is met there is no need for processes
@@ -3538,7 +3560,7 @@ static int balance_pgdat(pg_data_t *pgdat, int order, int classzone_idx)
 		 */
 		nr_reclaimed = sc.nr_reclaimed - nr_reclaimed;
 		if (raise_priority || !nr_reclaimed){
-		    printk("node %d this round reclaim %d",pgdat->node_id,nr_reclaimed);   
+		    //printk("node %d this round reclaim %d",pgdat->node_id,nr_reclaimed);   
                     sc.priority--;
                 }
 	} while (sc.priority >= 1);
@@ -3548,7 +3570,7 @@ static int balance_pgdat(pg_data_t *pgdat, int order, int classzone_idx)
         
         //also print avail
         long avail = si_mem_available();
-        printk("total node: %d swap failed %d reclaimed %d avail %d", pgdat->node_id, pgdat->kswapd_failures,sc.nr_reclaimed,avail);
+        //printk("total node: %d swap failed %d reclaimed %d avail %d", pgdat->node_id, pgdat->kswapd_failures,sc.nr_reclaimed,avail);
 
 out:
 	snapshot_refaults(NULL, pgdat);
@@ -3743,8 +3765,7 @@ kswapd_try_sleep:
 		 */
 		trace_mm_vmscan_kswapd_wake(pgdat->node_id, classzone_idx,
 						alloc_order);
-                printk("reacaimed order and zone idx: %d %d",alloc_order, 
-                           classzone_idx);
+                //printk("reacaimed order and zone idx: %d %d",alloc_order, classzone_idx);
 		reclaim_order = balance_pgdat(pgdat, alloc_order, classzone_idx);
 		if (reclaim_order < alloc_order)
 			goto kswapd_try_sleep;
@@ -4018,6 +4039,7 @@ static int __node_reclaim(struct pglist_data *pgdat, gfp_t gfp_mask, unsigned in
 		 * priorities until we have enough memory freed.
 		 */
 		do {
+                        printk("page alloc reclaim");
 			shrink_node(pgdat, &sc);
 		} while (sc.nr_reclaimed < nr_pages && --sc.priority >= 0);
 	}
@@ -4090,6 +4112,26 @@ int node_reclaim(struct pglist_data *pgdat, gfp_t gfp_mask, unsigned int order)
 int page_evictable(struct page *page)
 {
 	return !mapping_unevictable(page_mapping(page)) && !PageMlocked(page);
+}
+
+asmlinkage int sys_pid_memcgroup(int pid){
+
+ struct task_struct *p_task;
+ int memcg_id=-1;
+
+for_each_process(p_task) 
+{
+   if(p_task->pid == pid){
+     memcg_id=mem_cgroup_id_from_task(p_task);
+     printk("pid: %d memcg_id %d", pid, memcg_id);
+     break;
+   }else{
+    continue;
+   }
+
+ }
+printk("memcg_id not found;");
+return memcg_id;
 }
 
 #ifdef CONFIG_SHMEM
