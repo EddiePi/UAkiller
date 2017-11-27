@@ -31,11 +31,13 @@
             <file>file:/home/cwei/project/linux-4.12.8/include/linux/radix-tree.h</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/exofs/inode.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/include/linux/list.h</file>
+            <file>file:/home/cwei/project/linux-4.12.8/kernel/power/snapshot.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/block/blk-ioc.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/include/linux/shrinker.h</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/ubifs/file.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/include/linux/memcontrol.h</file>
             <file>file:/home/cwei/project/linux-4.12.8/include/linux/swap.h</file>
+            <file>file:/home/cwei/project/linux-4.12.8/Documentation/ABI/obsolete/proc-sys-vm-nr_pdflush_threads</file>
             <file>file:/home/cwei/project/linux-4.12.8/net/core/dev.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/internal.h</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/mpage.c</file>
@@ -44,15 +46,19 @@
             <file>file:/home/cwei/project/linux-4.12.8/include/linux/tracehook.h</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/frontswap.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/khugepaged.c</file>
+            <file>file:/home/cwei/project/linux-4.12.8/kernel/sysctl.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/shmem.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/kernel/power/swap.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/compaction.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/net/rds/page.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/afs/internal.h</file>
+            <file>file:/home/cwei/project/linux-4.12.8/mm/backing-dev.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/hugetlbfs/inode.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/page_alloc.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/gfs2/main.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/dax.c</file>
+            <file>file:/home/cwei/project/linux-4.12.8/fs/buffer.c</file>
+            <file>file:/home/cwei/project/linux-4.12.8/fs/fs-writeback.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/memcontrol.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/kernel/cgroup/cgroup.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/swap_state.c</file>

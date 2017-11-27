@@ -2189,6 +2189,8 @@ static void shrink_active_list(unsigned long nr_to_scan,
  *
  * Both inactive lists should also be large enough that each inactive
  * page has a chance to be referenced again before it is reclaimed.
+ * //otherwise the inactive list will be reclaimed
+ * //usually the active list is much larger than inactive list
  *
  * If that fails and refaulting is observed, the inactive list grows.
  *
@@ -2240,6 +2242,9 @@ static bool inactive_list_is_low(struct lruvec *lruvec, bool file,
 	 * is being established. Disable active list protection to get
 	 * rid of the stale workingset quickly.
 	 */
+        //a new working set is established. For file access in the new working set,
+        //move the pages from active list to inactive list to make rooms for new 
+        //established working set.
 	if (file && actual_reclaim && lruvec->refaults != refaults) {
 		inactive_ratio = 0;
 	} else {
@@ -2615,8 +2620,10 @@ static bool in_reclaim_compaction(struct scan_control *sc)
 	if (IS_ENABLED(CONFIG_COMPACTION) && sc->order &&
 			(sc->order > PAGE_ALLOC_COSTLY_ORDER ||
 			 sc->priority < DEF_PRIORITY - 2))
+                printk("In compact");
 		return true;
 
+        
 	return false;
 }
 
@@ -2698,14 +2705,9 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 	struct reclaim_state *reclaim_state = current->reclaim_state;
 	unsigned long nr_reclaimed, nr_scanned;
 	bool reclaimable = false;
-        int round = 0;
+    int round = 0;
        
-        printk("shinrk_node to_reclaim %d order %d priority %d", 
-                                         sc->nr_to_reclaim,
-                                         sc->order,
-                                         sc->priority
-              );
-	do {
+    do {
 		struct mem_cgroup *root = sc->target_mem_cgroup;
 		struct mem_cgroup_reclaim_cookie reclaim = {
 			.pgdat = pgdat,
@@ -2718,11 +2720,11 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 		nr_scanned = sc->nr_scanned;
 
 		memcg = mem_cgroup_iter(root, NULL, &reclaim);
-                printk("node reclaim starts %d",round);
+        //printk("node reclaim starts %d",round);
 		do {
                     
-                   int memcg_id=memcg->id.id; 
-                   trace_mm_vmscan_shrink_node_memcg_id(
+            int memcg_id=memcg->id.id; 
+            trace_mm_vmscan_shrink_node_memcg_id(
                                                  memcg->id.id,
                                                  memcg->css.id,
                                                  memcg->css.cgroup->id,
@@ -2746,27 +2748,19 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 
 			shrink_node_memcg(pgdat, memcg, sc, &lru_pages);
 			node_lru_pages += lru_pages;
-                        
-                        
-                        //added for test
-                        if(global_reclaim(sc)){
-                        
-                          //printk("global reclaim");  
-                        }
-
-			if (memcg)
+            if (memcg)
 				shrink_slab(sc->gfp_mask, pgdat->node_id,
 					    memcg, sc->nr_scanned - scanned,
 					    lru_pages);
-                        if(lru_pages > 0){       
-                            //only dump cgroup that has pages on lru
-                            printk("memcg %d scaned %d reclaimed %d total lru %d",
-                                memcg_id,
-                                sc->nr_scanned - scanned,
-                                sc->nr_reclaimed - reclaimed,
-                                lru_pages
-                              );
-                        }
+            if(0){       
+                //only dump cgroup that has pages on lru
+                printk("memcg %d scaned %d reclaimed %d total lru %d",
+                    memcg_id,
+                    sc->nr_scanned - scanned,
+                    sc->nr_reclaimed - reclaimed,
+                    lru_pages
+                  );
+            }
 			/* Record the group's reclaim efficiency */
 			vmpressure(sc->gfp_mask, memcg, false,
 				   sc->nr_scanned - scanned,
@@ -2790,7 +2784,14 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 		} while ((memcg = mem_cgroup_iter(root, memcg, &reclaim)));
 
                 
-                printk("node reclaim ends %d",round);
+        /*                
+        printk("node reclaim ends %d scaned %d reclaimed %d"
+                                                 ,round
+                                                 ,sc->nr_scanned - nr_scanned
+                                                 ,sc->nr_reclaimed - nr_reclaimed                              
+              );
+        */                
+
                 round++;
 		/*
 		 * Shrink the slab caches in the same proportion that
@@ -2825,6 +2826,15 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 	 */
 	if (reclaimable)
 		pgdat->kswapd_failures = 0;
+     printk("shinrk_node to_reclaim %d order %d priority %d may_write %d numa node %d nr scaned %d nr_recalimed %d" , 
+                                         sc->nr_to_reclaim,
+                                         sc->order,
+                                         sc->priority,
+                                         sc->may_writepage,
+                                         pgdat->node_id,
+                                         sc->nr_scanned,
+                                         sc->nr_reclaimed 
+           );
 
 	return reclaimable;
 }
@@ -2932,7 +2942,7 @@ static void shrink_zones(struct zonelist *zonelist, struct scan_control *sc)
 			 * and balancing, not for a memcg's limit.
 			 */
 			nr_soft_scanned = 0;
-			nr_soft_reclaimed = mem_cgroup_soft_limit_reclaim(zone->zone_pgdat,
+			nr_soft_reclaimed = (zone->zone_pgdat,
 						sc->order, sc->gfp_mask,
 						&nr_soft_scanned);
 			sc->nr_reclaimed += nr_soft_reclaimed;
@@ -2944,7 +2954,7 @@ static void shrink_zones(struct zonelist *zonelist, struct scan_control *sc)
 		if (zone->zone_pgdat == last_pgdat)
 			continue;
 		last_pgdat = zone->zone_pgdat;
-                printk("fast direct allocation reclaim");
+                //printk("fast direct allocation reclaim");
 		shrink_node(zone->zone_pgdat, sc);
 	}
 
@@ -3290,6 +3300,7 @@ unsigned long try_to_free_mem_cgroup_pages(struct mem_cgroup *memcg,
 
 	zonelist = &NODE_DATA(nid)->node_zonelists[ZONELIST_FALLBACK];
 
+        
 	trace_mm_vmscan_memcg_reclaim_begin(0,
 					    sc.may_writepage,
 					    sc.gfp_mask,
@@ -3297,6 +3308,11 @@ unsigned long try_to_free_mem_cgroup_pages(struct mem_cgroup *memcg,
 
 	noreclaim_flag = memalloc_noreclaim_save();
 	nr_reclaimed = do_try_to_free_pages(zonelist, &sc);
+    printk("mem_cg reclaim %d to reclaim %d reclaimed %d",
+                                                 memcg->id.id,
+                                                 nr_pages,
+                                                 nr_reclaimed
+          );
 	memalloc_noreclaim_restore(noreclaim_flag);
 
 	trace_mm_vmscan_memcg_reclaim_end(nr_reclaimed);
@@ -3317,10 +3333,13 @@ static void age_active_anon(struct pglist_data *pgdat,
 	do {
 		struct lruvec *lruvec = mem_cgroup_lruvec(pgdat, memcg);
 
+                //if the inactive list is low, then move pages from inactive 
+                //list to active list, give pages chances to be reclaimed from inaclive list.
 		if (inactive_list_is_low(lruvec, false, memcg, sc, true))
 			shrink_active_list(SWAP_CLUSTER_MAX, lruvec,
 					   sc, LRU_ACTIVE_ANON);
 
+                //iterate this cgroup
 		memcg = mem_cgroup_iter(NULL, memcg, NULL);
 	} while (memcg);
 }
@@ -3559,6 +3578,8 @@ static int balance_pgdat(pg_data_t *pgdat, int order, int classzone_idx)
 		 * progress in reclaiming pages
 		 */
 		nr_reclaimed = sc.nr_reclaimed - nr_reclaimed;
+                //if there are pages can be recliamed in this prioirty just continue relcaiming, 
+                //raising the priority may cause intensive IO (may_writepage=1)
 		if (raise_priority || !nr_reclaimed){
 		    //printk("node %d this round reclaim %d",pgdat->node_id,nr_reclaimed);   
                     sc.priority--;
@@ -3767,6 +3788,7 @@ kswapd_try_sleep:
 						alloc_order);
                 //printk("reacaimed order and zone idx: %d %d",alloc_order, classzone_idx);
 		reclaim_order = balance_pgdat(pgdat, alloc_order, classzone_idx);
+                printk("reacaimed order and alloc idx: %d %d",reclaim_order, alloc_order);
 		if (reclaim_order < alloc_order)
 			goto kswapd_try_sleep;
 	}
