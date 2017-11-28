@@ -14,6 +14,7 @@ PAGE_SIZE=os.sysconf("SC_PAGE_SIZE")
 
 
 def set_idle():
+    start=time.time()
     f=open(IDLE_BIT,"wb",BUFSIZE)
     while True:
         try:
@@ -23,6 +24,18 @@ def set_idle():
                 break
             raise
     f.close()
+    end=time.time()
+    print "set idle: ",str(end-start)
+
+def get_dile():
+    start=time.time()
+    with open(IDLE_BIT,"rb",BUFSIZE) as f:
+        while f.read(BUFSIZE): pass
+    end=time.time()
+    print "get idle: ", str(end-start)
+
+
+
 
 def page_counting():
     f_flags  = open(FLAG,"rb",BUFSIZE)
@@ -34,6 +47,8 @@ def page_counting():
 
 
     idlememcg={}
+    totamemcg={}
+    start=time.time()
     while True:
         s1=f_flags.read(8)
         s2=f_cgroup.read(8)
@@ -42,34 +57,34 @@ def page_counting():
 
         flags,=struct.unpack("Q",s1)
         cgino,=struct.unpack("Q",s2)
+        idle = (flags >> 25) & 1
 
         ##check flags        
         unevictable = (flags >> 18) & 1
         huge = (flags >> 22) & 1
-        idle = (flags >> 25) & 1
 
+        totamemcg[cgino]=totamemcg.get(cgino,0)+1
         if idle and not unevictable:
             idlememcg[cgino]=idlememcg.get(cgino,0) + 1
     
     f_flags.close()
     f_cgroup.close()
-    return idlememcg
+    end=time.time()
+    print "counting: ",str(end-start)
+    return idlememcg,totamemcg
 
             
 
 
 
 if __name__=="__main__":
-    time.sleep(1)
-    ##clear the idle
     set_idle()
-    time.sleep(60)
-    ##do page counting
-    idlememcg=page_counting()
-    ##walk through all cgroups
-    for dirn, subdirs, files in os.walk(CGROUP_MOUNT):
+
+    time.sleep(3)
+
+    idlememcg,totamemcg=page_counting()
+
+    for dirn,subdirs,files in os.walk(CGROUP_MOUNT+"/memory/docker"):
         ino=os.stat(dirn)[stat.ST_INO]
-        print dirn+" : "+str(idlememcg.get(ino,0))
-
-
-    
+        print "total "+dirn+" "+str(totamemcg[ino])
+        print "idle  "+dirn+" "+str(idlememcg[ino])
