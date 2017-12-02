@@ -2591,6 +2591,8 @@ unsigned long mem_cgroup_soft_limit_reclaim(pg_data_t *pgdat, int order,
 	 * pressure
 	 */
 	do {
+                //always choose cgroup with largest soft limit excess, 
+                //as a result, the cgroup with least soft limit will be chosen first
 		if (next_mz)
 			mz = next_mz;
 		else
@@ -2604,6 +2606,7 @@ unsigned long mem_cgroup_soft_limit_reclaim(pg_data_t *pgdat, int order,
 		nr_reclaimed += reclaimed;
 		*total_scanned += nr_scanned;
 		spin_lock_irq(&mctz->lock);
+                //remove from rb tree
 		__mem_cgroup_remove_exceeded(mz, mctz);
 
 		/*
@@ -2614,6 +2617,7 @@ unsigned long mem_cgroup_soft_limit_reclaim(pg_data_t *pgdat, int order,
 		if (!reclaimed)
 			next_mz = __mem_cgroup_largest_soft_limit_node(mctz);
 
+                //compute excess 
 		excess = soft_limit_excess(mz->memcg);
 		/*
 		 * One school of thought says that we should not add
@@ -2624,6 +2628,7 @@ unsigned long mem_cgroup_soft_limit_reclaim(pg_data_t *pgdat, int order,
 		 * term TODO.
 		 */
 		/* If excess == 0, no tree ops */
+                //insert back to tree
 		__mem_cgroup_insert_exceeded(mz, mctz, excess);
 		spin_unlock_irq(&mctz->lock);
 		css_put(&mz->memcg->css);

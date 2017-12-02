@@ -2308,6 +2308,7 @@ static void get_scan_count(struct lruvec *lruvec, struct mem_cgroup *memcg,
 	unsigned long anon, file;
 	unsigned long ap, fp;
 	enum lru_list lru;
+        
 
 	/* If we have no swap space, do not bother scanning anon pages. */
 	if (!sc->may_swap || mem_cgroup_get_nr_swap_pages(memcg) <= 0) {
@@ -2336,8 +2337,10 @@ static void get_scan_count(struct lruvec *lruvec, struct mem_cgroup *memcg,
 		scan_balance = SCAN_EQUAL;
 		goto out;
 	}
-
-	/*
+        
+        
+        
+        /*
 	 * Prevent the reclaimer from falling into the cache trap: as
 	 * cache pages start out inactive, every cache fault will tip
 	 * the scan balance towards the file LRU.  And as the file LRU
@@ -2378,6 +2381,8 @@ static void get_scan_count(struct lruvec *lruvec, struct mem_cgroup *memcg,
 	 * Without the second condition we could end up never scanning an
 	 * lruvec even if it has plenty of old anonymous pages unless the
 	 * system is under heavy pressure.
+         * //scan and reclaim inactive file lru first.....though there are 
+         * //many anonymous working set. since reclaiming file lru may not caue much thrashing. 
 	 */
 	if (!inactive_list_is_low(lruvec, true, memcg, sc, false) &&
 	    lruvec_lru_size(lruvec, LRU_INACTIVE_FILE, sc->reclaim_idx) >> sc->priority) {
@@ -2707,6 +2712,7 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 	bool reclaimable = false;
     int round = 0;
        
+    printk("enter shrink_node");
     do {
 		struct mem_cgroup *root = sc->target_mem_cgroup;
 		struct mem_cgroup_reclaim_cookie reclaim = {
@@ -2720,7 +2726,7 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 		nr_scanned = sc->nr_scanned;
 
 		memcg = mem_cgroup_iter(root, NULL, &reclaim);
-        //printk("node reclaim starts %d",round);
+        printk("node reclaim starts %d",round);
 		do {
                     
             int memcg_id=memcg->id.id; 
@@ -2729,8 +2735,7 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
                                                  memcg->css.id,
                                                  memcg->css.cgroup->id,
                                                  memcg->css.cgroup->level
-                                                       );
-                        
+                                                );                        
 			unsigned long lru_pages;
 			unsigned long reclaimed;
 			unsigned long scanned;
@@ -2749,22 +2754,18 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 			shrink_node_memcg(pgdat, memcg, sc, &lru_pages);
 			node_lru_pages += lru_pages;
             if (memcg)
-				shrink_slab(sc->gfp_mask, pgdat->node_id,
-					    memcg, sc->nr_scanned - scanned,
-					    lru_pages);
-            if(0){       
-                //only dump cgroup that has pages on lru
-                printk("memcg %d scaned %d reclaimed %d total lru %d",
-                    memcg_id,
-                    sc->nr_scanned - scanned,
-                    sc->nr_reclaimed - reclaimed,
-                    lru_pages
-                  );
-            }
+			      shrink_slab(sc->gfp_mask, pgdat->node_id, memcg, sc->nr_scanned - scanned, lru_pages);
+            if(1){       
+                        //only dump cgroup that has pages on lru
+                        printk("memcg %d scaned %d reclaimed %d total lru %d",
+                        memcg_id,
+                        sc->nr_scanned - scanned,
+                        sc->nr_reclaimed - reclaimed,
+                        lru_pages
+                        );
+                  }
 			/* Record the group's reclaim efficiency */
-			vmpressure(sc->gfp_mask, memcg, false,
-				   sc->nr_scanned - scanned,
-				   sc->nr_reclaimed - reclaimed);
+		   vmpressure(sc->gfp_mask, memcg, false, sc->nr_scanned - scanned, sc->nr_reclaimed - reclaimed);
 
 			/*
 			 * Direct reclaim and kswapd have to scan all memory
@@ -2792,7 +2793,8 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
               );
         */                
 
-                round++;
+        round++;
+        //TODO after first reclaim, we need to check the swap usage.
 		/*
 		 * Shrink the slab caches in the same proportion that
 		 * the eligible LRU pages were scanned.
@@ -2826,7 +2828,8 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 	 */
 	if (reclaimable)
 		pgdat->kswapd_failures = 0;
-     printk("shinrk_node to_reclaim %d order %d priority %d may_write %d numa node %d nr scaned %d nr_recalimed %d" , 
+        /*
+        printk("shinrk_node to_reclaim %d order %d priority %d may_write %d numa node %d nr scaned %d nr_recalimed %d" , 
                                          sc->nr_to_reclaim,
                                          sc->order,
                                          sc->priority,
@@ -2834,7 +2837,8 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
                                          pgdat->node_id,
                                          sc->nr_scanned,
                                          sc->nr_reclaimed 
-           );
+        );
+       */
 
 	return reclaimable;
 }
@@ -2942,7 +2946,7 @@ static void shrink_zones(struct zonelist *zonelist, struct scan_control *sc)
 			 * and balancing, not for a memcg's limit.
 			 */
 			nr_soft_scanned = 0;
-			nr_soft_reclaimed = (zone->zone_pgdat,
+			nr_soft_reclaimed = mem_cgroup_soft_limit_reclaim(zone->zone_pgdat,
 						sc->order, sc->gfp_mask,
 						&nr_soft_scanned);
 			sc->nr_reclaimed += nr_soft_reclaimed;

@@ -77,6 +77,7 @@
  *
  * Thus:
  *
+ * sum(eviction + activation) = # of inactive pages accessed
  * 1. The sum of evictions and activations between any two points in
  *    time indicate the minimum number of inactive pages accessed in
  *    between.

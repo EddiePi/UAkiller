@@ -274,13 +274,15 @@ void vmpressure(gfp_t gfp, struct mem_cgroup *memcg, bool tree,
 		scanned = vmpr->scanned += scanned;
 		reclaimed = vmpr->reclaimed += reclaimed;
 		if (scanned < vmpressure_win) {
-			spin_unlock(&vmpr->sr_lock);
-			return;
+		    spin_unlock(&vmpr->sr_lock);
+		    return;
 		}
 		vmpr->scanned = vmpr->reclaimed = 0;
 		spin_unlock(&vmpr->sr_lock);
 
 		level = vmpressure_calc_level(scanned, reclaimed);
+                
+        printk("vm pressure memcg %d scanned %d reclaimed %d level %d", memcg->id.id,scanned,reclaimed,level);
 
 		if (level > VMPRESSURE_LOW) {
 			/*
