@@ -2712,7 +2712,7 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 	bool reclaimable = false;
     int round = 0;
        
-    printk("enter shrink_node");
+    //printk("enter shrink_node");
     do {
 		struct mem_cgroup *root = sc->target_mem_cgroup;
 		struct mem_cgroup_reclaim_cookie reclaim = {
@@ -2726,7 +2726,7 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 		nr_scanned = sc->nr_scanned;
 
 		memcg = mem_cgroup_iter(root, NULL, &reclaim);
-        printk("node reclaim starts %d",round);
+        //printk("node reclaim starts %d",round);
 		do {
                     
             int memcg_id=memcg->id.id; 
@@ -2755,7 +2755,7 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 			node_lru_pages += lru_pages;
             if (memcg)
 			      shrink_slab(sc->gfp_mask, pgdat->node_id, memcg, sc->nr_scanned - scanned, lru_pages);
-            if(1){       
+            if(0){       
                         //only dump cgroup that has pages on lru
                         printk("memcg %d scaned %d reclaimed %d total lru %d",
                         memcg_id,
@@ -2827,7 +2827,7 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 	 * successful direct reclaim run will revive a dormant kswapd.
 	 */
 	if (reclaimable)
-		pgdat->kswapd_failures = 0;
+		  pgdat->kswapd_failures = 0;
         /*
         printk("shinrk_node to_reclaim %d order %d priority %d may_write %d numa node %d nr scaned %d nr_recalimed %d" , 
                                          sc->nr_to_reclaim,
@@ -2958,7 +2958,7 @@ static void shrink_zones(struct zonelist *zonelist, struct scan_control *sc)
 		if (zone->zone_pgdat == last_pgdat)
 			continue;
 		last_pgdat = zone->zone_pgdat;
-                //printk("fast direct allocation reclaim");
+        printk("fast direct allocation reclaim");
 		shrink_node(zone->zone_pgdat, sc);
 	}
 
@@ -3448,7 +3448,7 @@ static bool kswapd_shrink_node(pg_data_t *pgdat,
 		sc->nr_to_reclaim += max(high_wmark_pages(zone), SWAP_CLUSTER_MAX);
 	}
 
-        printk("skwapd reclaim");
+    printk("skwapd reclaim");
 	/*
 	 * Historically care was taken to put equal pressure on all zones but
 	 * now pressure is applied based on node LRU order.
@@ -3790,9 +3790,7 @@ kswapd_try_sleep:
 		 */
 		trace_mm_vmscan_kswapd_wake(pgdat->node_id, classzone_idx,
 						alloc_order);
-                //printk("reacaimed order and zone idx: %d %d",alloc_order, classzone_idx);
 		reclaim_order = balance_pgdat(pgdat, alloc_order, classzone_idx);
-                printk("reacaimed order and alloc idx: %d %d",reclaim_order, alloc_order);
 		if (reclaim_order < alloc_order)
 			goto kswapd_try_sleep;
 	}
@@ -4065,7 +4063,7 @@ static int __node_reclaim(struct pglist_data *pgdat, gfp_t gfp_mask, unsigned in
 		 * priorities until we have enough memory freed.
 		 */
 		do {
-                        printk("page alloc reclaim");
+            printk("page alloc reclaim");
 			shrink_node(pgdat, &sc);
 		} while (sc.nr_reclaimed < nr_pages && --sc.priority >= 0);
 	}

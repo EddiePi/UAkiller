@@ -15,6 +15,7 @@
             <file>file:/home/cwei/project/linux-4.12.8/fs/nfsd/vfs.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/gfs2/aops.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/drivers/md/bcache/btree.c</file>
+            <file>file:/home/cwei/project/linux-4.12.8/mm/mempolicy.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/cachefiles/rdwr.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/include/linux/oom.h</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/workingset.c</file>
@@ -23,11 +24,14 @@
             <file>file:/home/cwei/project/linux-4.12.8/fs/btrfs/inode.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/filemap.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/include/linux/pagemap.h</file>
+            <file>file:/home/cwei/project/linux-4.12.8/mm/swap.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/readahead.c</file>
+            <file>file:/home/cwei/project/linux-4.12.8/mm/list_lru.c</file>
+            <file>file:/home/cwei/project/linux-4.12.8/block/blk-core.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/proc/meminfo.c</file>
+            <file>file:/home/cwei/project/linux-4.12.8/kernel/workqueue.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/block/blk-lib.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/include/linux/idr.h</file>
-            <file>file:/home/cwei/project/linux-4.12.8/fs/afs/cache.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/xfs/xfs_buf.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/swapfile.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/oom_kill.c</file>
@@ -44,6 +48,7 @@
             <file>file:/home/cwei/project/linux-4.12.8/Documentation/ABI/obsolete/proc-sys-vm-nr_pdflush_threads</file>
             <file>file:/home/cwei/project/linux-4.12.8/net/core/dev.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/internal.h</file>
+            <file>file:/home/cwei/project/linux-4.12.8/kernel/sched/topology.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/mpage.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/vmscan.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/cifs/file.c</file>
@@ -70,6 +75,8 @@
             <file>file:/home/cwei/project/linux-4.12.8/mm/memcontrol.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/swap_state.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/lib/radix-tree.c</file>
+            <file>file:/home/cwei/project/linux-4.12.8/fs/ncpfs/mmap.c</file>
+            <file>file:/home/cwei/project/linux-4.12.8/include/linux/nodemask.h</file>
             <file>file:/home/cwei/project/linux-4.12.8/include/linux/fs.h</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/vmpressure.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/memory-failure.c</file>

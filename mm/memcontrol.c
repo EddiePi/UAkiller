@@ -948,8 +948,7 @@ int mem_cgroup_scan_tasks(struct mem_cgroup *memcg,
  * This function is only safe when following the LRU page isolation
  * and putback protocol: the LRU lock must be held, and the page must
  * either be PageLRU() or the caller must have isolated/allocated it.
- */
-struct lruvec *mem_cgroup_page_lruvec(struct page *page, struct pglist_data *pgdat)
+ */struct lruvec *mem_cgroup_page_lruvec(struct page *page, struct pglist_data *pgdat)
 {
 	struct mem_cgroup_per_node *mz;
 	struct mem_cgroup *memcg;
@@ -3190,11 +3189,28 @@ static int memcg_stat_show(struct seq_file *m, void *v)
 	for (i = 0; i < ARRAY_SIZE(memcg1_events); i++)
 		seq_printf(m, "%s %lu\n", memcg1_event_names[i],
 			   memcg_sum_events(memcg, memcg1_events[i]));
+        
+        //eviction information
+        int node;
+        struct lruvec *lruvec;
+        struct mem_cgroup_per_node *mz;
+        long page_eviction=0;
+	    for_each_node(node)
+        {
+          mz=mem_cgroup_nodeinfo(memcg,node);
+          lruvec = &mz->lruvec;
+          page_eviction+=atomic_long_read(&lruvec->inactive_age);
+        }
+        seq_printf(m, "%s %lu\n","page_eviction", page_eviction);
+        printk("page_eviction %lu",page_eviction);
 
-	for (i = 0; i < NR_LRU_LISTS; i++)
+	//lru information
+        for (i = 0; i < NR_LRU_LISTS; i++)
 		seq_printf(m, "%s %lu\n", mem_cgroup_lru_names[i],
 			   mem_cgroup_nr_lru_pages(memcg, BIT(i)) * PAGE_SIZE);
-
+        
+        
+        
 	/* Hierarchical information */
 	memory = memsw = PAGE_COUNTER_MAX;
 	for (mi = memcg; mi; mi = parent_mem_cgroup(mi)) {

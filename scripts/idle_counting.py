@@ -3,14 +3,18 @@ import stat
 import errno
 import struct
 import time
-
-CGROUP_MOUNT="/sys/fs/cgroup"
+import re
+CGROUP_MOUNT="/sys/fs/cgroup/memory/docker"
 BUFSIZE=8*1024*1024
 
 IDLE_BIT="/sys/kernel/mm/page_idle/bitmap"
 FLAG  ="/proc/kpageflags"
 CGROUP="/proc/kpagecgroup"
 PAGE_SIZE=os.sysconf("SC_PAGE_SIZE")
+
+INTERVAL=10;
+
+re_match=re.compile(r'\/sys\/fs\/cgroup\/memory\/docker\/(\w+)')
 
 
 def set_idle():
@@ -75,16 +79,29 @@ def page_counting():
 
             
 
-
-
+def periodic_monitor():
+    running=True
+    while running:
+        running=False
+        set_idle()
+        ##sleep for access
+        time.sleep(INTERVAL)
+        ##counting
+        idlememcg,totamemcg=page_counting()
+        for dirn,subdirs,files in os.walk(CGROUP_MOUNT):
+	    match= re_match.match(dirn)
+            if  match:
+	    	print dirn
+            	running=True
+            	ino=os.stat(dirn)[stat.ST_INO]
+            	total=totamemcg[ino]
+            	idle =idlememcg[ino]
+            	print "ratio"+dirn+" "+str(idle*1.0/total)
+        if running is False:
+            break
+            
 if __name__=="__main__":
-    set_idle()
-
-    time.sleep(3)
-
-    idlememcg,totamemcg=page_counting()
-
-    for dirn,subdirs,files in os.walk(CGROUP_MOUNT+"/memory/docker"):
-        ino=os.stat(dirn)[stat.ST_INO]
-        print "total "+dirn+" "+str(totamemcg[ino])
-        print "idle  "+dirn+" "+str(idlememcg[ino])
+    print "start profiling"
+    periodic_monitor()
+    print "end profiling"
+    

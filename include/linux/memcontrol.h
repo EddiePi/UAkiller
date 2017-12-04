@@ -64,6 +64,17 @@ struct mem_cgroup_reclaim_cookie {
 	unsigned int generation;
 };
 
+
+
+//addded by wei
+//used to detect cgroup thrashing in kernel.
+struct mem_cgroup_thrash_detection{
+    int current_index;
+    int number;
+};
+
+
+
 #ifdef CONFIG_MEMCG
 
 #define MEM_CGROUP_ID_SHIFT	16
@@ -116,6 +127,8 @@ struct mem_cgroup_per_node {
 	struct mem_cgroup	*memcg;		/* Back pointer, we cannot */
 						/* use container_of	   */
 };
+
+
 
 struct mem_cgroup_threshold {
 	struct eventfd_ctx *eventfd;
