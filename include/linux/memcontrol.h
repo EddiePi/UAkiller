@@ -25,6 +25,7 @@
 #include <linux/jump_label.h>
 #include <linux/page_counter.h>
 #include <linux/vmpressure.h>
+#include <linux/memcgthrash.h>
 #include <linux/eventfd.h>
 #include <linux/mmzone.h>
 #include <linux/writeback.h>
@@ -63,17 +64,6 @@ struct mem_cgroup_reclaim_cookie {
 	int priority;
 	unsigned int generation;
 };
-
-
-
-//addded by wei
-//used to detect cgroup thrashing in kernel.
-struct mem_cgroup_thrash_detection{
-    int current_index;
-    int number;
-};
-
-
 
 #ifdef CONFIG_MEMCG
 
@@ -195,6 +185,11 @@ struct mem_cgroup {
 	/* vmpressure notifications */
 	struct vmpressure vmpressure;
 
+
+    /* memory thrash detection */
+    //struct mem_cgroup_thrash cg_thrash;
+    unsigned long test;
+    
 	/*
 	 * Should the accounting and control be hierarchical, per subtree?
 	 */
@@ -202,9 +197,9 @@ struct mem_cgroup {
 
 	/* protected by memcg_oom_lock */
 	bool		oom_lock;
-	int		under_oom;
+	int		    under_oom;
 
-	int	swappiness;
+	int	        swappiness;
 	/* OOM-Killer disable */
 	int		oom_kill_disable;
 
@@ -287,6 +282,10 @@ static inline void mem_cgroup_event(struct mem_cgroup *memcg,
 	this_cpu_inc(memcg->stat->events[event]);
 	cgroup_file_notify(&memcg->events_file);
 }
+
+unsigned long memcg_account_page_mjfault(struct mem_cgroup *);
+
+unsigned long memcg_account_page_eviction(struct mem_cgroup *memcg);
 
 bool mem_cgroup_low(struct mem_cgroup *root, struct mem_cgroup *memcg);
 

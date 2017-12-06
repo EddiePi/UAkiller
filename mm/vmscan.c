@@ -23,6 +23,7 @@
 #include <linux/init.h>
 #include <linux/highmem.h>
 #include <linux/vmpressure.h>
+#include <linux/memcgthrash.h>
 #include <linux/vmstat.h>
 #include <linux/file.h>
 #include <linux/writeback.h>
@@ -2705,6 +2706,16 @@ static inline bool should_continue_reclaim(struct pglist_data *pgdat,
 	return true;
 }
 
+
+static void memcg_thrash_evaluate(struct mem_cgroup *memcg){
+    if (!memcg)
+        return;
+    unsigned long page_mjfault =memcg_account_page_mjfault(memcg);
+    unsigned long page_eviction=memcg_account_page_eviction(memcg);
+    //update statisc for thrash evaluation
+    //mem_cgroup_thrash_add(&memcg->cg_thrash,page_mjfault,page_eviction);   
+}
+
 static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 {
 	struct reclaim_state *reclaim_state = current->reclaim_state;
@@ -2739,6 +2750,9 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 			unsigned long lru_pages;
 			unsigned long reclaimed;
 			unsigned long scanned;
+
+            //beofre we do any reclaim, we evaluate if we need to kill some badness to avoid system thrashing
+            //memcg_thrash_evaluate(memcg); 
 
 			if (mem_cgroup_low(root, memcg)) {
 				if (!sc->memcg_low_reclaim) {

@@ -58,6 +58,7 @@
 #include <linux/fs.h>
 #include <linux/seq_file.h>
 #include <linux/vmpressure.h>
+#include <linux/memcgthrash.h>
 #include <linux/mm_inline.h>
 #include <linux/swap_cgroup.h>
 #include <linux/cpu.h>
@@ -239,6 +240,17 @@ struct vmpressure *memcg_to_vmpressure(struct mem_cgroup *memcg)
 		memcg = root_mem_cgroup;
 	return &memcg->vmpressure;
 }
+
+
+/*
+struct mem_cgroup_thrash *memcg_to_cg_thrash(struct mem_cgroup *memcg)
+{
+    if(!memcg)
+        memcg = root_mem_cgroup;
+    return &memcg->cg_thrash;
+
+}
+*/
 
 struct cgroup_subsys_state *vmpressure_to_css(struct vmpressure *vmpr)
 {
@@ -3168,6 +3180,30 @@ static const char *const memcg1_event_names[] = {
 	"pgmajfault",
 };
 
+
+//mj page faults satics
+unsigned long memcg_account_page_mjfault(struct mem_cgroup *memcg)
+{
+        return (unsigned long)memcg_sum_events(memcg, PGMAJFAULT);
+}
+//eviction satistics
+unsigned long memcg_account_page_eviction(struct mem_cgroup *memcg){
+ 
+        //eviction information
+        int node;
+        struct lruvec *lruvec;
+        struct mem_cgroup_per_node *mz;
+        unsigned long page_eviction=0;
+	    for_each_node(node)
+        {
+          mz=mem_cgroup_nodeinfo(memcg,node);
+          lruvec = &mz->lruvec;
+          page_eviction+=atomic_long_read(&lruvec->inactive_age);
+        }
+            
+        return page_eviction;
+ }
+
 static int memcg_stat_show(struct seq_file *m, void *v)
 {
 	struct mem_cgroup *memcg = mem_cgroup_from_css(seq_css(m));
@@ -3190,17 +3226,7 @@ static int memcg_stat_show(struct seq_file *m, void *v)
 		seq_printf(m, "%s %lu\n", memcg1_event_names[i],
 			   memcg_sum_events(memcg, memcg1_events[i]));
         
-        //eviction information
-        int node;
-        struct lruvec *lruvec;
-        struct mem_cgroup_per_node *mz;
-        long page_eviction=0;
-	    for_each_node(node)
-        {
-          mz=mem_cgroup_nodeinfo(memcg,node);
-          lruvec = &mz->lruvec;
-          page_eviction+=atomic_long_read(&lruvec->inactive_age);
-        }
+        unsigned long page_eviction=memcg_account_page_eviction(memcg);
         seq_printf(m, "%s %lu\n","page_eviction", page_eviction);
         printk("page_eviction %lu",page_eviction);
 
@@ -4215,6 +4241,7 @@ static struct mem_cgroup *mem_cgroup_alloc(void)
 	size = sizeof(struct mem_cgroup);
 	size += nr_node_ids * sizeof(struct mem_cgroup_per_node *);
 
+    printk("cg init size %d",size);
 	memcg = kzalloc(size, GFP_KERNEL);
 	if (!memcg)
 		return NULL;
@@ -4224,7 +4251,6 @@ static struct mem_cgroup *mem_cgroup_alloc(void)
 				 1, MEM_CGROUP_ID_MAX,
 				 GFP_KERNEL);
         
-         printk("New memcgroup: %d",memcg->id.id);
 	if (memcg->id.id < 0)
 		goto fail;
 
@@ -4244,6 +4270,8 @@ static struct mem_cgroup *mem_cgroup_alloc(void)
 	INIT_LIST_HEAD(&memcg->oom_notify);
 	mutex_init(&memcg->thresholds_lock);
 	spin_lock_init(&memcg->move_lock);
+    //mem_cgroup_thrash_init(&memcg->cg_thrash);
+    printk("init cg thrash");
 	vmpressure_init(&memcg->vmpressure);
 	INIT_LIST_HEAD(&memcg->event_list);
 	spin_lock_init(&memcg->event_list_lock);
