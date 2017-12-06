@@ -187,9 +187,8 @@ struct mem_cgroup {
 
 
     /* memory thrash detection */
-    //struct mem_cgroup_thrash cg_thrash;
-    unsigned long test;
-    
+    struct mem_cgroup_thrash cg_thrash;
+
 	/*
 	 * Should the accounting and control be hierarchical, per subtree?
 	 */

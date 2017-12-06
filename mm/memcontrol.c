@@ -4270,7 +4270,7 @@ static struct mem_cgroup *mem_cgroup_alloc(void)
 	INIT_LIST_HEAD(&memcg->oom_notify);
 	mutex_init(&memcg->thresholds_lock);
 	spin_lock_init(&memcg->move_lock);
-    //mem_cgroup_thrash_init(&memcg->cg_thrash);
+    mem_cgroup_thrash_init(&memcg->cg_thrash);
     printk("init cg thrash");
 	vmpressure_init(&memcg->vmpressure);
 	INIT_LIST_HEAD(&memcg->event_list);

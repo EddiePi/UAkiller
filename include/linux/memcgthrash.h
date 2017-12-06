@@ -6,7 +6,7 @@
 //addded by wei
 //used to detect cgroup thrashing in kernel.
 
-#define MEM_CGROUP_MAX_THRASH_BUFFER 10
+#define MEM_CGROUP_MAX_THRASH_BUFFER 60
 
 struct mem_cgroup_thrash{
     //pointer to the circular buffer
