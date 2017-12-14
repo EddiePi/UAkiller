@@ -282,8 +282,6 @@ void vmpressure(gfp_t gfp, struct mem_cgroup *memcg, bool tree,
 
 		level = vmpressure_calc_level(scanned, reclaimed);
                 
-               printk("vm pressure memcg %d scanned %d reclaimed %d level %d", memcg->id.id,scanned,reclaimed,level);
-
 		if (level > VMPRESSURE_LOW) {
 			/*
 			 * Let the socket buffer allocator know that

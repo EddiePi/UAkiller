@@ -242,7 +242,7 @@ struct vmpressure *memcg_to_vmpressure(struct mem_cgroup *memcg)
 }
 
 
-/*
+
 struct mem_cgroup_thrash *memcg_to_cg_thrash(struct mem_cgroup *memcg)
 {
     if(!memcg)
@@ -250,7 +250,7 @@ struct mem_cgroup_thrash *memcg_to_cg_thrash(struct mem_cgroup *memcg)
     return &memcg->cg_thrash;
 
 }
-*/
+
 
 struct cgroup_subsys_state *vmpressure_to_css(struct vmpressure *vmpr)
 {

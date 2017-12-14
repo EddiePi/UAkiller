@@ -1168,21 +1168,21 @@ static unsigned long shrink_page_list(struct list_head *page_list,
                         //ana pages in inactive list.
 			if (!(sc->gfp_mask & __GFP_IO))
 				goto keep_locked;
-                        //try to add this page to swapcache, we will see this function later.
-                        //after this page is added to swapcache, this page will be seen as file 
-                        //page, 起始就是将页描述符信息保存到以swap页槽偏移量为索引的结点
-                        //设置页描述符的private = swap页槽偏移量生成的页表项swp_entry_t，
-                        //因为后面会设置所有映射了此页的页表项为此swp_entry_t
-                        //设置页的PG_swapcache标志，表明此页在swapcache中，正在被换出
-                        //标记页page为脏页(PG_dirty)，后面就会被换出
+            //try to add this page to swapcache, we will see this function later.
+            //after this page is added to swapcache, this page will be seen as file 
+            //page, 起始就是将页描述符信息保存到以swap页槽偏移量为索引的结点
+            //设置页描述符的private = swap页槽偏移量生成的页表项swp_entry_t，
+            //因为后面会设置所有映射了此页的页表项为此swp_entry_t
+            //设置页的PG_swapcache标志，表明此页在swapcache中，正在被换出
+            //标记页page为脏页(PG_dirty)，后面就会被换出
 			if (!add_to_swap(page, page_list))
 				goto activate_locked;
                         //mark the reclaim can possibilly enter into fs
 			may_enter_fs = 1;
 
 			/* Adding to swap updated mapping */
-                        //acquire the address_pace after the page is added to swapcache
-                        //the address_space is updated to the the swap partition
+            //acquire the address_pace after the page is added to swapcache
+            //the address_space is updated to the the swap partition
 			mapping = page_mapping(page);
 		} else if (unlikely(PageTransHuge(page))) {
 			/* Split file THP */
@@ -1258,29 +1258,29 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 			 * starts and then write it out here.
 			 */
 			try_to_unmap_flush_dirty();
-                        //try to write the page to disk, put the page onto device layer
-                        //for page cache, call page->mapping->a_ops->writepage
-                        //for anaon page, call address_space->a_ops->writepage
-                        //PG_writeback PG_reclaim is set, but PG_dirty and PG_lcoked are cleared
-                        //which means the page is under writeback by device layer but not finished yet.
+            //try to write the page to disk, put the page onto device layer
+            //for page cache, call page->mapping->a_ops->writepage
+            //for anaon page, call address_space->a_ops->writepage
+            //PG_writeback PG_reclaim is set, but PG_dirty and PG_lcoked are cleared
+            //which means the page is under writeback by device layer but not finished yet.
 			switch (pageout(page, mapping, sc)) {
 			case PAGE_KEEP:
 				goto keep_locked;
 			case PAGE_ACTIVATE:
 				goto activate_locked;
 			case PAGE_SUCCESS:
-                        //if the page survives to here, then it has been successful writeback.
-                        //For syn  writeback which means the pageout function will not return, until
-                        //the writeback completes. the page's PG_writeback, PG_dirty, PG_lock and PG_reclaim will be cleared
-                        //For asyn writeback which means the page is still under writeback
-                        //the page's PG_writeback and PG_reclaim is still set.
+                //if the page survives to here, then it has been successful writeback.
+                //For syn  writeback which means the pageout function will not return, until
+                //the writeback completes. the page's PG_writeback, PG_dirty, PG_lock and PG_reclaim will be cleared
+                //For asyn writeback which means the page is still under writeback
+                //the page's PG_writeback and PG_reclaim is still set.
      
                             
-                                //it is a asyn write, it is still under writeback,  go keep the page in inactive list
+                //it is a asyn write, it is still under writeback,  go keep the page in inactive list
 				if (PageWriteback(page))
 					goto keep;
-                                //this is a dirty pages because the page is written again during writeback.
-                                //or this page is an ana page, marked as dirty during ana page writeback ??????
+                //this is a dirty pages because the page is written again during writeback.
+                //or this page is an ana page, marked as dirty during ana page writeback ??????
 				if (PageDirty(page))
 					goto keep;
 
@@ -1301,7 +1301,9 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 			}
 		}
 
-                //if it comes to here, then the pages has been officially writeback (syn or async).
+        printk("page writeback reach");
+
+        //if it comes to here, then the pages has been officially writeback (syn or async).
 		/*
 		 * If the page has buffers, try to free the buffer mappings
 		 * associated with this page. If we succeed we try to free
@@ -2708,12 +2710,11 @@ static inline bool should_continue_reclaim(struct pglist_data *pgdat,
 
 
 static void memcg_thrash_evaluate(struct mem_cgroup *memcg){
-    if (!memcg)
-        return;
+    
     unsigned long page_mjfault =memcg_account_page_mjfault(memcg);
     unsigned long page_eviction=memcg_account_page_eviction(memcg);
     //update statisc for thrash evaluation
-    mem_cgroup_thrash_add(&memcg->cg_thrash,page_mjfault,page_eviction);   
+    mem_cgroup_thrash_add(memcg,page_mjfault,page_eviction);   
 }
 
 static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)

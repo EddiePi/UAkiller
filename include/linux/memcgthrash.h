@@ -3,6 +3,7 @@
 #include <linux/cgroup.h>
 #include <linux/mutex.h>
 #include <linux/types.h>
+//#include <linux/memcontrol.h>
 //addded by wei
 //used to detect cgroup thrashing in kernel.
 
@@ -24,9 +25,10 @@ struct mem_cgroup_thrash{
 
 #ifdef CONFIG_MEMCG
 
+extern struct mem_cgroup_thrash* memcg_to_cg_thrash(struct mem_cgroup* memcg); 
 extern void mem_cgroup_thrash_init(struct mem_cgroup_thrash* cg_thrash);
-extern void mem_cgroup_thrash_add(struct mem_cgroup_thrash* cg_thrash, unsigned long pgmj, unsigned long pgev);
-extern void mem_cgroup_thrash_on(struct mem_cgroup_thrash* cg_thrash);
+extern void mem_cgroup_thrash_add(struct mem_cgroup* memcg, unsigned long pgmj, unsigned long pgev);
+extern void mem_cgroup_thrash_on(struct mem_cgroup*  memcg);
 
 #endif
 #endif
