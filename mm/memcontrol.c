@@ -4241,8 +4241,7 @@ static struct mem_cgroup *mem_cgroup_alloc(void)
 	size = sizeof(struct mem_cgroup);
 	size += nr_node_ids * sizeof(struct mem_cgroup_per_node *);
 
-    printk("cg init size %d",size);
-	memcg = kzalloc(size, GFP_KERNEL);
+    memcg = kzalloc(size, GFP_KERNEL);
 	if (!memcg)
 		return NULL;
 
@@ -4283,6 +4282,8 @@ static struct mem_cgroup *mem_cgroup_alloc(void)
 	INIT_LIST_HEAD(&memcg->cgwb_list);
 #endif
 	idr_replace(&mem_cgroup_idr, memcg, memcg->id.id);
+    printk("cg init id %d",memcg->id.id);
+
 	return memcg;
 fail:
 	if (memcg->id.id > 0)

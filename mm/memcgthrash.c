@@ -20,8 +20,6 @@ void mem_cgroup_thrash_buffer_clear(struct mem_cgroup_thrash* cg_thrash)
  cg_thrash->index=0; 
 }
 
-
-
 /**
 * mem_cgroup_thrash_init() - Initialize mem_cgroup_thrash control structure
 * @cg_thrash structure to be initialized
@@ -45,14 +43,14 @@ void mem_cgroup_thrash_init(struct mem_cgroup_thrash* cg_thrash)
 *pgma comes from PGMAJFAULT@memcg1_events
 *pgev comes from inactive_age@lruvec 
 */
-void mem_cgroup_thrash_add(struct mem_cgroup* memcg, unsigned long pgmj, unsigned long pgev){
+bool mem_cgroup_thrash_add(struct mem_cgroup* memcg, unsigned long pgmj, unsigned long pgev){
   struct mem_cgroup_thrash *cg_thrash=memcg_to_cg_thrash(memcg);
   unsigned short memcg_id = mem_cgroup_id(memcg);
   spin_lock(&cg_thrash->sr_lock);
   //wait for 1s for each pgma and pgev add
   if (time_before(jiffies, cg_thrash->detec_jiffies)){
    spin_unlock(&cg_thrash->sr_lock);
-   return; 
+   return false; 
   }
 
   //if kswapd has slept for more than buffer size, clear buffer
@@ -65,8 +63,59 @@ void mem_cgroup_thrash_add(struct mem_cgroup* memcg, unsigned long pgmj, unsigne
   cg_thrash->pgev_buffers[cg_thrash->index] = pgev;
   cg_thrash->index++; 
   cg_thrash->detec_jiffies = jiffies + HZ;
-  printk("cg_thrash %d add: %d  %d",memcg_id,pgmj,pgev);
+  //printk("cg_thrash %d add: %d  %d",memcg_id,pgmj,pgev);
 
   spin_unlock(&cg_thrash->sr_lock);
 
+  return true;
+
+}
+
+bool buffers_increase(int num, int index, unsigned long* buffers){
+
+ bool thrash=true;
+ unsigned long last=-1;
+ 
+ //simple implementation for a incraseing of stastics
+  for (; num>0; num--,index--) {
+     if (last==-1){
+        last=buffers[index];
+        continue;
+     }
+
+     if (index==0){
+        index=MEM_CGROUP_MAX_THRASH_BUFFER-1;  
+     }
+
+     if (last <= buffers[index]){
+        thrash=false;
+        //printk("break at %d last %d now %d",num,last,buffers[index]);
+        break;
+     }
+   
+     last=buffers[index];      
+
+  }
+
+return thrash;
+
+}
+
+
+/*
+* if the memcg thrash activities are detected for this cgroup
+* return true if detected, lock is not needed for read-only operation
+*/
+
+bool mem_cgroup_thrash_on(struct mem_cgroup* memcg){
+  struct mem_cgroup_thrash *cg_thrash=memcg_to_cg_thrash(memcg);
+  
+  //index points to the next empty slots
+  int index = cg_thrash->index-1;
+  int num   = cg_thrash->num;
+  
+  bool thrash_pgmj=buffers_increase(num,index,cg_thrash->pgmj_buffers);
+  bool thrash_pgev=buffers_increase(num,index,cg_thrash->pgev_buffers);
+
+  return thrash_pgmj||thrash_pgev; 
 }

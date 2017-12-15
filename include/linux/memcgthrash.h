@@ -27,8 +27,8 @@ struct mem_cgroup_thrash{
 
 extern struct mem_cgroup_thrash* memcg_to_cg_thrash(struct mem_cgroup* memcg); 
 extern void mem_cgroup_thrash_init(struct mem_cgroup_thrash* cg_thrash);
-extern void mem_cgroup_thrash_add(struct mem_cgroup* memcg, unsigned long pgmj, unsigned long pgev);
-extern void mem_cgroup_thrash_on(struct mem_cgroup*  memcg);
+extern bool mem_cgroup_thrash_add(struct mem_cgroup* memcg, unsigned long pgmj, unsigned long pgev);
+extern bool mem_cgroup_thrash_on(struct mem_cgroup*  memcg);
 
 #endif
 #endif

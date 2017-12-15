@@ -1301,7 +1301,6 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 			}
 		}
 
-        printk("page writeback reach");
 
         //if it comes to here, then the pages has been officially writeback (syn or async).
 		/*
@@ -2713,8 +2712,15 @@ static void memcg_thrash_evaluate(struct mem_cgroup *memcg){
     
     unsigned long page_mjfault =memcg_account_page_mjfault(memcg);
     unsigned long page_eviction=memcg_account_page_eviction(memcg);
-    //update statisc for thrash evaluation
-    mem_cgroup_thrash_add(memcg,page_mjfault,page_eviction);   
+    unsigned short memcg_id=mem_cgroup_id(memcg);
+    //update statisc for thrash evaluation && if add successfully, 
+    //we futher test if we need to kill process
+    if(mem_cgroup_thrash_add(memcg,page_mjfault,page_eviction)){
+      printk("memcg %d thrash on",memcg_id);
+      if(mem_cgroup_thrash_on(memcg)){
+         printk("memcg %d thrash detection",memcg_id);
+       }
+    }  
 }
 
 static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
@@ -2724,7 +2730,7 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 	bool reclaimable = false;
     int round = 0;
        
-    //printk("enter shrink_node");
+    printk("enter shrink_node priority %d",sc->priority);
     do {
 		struct mem_cgroup *root = sc->target_mem_cgroup;
 		struct mem_cgroup_reclaim_cookie reclaim = {
