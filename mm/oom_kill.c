@@ -419,6 +419,7 @@ static void dump_header(struct oom_control *oc, struct task_struct *p)
 
 	cpuset_print_current_mems_allowed();
 	dump_stack();
+        //if this process is managed by cgroup, print its oom info
 	if (oc->memcg)
 		mem_cgroup_print_oom_info(oc->memcg, p);
 	else
