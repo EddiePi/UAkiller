@@ -63,6 +63,11 @@ static inline bool tsk_is_oom_victim(struct task_struct * tsk)
 	return tsk->signal->oom_mm;
 }
 
+
+bool oom_unkillable_task(struct task_struct *p,
+        struct mem_cgroup *memcg, const nodemask_t *nodemask);
+
+
 extern unsigned long oom_badness(struct task_struct *p,
 		struct mem_cgroup *memcg, const nodemask_t *nodemask,
 		unsigned long totalpages);

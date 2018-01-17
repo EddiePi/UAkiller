@@ -141,7 +141,7 @@ static inline bool is_memcg_oom(struct oom_control *oc)
 }
 
 /* return true if the task is not adequate as candidate victim task. */
-static bool oom_unkillable_task(struct task_struct *p,
+bool oom_unkillable_task(struct task_struct *p,
 		struct mem_cgroup *memcg, const nodemask_t *nodemask)
 {
 	if (is_global_init(p))
@@ -203,6 +203,7 @@ unsigned long oom_badness(struct task_struct *p, struct mem_cgroup *memcg,
 		atomic_long_read(&p->mm->nr_ptes) + mm_nr_pmds(p->mm);
 	task_unlock(p);
 
+    printk("pid %d points %d adj %d total pages %d",p->pid,points,adj,totalpages);
 	/*
 	 * Root processes get 3% bonus, just like the __vm_enough_memory()
 	 * implementation used by LSMs.

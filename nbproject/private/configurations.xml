@@ -224,7 +224,6 @@
         <in>adxl34x.mod</in>
         <in>adxrs450.mod</in>
         <in>aes-x86_64.mod</in>
-        <in>aesni-intel.mod</in>
         <in>af9013.mod</in>
         <in>af9033.mod</in>
         <in>af_alg.mod</in>
@@ -446,7 +445,6 @@
         <in>binfmt_misc.mod</in>
         <in>block2mtd.mod</in>
         <in>blocklayoutdriver.mod</in>
-        <in>blowfish-x86_64.mod</in>
         <in>blowfish_common.mod</in>
         <in>blowfish_generic.mod</in>
         <in>bluecard_cs.mod</in>
@@ -532,9 +530,6 @@
         <in>caif_socket.mod</in>
         <in>caif_usb.mod</in>
         <in>caif_virtio.mod</in>
-        <in>camellia-aesni-avx-x86_64.mod</in>
-        <in>camellia-aesni-avx2.mod</in>
-        <in>camellia-x86_64.mod</in>
         <in>camellia_generic.mod</in>
         <in>can-bcm.mod</in>
         <in>can-dev.mod</in>
@@ -549,7 +544,6 @@
         <in>cassini.mod</in>
         <in>cast5-avx-x86_64.mod</in>
         <in>cast5_generic.mod</in>
-        <in>cast6-avx-x86_64.mod</in>
         <in>cast6_generic.mod</in>
         <in>cast_common.mod</in>
         <in>catc.mod</in>
@@ -592,7 +586,6 @@
         <in>ch341.mod</in>
         <in>ch7006.mod</in>
         <in>ch9200.mod</in>
-        <in>chacha20-x86_64.mod</in>
         <in>chacha20_generic.mod</in>
         <in>chacha20poly1305.mod</in>
         <in>chaoskey.mod</in>
@@ -682,11 +675,9 @@
         <in>cr_bllcd.mod</in>
         <in>cramfs.mod</in>
         <in>crc-itu-t.mod</in>
-        <in>crc32-pclmul.mod</in>
         <in>crc32_generic.mod</in>
         <in>crc7.mod</in>
         <in>crc8.mod</in>
-        <in>crct10dif-pclmul.mod</in>
         <in>cros_ec_core.mod</in>
         <in>cros_ec_devs.mod</in>
         <in>cros_ec_i2c.mod</in>
@@ -1241,7 +1232,6 @@
         <in>gl518sm.mod</in>
         <in>gl520sm.mod</in>
         <in>gl620a.mod</in>
-        <in>glue_helper.mod</in>
         <in>gluebi.mod</in>
         <in>gma500_gfx.mod</in>
         <in>go7007-loader.mod</in>
@@ -1539,6 +1529,7 @@
         <in>hwa-hc.mod</in>
         <in>hwa-rc.mod</in>
         <in>hwmon-vid.mod</in>
+        <in>hwpoison-inject.mod</in>
         <in>hx8357.mod</in>
         <in>hyperv-keyboard.mod</in>
         <in>hyperv_fb.mod</in>
@@ -1932,7 +1923,6 @@
         <in>ktti.mod</in>
         <in>kvaser_pci.mod</in>
         <in>kvaser_usb.mod</in>
-        <in>kvm-amd.mod</in>
         <in>kvm-intel.mod</in>
         <in>kvm.mod</in>
         <in>kxcjk-1013.mod</in>
@@ -2355,7 +2345,6 @@
         <in>msi2500.mod</in>
         <in>msp3400.mod</in>
         <in>mspro_block.mod</in>
-        <in>msr.mod</in>
         <in>mt2060.mod</in>
         <in>mt2063.mod</in>
         <in>mt20xx.mod</in>
@@ -2860,7 +2849,6 @@
         <in>pn544_i2c.mod</in>
         <in>pn544_mei.mod</in>
         <in>pn_pep.mod</in>
-        <in>poly1305-x86_64.mod</in>
         <in>poly1305_generic.mod</in>
         <in>port100.mod</in>
         <in>powermate.mod</in>
@@ -3302,7 +3290,6 @@
         <in>saa7185.mod</in>
         <in>saa7706h.mod</in>
         <in>safe_serial.mod</in>
-        <in>salsa20-x86_64.mod</in>
         <in>salsa20_generic.mod</in>
         <in>samsung-keypad.mod</in>
         <in>samsung-laptop.mod</in>
@@ -3397,18 +3384,11 @@
         <in>serial_cs.mod</in>
         <in>serio_raw.mod</in>
         <in>sermouse.mod</in>
-        <in>serpent-avx-x86_64.mod</in>
-        <in>serpent-avx2.mod</in>
-        <in>serpent-sse2-x86_64.mod</in>
         <in>serpent_generic.mod</in>
         <in>serport.mod</in>
         <in>ses.mod</in>
         <in>sfc.mod</in>
         <in>sh_veu.mod</in>
-        <in>sha1-mb.mod</in>
-        <in>sha1-ssse3.mod</in>
-        <in>sha256-ssse3.mod</in>
-        <in>sha512-ssse3.mod</in>
         <in>shark2.mod</in>
         <in>shpchp.mod</in>
         <in>sht15.mod</in>
@@ -4096,9 +4076,6 @@
         <in>twl6030-gpadc.mod</in>
         <in>twl6030-regulator.mod</in>
         <in>twl6040-vibra.mod</in>
-        <in>twofish-avx-x86_64.mod</in>
-        <in>twofish-x86_64-3way.mod</in>
-        <in>twofish-x86_64.mod</in>
         <in>twofish_common.mod</in>
         <in>twofish_generic.mod</in>
         <in>typhoon.mod</in>
@@ -33585,7 +33562,6 @@
         </df>
         <df name="mfd">
           <in>88pm800.c</in>
-          <in>88pm800.mod.c</in>
           <in>88pm805.c</in>
           <in>88pm805.mod.c</in>
           <in>88pm80x.c</in>
@@ -65041,6 +65017,7 @@
           <in>mdio.h</in>
           <in>mei_cl_bus.h</in>
           <in>memblock.h</in>
+          <in>memcgthrash.h</in>
           <in>memcontrol.h</in>
           <in>memory.h</in>
           <in>memory_hotplug.h</in>
@@ -68344,6 +68321,7 @@
         <in>maccess.c</in>
         <in>madvise.c</in>
         <in>memblock.c</in>
+        <in>memcgthrash.c</in>
         <in>memcontrol.c</in>
         <in>memory-failure.c</in>
         <in>memory.c</in>

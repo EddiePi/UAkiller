@@ -1268,6 +1268,65 @@ static bool mem_cgroup_out_of_memory(struct mem_cgroup *memcg, gfp_t gfp_mask,
 	return ret;
 }
 
+
+//to keep found mem_cg during iteration
+struct oom_score_memcg{
+  int oom_points;
+  struct mem_cgroup *memcg;
+};
+
+
+void oom_score_memcg_evaluate(struct mem_cgroup* memcg, struct oom_score_memcg* score_memcg){
+
+//we onlu iterate tasks on this level
+struct task_struct *task;
+struct css_task_iter it;
+int total_pages=totalram_pages + total_swap_pages;
+
+css_task_iter_start(&memcg->css, &it);
+while(task=css_task_iter_next(&it)){
+   //TODO we only consider leaf nodes
+   //skip unkilable tasks
+   if(oom_unkillable_task(task, NULL, NULL))
+      continue;
+ 
+   int oom_points=oom_badness(task,NULL, NULL,total_pages);
+   printk("memcg-score %d %d",memcg->id.id,oom_points);
+   //the OOM_SCORE_ADJ_MAX is 1000, we only consider those tasks whose oom score is larger than is value
+   if(oom_points > OOM_SCORE_ADJ_MAX && oom_points > score_memcg->oom_points){
+        score_memcg->memcg=memcg;
+        score_memcg->oom_points=oom_points;
+        break;      
+    }
+}
+
+css_task_iter_end(&it);
+}
+
+
+void mem_cgroup_by_oom_score(){
+
+struct mem_cgroup *iter;
+struct mem_cgroup *find;
+struct oom_score_memcg score_memcg={
+           .oom_points=0,
+           .memcg=NULL,
+};
+
+for_each_mem_cgroup_tree(iter,root_mem_cgroup) {
+
+ oom_score_memcg_evaluate(iter,&score_memcg);
+ 
+ }
+
+ //printk("cg find: %d    %d",score_memcg.memcg->id.id,score_memcg.oom_points);
+ //if we find one
+ if(score_memcg.memcg != NULL){
+    printk("cg to kill find: %d    %d",score_memcg.memcg->id.id,score_memcg.oom_points);
+    mem_cgroup_out_of_memory(score_memcg.memcg, GFP_KERNEL, 0);
+  }
+}
+
 #if MAX_NUMNODES > 1
 
 /**
@@ -2005,6 +2064,7 @@ retry:
         //after multiple rounds of reclaims, then oom this container
 	mem_cgroup_event(mem_over_limit, MEMCG_OOM);
 
+        //used to record which container is oom or is going to oom
 	mem_cgroup_oom(mem_over_limit, gfp_mask,
 		       get_order(nr_pages * PAGE_SIZE));
 nomem:

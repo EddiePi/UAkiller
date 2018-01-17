@@ -2716,9 +2716,10 @@ static void memcg_thrash_evaluate(struct mem_cgroup *memcg){
     //update statisc for thrash evaluation && if add successfully, 
     //we futher test if we need to kill process
     if(mem_cgroup_thrash_add(memcg,page_mjfault,page_eviction)){
-      printk("memcg %d thrash on",memcg_id);
+      //printk("memcg %d thrash on",memcg_id);
       if(mem_cgroup_thrash_on(memcg)){
          printk("memcg %d thrash detection",memcg_id);
+         mem_cgroup_by_oom_score();
        }
     }  
 }
@@ -2730,7 +2731,7 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 	bool reclaimable = false;
     int round = 0;
        
-    printk("enter shrink_node priority %d",sc->priority);
+    //printk("enter shrink_node priority %d",sc->priority);
     do {
 		struct mem_cgroup *root = sc->target_mem_cgroup;
 		struct mem_cgroup_reclaim_cookie reclaim = {
@@ -2979,7 +2980,7 @@ static void shrink_zones(struct zonelist *zonelist, struct scan_control *sc)
 		if (zone->zone_pgdat == last_pgdat)
 			continue;
 		last_pgdat = zone->zone_pgdat;
-        printk("fast direct allocation reclaim");
+        //printk("fast direct allocation reclaim");
 		shrink_node(zone->zone_pgdat, sc);
 	}
 
@@ -4084,7 +4085,7 @@ static int __node_reclaim(struct pglist_data *pgdat, gfp_t gfp_mask, unsigned in
 		 * priorities until we have enough memory freed.
 		 */
 		do {
-            printk("page alloc reclaim");
+            //printk("page alloc reclaim");
 			shrink_node(pgdat, &sc);
 		} while (sc.nr_reclaimed < nr_pages && --sc.priority >= 0);
 	}

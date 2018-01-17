@@ -17,7 +17,6 @@
             <file>file:/home/cwei/project/linux-4.12.8/drivers/md/bcache/btree.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/mempolicy.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/cachefiles/rdwr.c</file>
-            <file>file:/home/cwei/project/linux-4.12.8/include/linux/oom.h</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/workingset.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/memory.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/f2fs/data.c</file>
@@ -29,11 +28,9 @@
             <file>file:/home/cwei/project/linux-4.12.8/mm/list_lru.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/block/blk-core.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/proc/meminfo.c</file>
-            <file>file:/home/cwei/project/linux-4.12.8/kernel/workqueue.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/block/blk-lib.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/include/linux/idr.h</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/xfs/xfs_buf.c</file>
-            <file>file:/home/cwei/project/linux-4.12.8/mm/swapfile.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/oom_kill.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/include/linux/radix-tree.h</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/exofs/inode.c</file>
@@ -65,7 +62,6 @@
             <file>file:/home/cwei/project/linux-4.12.8/mm/backing-dev.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/hugetlbfs/inode.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/vmstat.c</file>
-            <file>file:/home/cwei/project/linux-4.12.8/mm/page_alloc.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/gfs2/main.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/drivers/base/node.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/dax.c</file>
