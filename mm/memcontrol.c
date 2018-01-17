@@ -1291,9 +1291,10 @@ while(task=css_task_iter_next(&it)){
       continue;
  
    int oom_points=oom_badness(task,NULL, NULL,total_pages);
-   printk("memcg-score %d %d",memcg->id.id,oom_points);
+   //printk("memcg-score %d %d",memcg->id.id,oom_points);
    //the OOM_SCORE_ADJ_MAX is 1000, we only consider those tasks whose oom score is larger than is value
-   if(oom_points > OOM_SCORE_ADJ_MAX && oom_points > score_memcg->oom_points){
+   //this heuristic comes from if the oom_socre_adj == 1000, then its oom_score will be added a term total_pages
+   if(oom_points > total_pages && oom_points > score_memcg->oom_points){
         score_memcg->memcg=memcg;
         score_memcg->oom_points=oom_points;
         break;      
@@ -1314,15 +1315,13 @@ struct oom_score_memcg score_memcg={
 };
 
 for_each_mem_cgroup_tree(iter,root_mem_cgroup) {
-
  oom_score_memcg_evaluate(iter,&score_memcg);
- 
- }
+}
 
  //printk("cg find: %d    %d",score_memcg.memcg->id.id,score_memcg.oom_points);
  //if we find one
  if(score_memcg.memcg != NULL){
-    printk("cg to kill find: %d    %d",score_memcg.memcg->id.id,score_memcg.oom_points);
+    //printk("cg to kill find: %d    %d",score_memcg.memcg->id.id,score_memcg.oom_points);
     mem_cgroup_out_of_memory(score_memcg.memcg, GFP_KERNEL, 0);
   }
 }

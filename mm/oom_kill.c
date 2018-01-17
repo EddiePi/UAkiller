@@ -203,7 +203,7 @@ unsigned long oom_badness(struct task_struct *p, struct mem_cgroup *memcg,
 		atomic_long_read(&p->mm->nr_ptes) + mm_nr_pmds(p->mm);
 	task_unlock(p);
 
-    printk("pid %d points %d adj %d total pages %d",p->pid,points,adj,totalpages);
+    //printk("pid %d points %d adj %d total pages %d",p->pid,points,adj,totalpages);
 	/*
 	 * Root processes get 3% bonus, just like the __vm_enough_memory()
 	 * implementation used by LSMs.
@@ -214,6 +214,7 @@ unsigned long oom_badness(struct task_struct *p, struct mem_cgroup *memcg,
 	/* Normalize to oom_score_adj units */
 	adj *= totalpages / 1000;
 	points += adj;
+    //printk("pid %d final points %d",p->pid,points);
 
 	/*
 	 * Never return 0 for an eligible task regardless of the root bonus and
