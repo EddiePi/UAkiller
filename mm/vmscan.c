@@ -2512,6 +2512,7 @@ static void shrink_node_memcg(struct pglist_data *pgdat, struct mem_cgroup *memc
 
 	get_scan_count(lruvec, memcg, sc, nr, lru_pages);
 
+    printk("memcg %d to scan anin %d anac %d fiin%d fiac %d",memcg->id.id,nr[0],nr[1],nr[2],nr[3]);
 	/* Record the original scan target for proportional adjustments later */
 	memcpy(targets, nr, sizeof(nr));
 
