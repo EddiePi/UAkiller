@@ -9,9 +9,7 @@
         <in>3w-9xxx.mod</in>
         <in>3w-sas.mod</in>
         <in>3w-xxxx.mod</in>
-        <in>6lowpan.mod</in>
         <in>6pack.mod</in>
-        <in>8021q.mod</in>
         <in>8139cp.mod</in>
         <in>8139too.mod</in>
         <in>8250_dw.mod</in>
@@ -33,11 +31,8 @@
         <in>88pm860x_charger.mod</in>
         <in>88pm860x_onkey.mod</in>
         <in>9p.mod</in>
-        <in>9pnet.mod</in>
-        <in>9pnet_rdma.mod</in>
         <in>9pnet_virtio.mod</in>
         <in>BusLogic.mod</in>
-        <in>DAC960.mod</in>
         <in>a100u2w.mod</in>
         <in>a3d.mod</in>
         <in>a8293.mod</in>
@@ -49,7 +44,6 @@
         <in>abituguru.mod</in>
         <in>abituguru3.mod</in>
         <in>ablk_helper.mod</in>
-        <in>ac97_bus.mod</in>
         <in>acard-ahci.mod</in>
         <in>acecad.mod</in>
         <in>acenic.mod</in>
@@ -206,7 +200,6 @@
         <in>adt7470.mod</in>
         <in>adt7475.mod</in>
         <in>adt7x10.mod</in>
-        <in>adummy.mod</in>
         <in>adutux.mod</in>
         <in>adv7170.mod</in>
         <in>adv7175.mod</in>
@@ -224,6 +217,7 @@
         <in>adxl34x.mod</in>
         <in>adxrs450.mod</in>
         <in>aes-x86_64.mod</in>
+        <in>aesni-intel.mod</in>
         <in>af9013.mod</in>
         <in>af9033.mod</in>
         <in>af_alg.mod</in>
@@ -267,16 +261,13 @@
         <in>altera_uart.mod</in>
         <in>alx.mod</in>
         <in>am53c974.mod</in>
-        <in>ambassador.mod</in>
         <in>amc6821.mod</in>
-        <in>amd-rng.mod</in>
         <in>amd.mod</in>
         <in>amd5536udc.mod</in>
         <in>amd5536udc_pci.mod</in>
         <in>amd64_edac_mod.mod</in>
         <in>amd76xrom.mod</in>
         <in>amd8111e.mod</in>
-        <in>amd_freq_sensitivity.mod</in>
         <in>amd_iommu_v2.mod</in>
         <in>amdgpu.mod</in>
         <in>amdkfd.mod</in>
@@ -296,7 +287,6 @@
         <in>anatop-regulator.mod</in>
         <in>ansi_cprng.mod</in>
         <in>anubis.mod</in>
-        <in>aoe.mod</in>
         <in>apanel.mod</in>
         <in>apds9300.mod</in>
         <in>apds9802als.mod</in>
@@ -306,9 +296,7 @@
         <in>apple_bl.mod</in>
         <in>appledisplay.mod</in>
         <in>applesmc.mod</in>
-        <in>appletalk.mod</in>
         <in>appletouch.mod</in>
-        <in>applicom.mod</in>
         <in>aquantia.mod</in>
         <in>ar5523.mod</in>
         <in>ar7part.mod</in>
@@ -353,11 +341,9 @@
         <in>at803x.mod</in>
         <in>at86rf230.mod</in>
         <in>atbm8830.mod</in>
-        <in>aten.mod</in>
         <in>ath.mod</in>
         <in>ath10k_core.mod</in>
         <in>ath10k_pci.mod</in>
-        <in>ath3k.mod</in>
         <in>ath5k.mod</in>
         <in>ath6kl_core.mod</in>
         <in>ath6kl_sdio.mod</in>
@@ -378,7 +364,6 @@
         <in>atmel_cs.mod</in>
         <in>atmel_mxt_ts.mod</in>
         <in>atmel_pci.mod</in>
-        <in>atmtcp.mod</in>
         <in>atp.mod</in>
         <in>atp870u.mod</in>
         <in>atusb.mod</in>
@@ -421,7 +406,6 @@
         <in>bcache.mod</in>
         <in>bch.mod</in>
         <in>bcm-phy-lib.mod</in>
-        <in>bcm203x.mod</in>
         <in>bcm3510.mod</in>
         <in>bcm590xx-regulator.mod</in>
         <in>bcm590xx.mod</in>
@@ -439,15 +423,14 @@
         <in>belkin_sa.mod</in>
         <in>bfa.mod</in>
         <in>bfs.mod</in>
-        <in>bfusb.mod</in>
         <in>bh1750.mod</in>
         <in>bh1770glc.mod</in>
         <in>binfmt_misc.mod</in>
         <in>block2mtd.mod</in>
         <in>blocklayoutdriver.mod</in>
+        <in>blowfish-x86_64.mod</in>
         <in>blowfish_common.mod</in>
         <in>blowfish_generic.mod</in>
-        <in>bluecard_cs.mod</in>
         <in>bluetooth.mod</in>
         <in>bluetooth_6lowpan.mod</in>
         <in>bma150.mod</in>
@@ -469,7 +452,6 @@
         <in>bnx2x.mod</in>
         <in>bnxt_en.mod</in>
         <in>bonding.mod</in>
-        <in>bpa10x.mod</in>
         <in>bpck.mod</in>
         <in>bpqether.mod</in>
         <in>bq2415x_charger.mod</in>
@@ -484,28 +466,21 @@
         <in>brcmfmac.mod</in>
         <in>brcmsmac.mod</in>
         <in>brcmutil.mod</in>
-        <in>brd.mod</in>
         <in>bridge.mod</in>
         <in>broadcom.mod</in>
         <in>broadsheetfb.mod</in>
         <in>bsd_comp.mod</in>
-        <in>bt3c_cs.mod</in>
         <in>bt819.mod</in>
         <in>bt856.mod</in>
         <in>bt866.mod</in>
         <in>bt878.mod</in>
         <in>btbcm.mod</in>
         <in>btcoexist.mod</in>
-        <in>btintel.mod</in>
-        <in>btmrvl.mod</in>
         <in>btmrvl_sdio.mod</in>
-        <in>btqca.mod</in>
         <in>btrfs.mod</in>
-        <in>btrtl.mod</in>
         <in>btsdio.mod</in>
         <in>bttv.mod</in>
         <in>btuart_cs.mod</in>
-        <in>btusb.mod</in>
         <in>btwilink.mod</in>
         <in>bu21013_ts.mod</in>
         <in>budget-av.mod</in>
@@ -530,6 +505,9 @@
         <in>caif_socket.mod</in>
         <in>caif_usb.mod</in>
         <in>caif_virtio.mod</in>
+        <in>camellia-aesni-avx-x86_64.mod</in>
+        <in>camellia-aesni-avx2.mod</in>
+        <in>camellia-x86_64.mod</in>
         <in>camellia_generic.mod</in>
         <in>can-bcm.mod</in>
         <in>can-dev.mod</in>
@@ -544,6 +522,7 @@
         <in>cassini.mod</in>
         <in>cast5-avx-x86_64.mod</in>
         <in>cast5_generic.mod</in>
+        <in>cast6-avx-x86_64.mod</in>
         <in>cast6_generic.mod</in>
         <in>cast_common.mod</in>
         <in>catc.mod</in>
@@ -586,10 +565,10 @@
         <in>ch341.mod</in>
         <in>ch7006.mod</in>
         <in>ch9200.mod</in>
+        <in>chacha20-x86_64.mod</in>
         <in>chacha20_generic.mod</in>
         <in>chacha20poly1305.mod</in>
         <in>chaoskey.mod</in>
-        <in>charlcd.mod</in>
         <in>chipreg.mod</in>
         <in>chnl_net.mod</in>
         <in>chromeos_laptop.mod</in>
@@ -675,9 +654,11 @@
         <in>cr_bllcd.mod</in>
         <in>cramfs.mod</in>
         <in>crc-itu-t.mod</in>
+        <in>crc32-pclmul.mod</in>
         <in>crc32_generic.mod</in>
         <in>crc7.mod</in>
         <in>crc8.mod</in>
+        <in>crct10dif-pclmul.mod</in>
         <in>cros_ec_core.mod</in>
         <in>cros_ec_devs.mod</in>
         <in>cros_ec_i2c.mod</in>
@@ -1232,6 +1213,7 @@
         <in>gl518sm.mod</in>
         <in>gl520sm.mod</in>
         <in>gl620a.mod</in>
+        <in>glue_helper.mod</in>
         <in>gluebi.mod</in>
         <in>gma500_gfx.mod</in>
         <in>go7007-loader.mod</in>
@@ -1923,6 +1905,7 @@
         <in>ktti.mod</in>
         <in>kvaser_pci.mod</in>
         <in>kvaser_usb.mod</in>
+        <in>kvm-amd.mod</in>
         <in>kvm-intel.mod</in>
         <in>kvm.mod</in>
         <in>kxcjk-1013.mod</in>
@@ -2345,6 +2328,7 @@
         <in>msi2500.mod</in>
         <in>msp3400.mod</in>
         <in>mspro_block.mod</in>
+        <in>msr.mod</in>
         <in>mt2060.mod</in>
         <in>mt2063.mod</in>
         <in>mt20xx.mod</in>
@@ -2849,6 +2833,7 @@
         <in>pn544_i2c.mod</in>
         <in>pn544_mei.mod</in>
         <in>pn_pep.mod</in>
+        <in>poly1305-x86_64.mod</in>
         <in>poly1305_generic.mod</in>
         <in>port100.mod</in>
         <in>powermate.mod</in>
@@ -3290,6 +3275,7 @@
         <in>saa7185.mod</in>
         <in>saa7706h.mod</in>
         <in>safe_serial.mod</in>
+        <in>salsa20-x86_64.mod</in>
         <in>salsa20_generic.mod</in>
         <in>samsung-keypad.mod</in>
         <in>samsung-laptop.mod</in>
@@ -3384,11 +3370,18 @@
         <in>serial_cs.mod</in>
         <in>serio_raw.mod</in>
         <in>sermouse.mod</in>
+        <in>serpent-avx-x86_64.mod</in>
+        <in>serpent-avx2.mod</in>
+        <in>serpent-sse2-x86_64.mod</in>
         <in>serpent_generic.mod</in>
         <in>serport.mod</in>
         <in>ses.mod</in>
         <in>sfc.mod</in>
         <in>sh_veu.mod</in>
+        <in>sha1-mb.mod</in>
+        <in>sha1-ssse3.mod</in>
+        <in>sha256-ssse3.mod</in>
+        <in>sha512-ssse3.mod</in>
         <in>shark2.mod</in>
         <in>shpchp.mod</in>
         <in>sht15.mod</in>
@@ -4076,6 +4069,9 @@
         <in>twl6030-gpadc.mod</in>
         <in>twl6030-regulator.mod</in>
         <in>twl6040-vibra.mod</in>
+        <in>twofish-avx-x86_64.mod</in>
+        <in>twofish-x86_64-3way.mod</in>
+        <in>twofish-x86_64.mod</in>
         <in>twofish_common.mod</in>
         <in>twofish_generic.mod</in>
         <in>typhoon.mod</in>
@@ -33562,6 +33558,7 @@
         </df>
         <df name="mfd">
           <in>88pm800.c</in>
+          <in>88pm800.mod.c</in>
           <in>88pm805.c</in>
           <in>88pm805.mod.c</in>
           <in>88pm80x.c</in>

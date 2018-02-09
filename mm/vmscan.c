@@ -2285,6 +2285,7 @@ enum scan_balance {
 	SCAN_FRACT,
 	SCAN_ANON,
 	SCAN_FILE,
+    SCAN_QUIT
 };
 
 /*
@@ -2318,6 +2319,16 @@ static void get_scan_count(struct lruvec *lruvec, struct mem_cgroup *memcg,
 		goto out;
 	}
 
+    /*
+    Note: this is a feature under test, use at your onw risk
+    if it is a global recalim, and the swappiness for this cgroup is set to 0
+    skip the reclaim on this cgroup
+    */
+    if(global_reclaim(sc) && !swappiness){
+        scan_balance=SCAN_QUIT;
+        goto out;
+
+    }
 	/*
 	 * Global reclaim will swap to prevent OOM even with no
 	 * swappiness, but memcg users want to use this knob to
@@ -2461,6 +2472,10 @@ out:
 			scan = min(size, SWAP_CLUSTER_MAX);
 
 		switch (scan_balance) {
+        case SCAN_QUIT:
+             scan=0;
+             size=0;
+             break; 
 		case SCAN_EQUAL:
 			/* Scan lists equals to size */
 			break;
@@ -2509,11 +2524,14 @@ static void shrink_node_memcg(struct pglist_data *pgdat, struct mem_cgroup *memc
 	unsigned long nr_to_reclaim = sc->nr_to_reclaim;
 	struct blk_plug plug;
 	bool scan_adjusted;
-
+    *lru_pages=0;
+ 
 	get_scan_count(lruvec, memcg, sc, nr, lru_pages);
 
-    printk("memcg %d to scan anin %d anac %d fiin%d fiac %d",memcg->id.id,nr[0],nr[1],nr[2],nr[3]);
-	/* Record the original scan target for proportional adjustments later */
+
+    int swappiness = mem_cgroup_swappiness(memcg);
+
+    /* Record the original scan target for proportional adjustments later */
 	memcpy(targets, nr, sizeof(nr));
 
 	/*
@@ -2572,13 +2590,13 @@ static void shrink_node_memcg(struct pglist_data *pgdat, struct mem_cgroup *memc
 		if (!nr_file || !nr_anon)
 			break;
 
-                //scanned anon is less than scanned file
+        //scanned anon is less than scanned file
 		if (nr_file > nr_anon) {
-                        //original scan target for anon
+            //original scan target for anon
 			unsigned long scan_target = targets[LRU_INACTIVE_ANON] +
 						targets[LRU_ACTIVE_ANON] + 1;
 			lru = LRU_BASE;
-                        //剩余的百分比，???
+            //剩余的百分比，???
 			percentage = nr_anon * 100 / scan_target;
 		} else {
                         //orignal scanned target for file
@@ -2613,7 +2631,7 @@ static void shrink_node_memcg(struct pglist_data *pgdat, struct mem_cgroup *memc
 	blk_finish_plug(&plug);
 	sc->nr_reclaimed += nr_reclaimed;
 
-	/*
+    /*
 	 * Even if we did not try to evict anon pages at all, we want to
 	 * rebalance the anon lru active/inactive ratio.
 	 */
@@ -2761,7 +2779,7 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 			unsigned long scanned;
 
             //beofre we do any reclaim, we evaluate if we need to kill some badness to avoid system thrashing
-            memcg_thrash_evaluate(memcg); 
+            //memcg_thrash_evaluate(memcg); 
 
 			if (mem_cgroup_low(root, memcg)) {
 				if (!sc->memcg_low_reclaim) {
@@ -3471,7 +3489,7 @@ static bool kswapd_shrink_node(pg_data_t *pgdat,
 		sc->nr_to_reclaim += max(high_wmark_pages(zone), SWAP_CLUSTER_MAX);
 	}
 
-    printk("skwapd reclaim");
+    //printk("skwapd reclaim");
 	/*
 	 * Historically care was taken to put equal pressure on all zones but
 	 * now pressure is applied based on node LRU order.
