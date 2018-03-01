@@ -1337,9 +1337,9 @@ for_each_mem_cgroup_tree(iter,root_mem_cgroup) {
  if(score_memcg.memcg != NULL){
     printk("cg to kill find: %d  oom_score  %d # of tasks %d",score_memcg.memcg->id.id,score_memcg.oom_points,score_memcg.task_nums);
     //kill every task in  this cgroup
-    int i;
-    for(i=0;i<score_memcg.task_nums;i++)
-       mem_cgroup_out_of_memory(score_memcg.memcg, GFP_KERNEL, 0);
+    //int i;
+    //for(i=0;i<score_memcg.task_nums;i++)
+    mem_cgroup_out_of_memory(score_memcg.memcg, GFP_KERNEL, 0);
   }
 }
 
