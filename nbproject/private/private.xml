@@ -17,6 +17,7 @@
             <file>file:/home/cwei/project/linux-4.12.8/drivers/md/bcache/btree.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/mempolicy.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/cachefiles/rdwr.c</file>
+            <file>file:/home/cwei/project/linux-4.12.8/include/linux/oom.h</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/workingset.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/memory.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/f2fs/data.c</file>

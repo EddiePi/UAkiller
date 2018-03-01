@@ -10,6 +10,7 @@
         <in>3w-sas.mod</in>
         <in>3w-xxxx.mod</in>
         <in>6pack.mod</in>
+        <in>8021q.mod</in>
         <in>8139cp.mod</in>
         <in>8139too.mod</in>
         <in>8250_dw.mod</in>
@@ -17,43 +18,28 @@
         <in>8255.mod</in>
         <in>8255_pci.mod</in>
         <in>8390.mod</in>
-        <in>842.mod</in>
-        <in>842_compress.mod</in>
-        <in>842_decompress.mod</in>
         <in>88pm800.mod</in>
         <in>88pm805.mod</in>
         <in>88pm80x.mod</in>
-        <in>88pm80x_onkey.mod</in>
         <in>88pm8607.mod</in>
-        <in>88pm860x-ts.mod</in>
         <in>88pm860x_battery.mod</in>
         <in>88pm860x_bl.mod</in>
         <in>88pm860x_charger.mod</in>
-        <in>88pm860x_onkey.mod</in>
-        <in>9p.mod</in>
-        <in>9pnet_virtio.mod</in>
+        <in>9pnet.mod</in>
         <in>BusLogic.mod</in>
         <in>a100u2w.mod</in>
-        <in>a3d.mod</in>
         <in>a8293.mod</in>
         <in>aacraid.mod</in>
         <in>aat2870-regulator.mod</in>
         <in>aat2870_bl.mod</in>
         <in>ab3100-otp.mod</in>
         <in>ab3100.mod</in>
-        <in>abituguru.mod</in>
-        <in>abituguru3.mod</in>
         <in>ablk_helper.mod</in>
-        <in>acard-ahci.mod</in>
-        <in>acecad.mod</in>
         <in>acenic.mod</in>
         <in>acer-wmi.mod</in>
         <in>acerhdf.mod</in>
         <in>acpi-als.mod</in>
         <in>acpi_extlog.mod</in>
-        <in>acpi_ipmi.mod</in>
-        <in>acpi_pad.mod</in>
-        <in>acpi_power_meter.mod</in>
         <in>acpi_thermal_rel.mod</in>
         <in>acpiphp_ibm.mod</in>
         <in>acquirewdt.mod</in>
@@ -62,14 +48,10 @@
         <in>act_bpf.mod</in>
         <in>act_connmark.mod</in>
         <in>act_csum.mod</in>
-        <in>act_gact.mod</in>
         <in>act_ipt.mod</in>
         <in>act_mirred.mod</in>
         <in>act_nat.mod</in>
-        <in>act_pedit.mod</in>
-        <in>act_police.mod</in>
         <in>act_simple.mod</in>
-        <in>act_skbedit.mod</in>
         <in>act_vlan.mod</in>
         <in>actisys-sir.mod</in>
         <in>ad2s1200.mod</in>
@@ -77,61 +59,31 @@
         <in>ad2s90.mod</in>
         <in>ad5064.mod</in>
         <in>ad525x_dpot-i2c.mod</in>
-        <in>ad525x_dpot-spi.mod</in>
-        <in>ad525x_dpot.mod</in>
-        <in>ad5360.mod</in>
-        <in>ad5380.mod</in>
         <in>ad5398.mod</in>
-        <in>ad5421.mod</in>
-        <in>ad5446.mod</in>
         <in>ad5449.mod</in>
-        <in>ad5504.mod</in>
-        <in>ad5592r-base.mod</in>
-        <in>ad5592r.mod</in>
         <in>ad5593r.mod</in>
         <in>ad5624r_spi.mod</in>
         <in>ad5686.mod</in>
-        <in>ad5755.mod</in>
         <in>ad5764.mod</in>
-        <in>ad5791.mod</in>
         <in>ad5933.mod</in>
-        <in>ad714x-i2c.mod</in>
         <in>ad714x-spi.mod</in>
-        <in>ad714x.mod</in>
         <in>ad7150.mod</in>
         <in>ad7152.mod</in>
         <in>ad7192.mod</in>
-        <in>ad7266.mod</in>
         <in>ad7280a.mod</in>
-        <in>ad7291.mod</in>
         <in>ad7298.mod</in>
-        <in>ad7303.mod</in>
         <in>ad7314.mod</in>
-        <in>ad7414.mod</in>
-        <in>ad7418.mod</in>
-        <in>ad7476.mod</in>
         <in>ad7606.mod</in>
         <in>ad7606_par.mod</in>
         <in>ad7606_spi.mod</in>
         <in>ad7746.mod</in>
         <in>ad7780.mod</in>
-        <in>ad7791.mod</in>
-        <in>ad7793.mod</in>
         <in>ad7816.mod</in>
         <in>ad7877.mod</in>
-        <in>ad7879-i2c.mod</in>
-        <in>ad7879-spi.mod</in>
-        <in>ad7879.mod</in>
         <in>ad7887.mod</in>
-        <in>ad7923.mod</in>
-        <in>ad799x.mod</in>
-        <in>ad8366.mod</in>
-        <in>ad9523.mod</in>
         <in>ad9832.mod</in>
         <in>ad9834.mod</in>
-        <in>ad_sigma_delta.mod</in>
         <in>adc128d818.mod</in>
-        <in>adcxx.mod</in>
         <in>addi_apci_1032.mod</in>
         <in>addi_apci_1500.mod</in>
         <in>addi_apci_1516.mod</in>
@@ -151,83 +103,47 @@
         <in>ade7854-spi.mod</in>
         <in>ade7854.mod</in>
         <in>adf4350.mod</in>
-        <in>adfs.mod</in>
-        <in>adi.mod</in>
         <in>adis16060.mod</in>
-        <in>adis16080.mod</in>
         <in>adis16130.mod</in>
-        <in>adis16136.mod</in>
         <in>adis16201.mod</in>
         <in>adis16203.mod</in>
         <in>adis16209.mod</in>
         <in>adis16240.mod</in>
-        <in>adis16260.mod</in>
         <in>adis16400.mod</in>
-        <in>adis16480.mod</in>
-        <in>adis_lib.mod</in>
-        <in>adjd_s311.mod</in>
         <in>adl_pci6208.mod</in>
         <in>adl_pci7x3x.mod</in>
         <in>adl_pci8164.mod</in>
         <in>adl_pci9111.mod</in>
         <in>adl_pci9118.mod</in>
-        <in>adm1021.mod</in>
-        <in>adm1025.mod</in>
-        <in>adm1026.mod</in>
         <in>adm1029.mod</in>
-        <in>adm1031.mod</in>
-        <in>adm1275.mod</in>
         <in>adm8211.mod</in>
-        <in>adm9240.mod</in>
-        <in>adp5520-keys.mod</in>
         <in>adp5520_bl.mod</in>
-        <in>adp5588-keys.mod</in>
-        <in>adp5589-keys.mod</in>
         <in>adp8860_bl.mod</in>
         <in>adp8870_bl.mod</in>
         <in>adq12b.mod</in>
-        <in>ads1015.mod</in>
-        <in>ads7828.mod</in>
         <in>ads7846.mod</in>
         <in>ads7871.mod</in>
         <in>adt7310.mod</in>
         <in>adt7316-i2c.mod</in>
         <in>adt7316-spi.mod</in>
         <in>adt7316.mod</in>
-        <in>adt7410.mod</in>
-        <in>adt7411.mod</in>
-        <in>adt7462.mod</in>
-        <in>adt7470.mod</in>
         <in>adt7475.mod</in>
         <in>adt7x10.mod</in>
         <in>adutux.mod</in>
-        <in>adv7170.mod</in>
-        <in>adv7175.mod</in>
         <in>adv7511.mod</in>
         <in>adv7604.mod</in>
-        <in>adv7842.mod</in>
         <in>adv_pci1710.mod</in>
         <in>adv_pci1723.mod</in>
         <in>adv_pci1724.mod</in>
         <in>adv_pci_dio.mod</in>
         <in>advansys.mod</in>
         <in>advantechwdt.mod</in>
-        <in>adxl34x-i2c.mod</in>
-        <in>adxl34x-spi.mod</in>
-        <in>adxl34x.mod</in>
         <in>adxrs450.mod</in>
-        <in>aes-x86_64.mod</in>
-        <in>aesni-intel.mod</in>
         <in>af9013.mod</in>
         <in>af9033.mod</in>
-        <in>af_alg.mod</in>
         <in>af_key.mod</in>
-        <in>af_packet_diag.mod</in>
-        <in>affs.mod</in>
         <in>ah4.mod</in>
-        <in>ah6.mod</in>
         <in>aha152x_cs.mod</in>
-        <in>ahci.mod</in>
         <in>ahci_platform.mod</in>
         <in>aic79xx.mod</in>
         <in>aic7xxx.mod</in>
@@ -238,37 +154,26 @@
         <in>aim_v4l2.mod</in>
         <in>aio_aio12_8.mod</in>
         <in>aio_iiro_16.mod</in>
-        <in>aiptek.mod</in>
         <in>aircable.mod</in>
         <in>airo.mod</in>
         <in>airo_cs.mod</in>
-        <in>airspy.mod</in>
-        <in>ak8975.mod</in>
-        <in>al3320a.mod</in>
-        <in>algif_aead.mod</in>
         <in>algif_hash.mod</in>
-        <in>algif_rng.mod</in>
         <in>algif_skcipher.mod</in>
         <in>ali-ircc.mod</in>
         <in>alienware-wmi.mod</in>
         <in>alim1535_wdt.mod</in>
         <in>alim7101_wdt.mod</in>
-        <in>altera-ci.mod</in>
-        <in>altera-stapl.mod</in>
         <in>altera_jtaguart.mod</in>
-        <in>altera_ps2.mod</in>
         <in>altera_tse.mod</in>
         <in>altera_uart.mod</in>
         <in>alx.mod</in>
         <in>am53c974.mod</in>
-        <in>amc6821.mod</in>
         <in>amd.mod</in>
         <in>amd5536udc.mod</in>
         <in>amd5536udc_pci.mod</in>
-        <in>amd64_edac_mod.mod</in>
         <in>amd76xrom.mod</in>
         <in>amd8111e.mod</in>
-        <in>amd_iommu_v2.mod</in>
+        <in>amd_freq_sensitivity.mod</in>
         <in>amdgpu.mod</in>
         <in>amdkfd.mod</in>
         <in>amilo-rfkill.mod</in>
@@ -283,20 +188,14 @@
         <in>amplc_pci236.mod</in>
         <in>amplc_pci263.mod</in>
         <in>ams369fg06.mod</in>
-        <in>analog.mod</in>
         <in>anatop-regulator.mod</in>
-        <in>ansi_cprng.mod</in>
-        <in>anubis.mod</in>
         <in>apanel.mod</in>
         <in>apds9300.mod</in>
         <in>apds9802als.mod</in>
-        <in>apds990x.mod</in>
-        <in>apds9960.mod</in>
         <in>apple-gmux.mod</in>
         <in>apple_bl.mod</in>
         <in>appledisplay.mod</in>
-        <in>applesmc.mod</in>
-        <in>appletouch.mod</in>
+        <in>appletalk.mod</in>
         <in>aquantia.mod</in>
         <in>ar5523.mod</in>
         <in>ar7part.mod</in>
@@ -308,33 +207,21 @@
         <in>arcfb.mod</in>
         <in>arcmsr.mod</in>
         <in>arcnet.mod</in>
-        <in>arizona-haptics.mod</in>
         <in>arizona-i2c.mod</in>
         <in>arizona-spi.mod</in>
         <in>ark3116.mod</in>
         <in>arkfb.mod</in>
-        <in>arp_tables.mod</in>
-        <in>arpt_mangle.mod</in>
-        <in>arptable_filter.mod</in>
         <in>as102_fe.mod</in>
         <in>as3711-regulator.mod</in>
         <in>as3711_bl.mod</in>
-        <in>as3935.mod</in>
-        <in>as5011.mod</in>
-        <in>asb100.mod</in>
-        <in>asc7621.mod</in>
         <in>ascot2e.mod</in>
         <in>asix.mod</in>
-        <in>ast.mod</in>
         <in>asus-laptop.mod</in>
         <in>asus-nb-wmi.mod</in>
         <in>asus-wmi.mod</in>
         <in>asus_atk0110.mod</in>
         <in>async_memcpy.mod</in>
-        <in>async_pq.mod</in>
         <in>async_raid6_recov.mod</in>
-        <in>async_tx.mod</in>
-        <in>async_xor.mod</in>
         <in>at24.mod</in>
         <in>at25.mod</in>
         <in>at76c50x-usb.mod</in>
@@ -344,6 +231,7 @@
         <in>ath.mod</in>
         <in>ath10k_core.mod</in>
         <in>ath10k_pci.mod</in>
+        <in>ath3k.mod</in>
         <in>ath5k.mod</in>
         <in>ath6kl_core.mod</in>
         <in>ath6kl_sdio.mod</in>
@@ -353,13 +241,10 @@
         <in>ath9k_htc.mod</in>
         <in>ath9k_hw.mod</in>
         <in>ati_remote.mod</in>
-        <in>ati_remote2.mod</in>
         <in>atl1.mod</in>
         <in>atl1c.mod</in>
         <in>atl1e.mod</in>
         <in>atl2.mod</in>
-        <in>atlas_btns.mod</in>
-        <in>atm.mod</in>
         <in>atmel.mod</in>
         <in>atmel_cs.mod</in>
         <in>atmel_mxt_ts.mod</in>
@@ -367,39 +252,19 @@
         <in>atp.mod</in>
         <in>atp870u.mod</in>
         <in>atusb.mod</in>
-        <in>atxp1.mod</in>
         <in>aty128fb.mod</in>
         <in>atyfb.mod</in>
-        <in>au0828.mod</in>
         <in>au8522_common.mod</in>
         <in>au8522_decoder.mod</in>
         <in>au8522_dig.mod</in>
-        <in>auo-pixcir-ts.mod</in>
         <in>auo_k1900fb.mod</in>
         <in>auo_k1901fb.mod</in>
         <in>auo_k190x.mod</in>
-        <in>auth_rpcgss.mod</in>
-        <in>authenc.mod</in>
-        <in>authencesn.mod</in>
-        <in>autofs4.mod</in>
-        <in>avm_cs.mod</in>
-        <in>avma1_cs.mod</in>
-        <in>avmfritz.mod</in>
-        <in>ax25.mod</in>
         <in>ax88179_178a.mod</in>
         <in>axnet_cs.mod</in>
-        <in>b1.mod</in>
-        <in>b1dma.mod</in>
-        <in>b1pci.mod</in>
-        <in>b1pcmcia.mod</in>
-        <in>b2c2-flexcop-pci.mod</in>
-        <in>b2c2-flexcop-usb.mod</in>
-        <in>b2c2-flexcop.mod</in>
         <in>b43.mod</in>
         <in>b43legacy.mod</in>
         <in>b44.mod</in>
-        <in>bas_gigaset.mod</in>
-        <in>batman-adv.mod</in>
         <in>baycom_par.mod</in>
         <in>baycom_ser_fdx.mod</in>
         <in>baycom_ser_hdx.mod</in>
@@ -409,11 +274,9 @@
         <in>bcm3510.mod</in>
         <in>bcm590xx-regulator.mod</in>
         <in>bcm590xx.mod</in>
-        <in>bcm5974.mod</in>
         <in>bcm7xxx.mod</in>
         <in>bcm87xx.mod</in>
         <in>bcma-hcd.mod</in>
-        <in>bcma.mod</in>
         <in>bd6107.mod</in>
         <in>bdc.mod</in>
         <in>bdc_pci.mod</in>
@@ -422,37 +285,20 @@
         <in>befs.mod</in>
         <in>belkin_sa.mod</in>
         <in>bfa.mod</in>
-        <in>bfs.mod</in>
         <in>bh1750.mod</in>
-        <in>bh1770glc.mod</in>
         <in>binfmt_misc.mod</in>
-        <in>block2mtd.mod</in>
         <in>blocklayoutdriver.mod</in>
-        <in>blowfish-x86_64.mod</in>
-        <in>blowfish_common.mod</in>
-        <in>blowfish_generic.mod</in>
-        <in>bluetooth.mod</in>
-        <in>bluetooth_6lowpan.mod</in>
-        <in>bma150.mod</in>
-        <in>bma180.mod</in>
-        <in>bmc150-accel-core.mod</in>
-        <in>bmc150-accel-i2c.mod</in>
-        <in>bmc150-accel-spi.mod</in>
-        <in>bmg160_core.mod</in>
-        <in>bmg160_i2c.mod</in>
         <in>bmg160_spi.mod</in>
         <in>bmp280-i2c.mod</in>
         <in>bmp280-spi.mod</in>
         <in>bmp280.mod</in>
         <in>bna.mod</in>
-        <in>bnep.mod</in>
         <in>bnx2.mod</in>
         <in>bnx2fc.mod</in>
         <in>bnx2i.mod</in>
         <in>bnx2x.mod</in>
         <in>bnxt_en.mod</in>
         <in>bonding.mod</in>
-        <in>bpck.mod</in>
         <in>bpqether.mod</in>
         <in>bq2415x_charger.mod</in>
         <in>bq24190_charger.mod</in>
@@ -461,73 +307,41 @@
         <in>bq25890_charger.mod</in>
         <in>bq27xxx_battery.mod</in>
         <in>bq27xxx_battery_i2c.mod</in>
-        <in>br2684.mod</in>
-        <in>br_netfilter.mod</in>
         <in>brcmfmac.mod</in>
         <in>brcmsmac.mod</in>
         <in>brcmutil.mod</in>
-        <in>bridge.mod</in>
         <in>broadcom.mod</in>
         <in>broadsheetfb.mod</in>
         <in>bsd_comp.mod</in>
-        <in>bt819.mod</in>
         <in>bt856.mod</in>
         <in>bt866.mod</in>
-        <in>bt878.mod</in>
-        <in>btbcm.mod</in>
         <in>btcoexist.mod</in>
         <in>btmrvl_sdio.mod</in>
-        <in>btrfs.mod</in>
         <in>btsdio.mod</in>
-        <in>bttv.mod</in>
-        <in>btuart_cs.mod</in>
-        <in>btwilink.mod</in>
         <in>bu21013_ts.mod</in>
         <in>budget-av.mod</in>
         <in>budget-ci.mod</in>
         <in>budget-core.mod</in>
         <in>budget-patch.mod</in>
         <in>budget.mod</in>
-        <in>c2port-duramar2150.mod</in>
-        <in>c4.mod</in>
         <in>c67x00.mod</in>
         <in>c6xdigio.mod</in>
         <in>c_can.mod</in>
         <in>c_can_pci.mod</in>
         <in>c_can_platform.mod</in>
-        <in>cachefiles.mod</in>
         <in>cadence_wdt.mod</in>
-        <in>cafe_ccic.mod</in>
         <in>cafe_nand.mod</in>
-        <in>caif.mod</in>
         <in>caif_hsi.mod</in>
         <in>caif_serial.mod</in>
-        <in>caif_socket.mod</in>
-        <in>caif_usb.mod</in>
         <in>caif_virtio.mod</in>
-        <in>camellia-aesni-avx-x86_64.mod</in>
-        <in>camellia-aesni-avx2.mod</in>
-        <in>camellia-x86_64.mod</in>
-        <in>camellia_generic.mod</in>
-        <in>can-bcm.mod</in>
         <in>can-dev.mod</in>
         <in>can-gw.mod</in>
-        <in>can-raw.mod</in>
-        <in>can.mod</in>
-        <in>capi.mod</in>
-        <in>capidrv.mod</in>
         <in>capmode.mod</in>
         <in>carl9170.mod</in>
         <in>carminefb.mod</in>
         <in>cassini.mod</in>
-        <in>cast5-avx-x86_64.mod</in>
         <in>cast5_generic.mod</in>
-        <in>cast6-avx-x86_64.mod</in>
-        <in>cast6_generic.mod</in>
-        <in>cast_common.mod</in>
         <in>catc.mod</in>
-        <in>cb710-mmc.mod</in>
-        <in>cb710.mod</in>
         <in>cb_das16_cs.mod</in>
         <in>cb_pcidas.mod</in>
         <in>cb_pcidas64.mod</in>
@@ -539,8 +353,6 @@
         <in>cc770.mod</in>
         <in>cc770_isa.mod</in>
         <in>cc770_platform.mod</in>
-        <in>cciss.mod</in>
-        <in>ccm.mod</in>
         <in>ccp-crypto.mod</in>
         <in>ccp.mod</in>
         <in>cdc-acm.mod</in>
@@ -551,26 +363,14 @@
         <in>cdc_mbim.mod</in>
         <in>cdc_ncm.mod</in>
         <in>cdc_subset.mod</in>
-        <in>ceph.mod</in>
-        <in>cfag12864b.mod</in>
-        <in>cfag12864bfb.mod</in>
         <in>cfg80211.mod</in>
-        <in>cfi_cmdset_0001.mod</in>
-        <in>cfi_cmdset_0002.mod</in>
         <in>cfi_cmdset_0020.mod</in>
-        <in>cfi_probe.mod</in>
-        <in>cfi_util.mod</in>
         <in>cfspi_slave.mod</in>
         <in>ch.mod</in>
         <in>ch341.mod</in>
-        <in>ch7006.mod</in>
         <in>ch9200.mod</in>
-        <in>chacha20-x86_64.mod</in>
-        <in>chacha20_generic.mod</in>
-        <in>chacha20poly1305.mod</in>
         <in>chaoskey.mod</in>
-        <in>chipreg.mod</in>
-        <in>chnl_net.mod</in>
+        <in>charlcd.mod</in>
         <in>chromeos_laptop.mod</in>
         <in>chromeos_pstore.mod</in>
         <in>ci_hdrc.mod</in>
@@ -579,22 +379,14 @@
         <in>ci_hdrc_usb2.mod</in>
         <in>ci_hdrc_zevio.mod</in>
         <in>cicada.mod</in>
-        <in>cifs.mod</in>
-        <in>cirrus.mod</in>
         <in>cirrusfb.mod</in>
         <in>ck804xrom.mod</in>
         <in>classmate-laptop.mod</in>
         <in>clip.mod</in>
-        <in>clk-cdce706.mod</in>
         <in>clk-palmas.mod</in>
-        <in>clk-pwm.mod</in>
-        <in>clk-s2mps11.mod</in>
-        <in>clk-si5351.mod</in>
         <in>clk-twl6040.mod</in>
-        <in>clk-wm831x.mod</in>
         <in>cls_basic.mod</in>
         <in>cls_bpf.mod</in>
-        <in>cls_cgroup.mod</in>
         <in>cls_flow.mod</in>
         <in>cls_flower.mod</in>
         <in>cls_fw.mod</in>
@@ -603,23 +395,13 @@
         <in>cls_rsvp.mod</in>
         <in>cls_rsvp6.mod</in>
         <in>cls_tcindex.mod</in>
-        <in>cls_u32.mod</in>
-        <in>cm109.mod</in>
         <in>cm32181.mod</in>
-        <in>cm3232.mod</in>
-        <in>cm3323.mod</in>
         <in>cm36651.mod</in>
-        <in>cm4000_cs.mod</in>
-        <in>cm4040_cs.mod</in>
-        <in>cma3000_d0x.mod</in>
-        <in>cma3000_d0x_i2c.mod</in>
-        <in>cmac.mod</in>
         <in>cmdlinepart.mod</in>
         <in>cmtp.mod</in>
         <in>cnic.mod</in>
         <in>cobalt.mod</in>
         <in>cobra.mod</in>
-        <in>coda.mod</in>
         <in>com20020-pci.mod</in>
         <in>com20020.mod</in>
         <in>com20020_cs.mod</in>
@@ -635,61 +417,36 @@
         <in>comedi_pcmcia.mod</in>
         <in>comedi_test.mod</in>
         <in>comedi_usb.mod</in>
-        <in>comm.mod</in>
         <in>compal-laptop.mod</in>
-        <in>configfs.mod</in>
         <in>contec_pci_dio.mod</in>
-        <in>cordic.mod</in>
         <in>core.mod</in>
-        <in>coretemp.mod</in>
         <in>cosm_bus.mod</in>
-        <in>cosm_client.mod</in>
         <in>cp210x.mod</in>
         <in>cpcihp_generic.mod</in>
         <in>cpcihp_zt5550.mod</in>
-        <in>cpia2.mod</in>
         <in>cpsw_ale.mod</in>
         <in>cpu5wdt.mod</in>
-        <in>cpuid.mod</in>
         <in>cr_bllcd.mod</in>
-        <in>cramfs.mod</in>
-        <in>crc-itu-t.mod</in>
-        <in>crc32-pclmul.mod</in>
-        <in>crc32_generic.mod</in>
-        <in>crc7.mod</in>
-        <in>crc8.mod</in>
         <in>crct10dif-pclmul.mod</in>
         <in>cros_ec_core.mod</in>
         <in>cros_ec_devs.mod</in>
         <in>cros_ec_i2c.mod</in>
-        <in>cros_ec_keyb.mod</in>
         <in>cros_ec_lpc.mod</in>
         <in>cros_ec_spi.mod</in>
         <in>crvml.mod</in>
         <in>cryptd.mod</in>
-        <in>crypto_engine.mod</in>
         <in>crypto_simd.mod</in>
-        <in>crypto_user.mod</in>
         <in>cryptoloop.mod</in>
-        <in>cs3308.mod</in>
-        <in>cs5345.mod</in>
-        <in>cs53l32a.mod</in>
         <in>csiostor.mod</in>
         <in>ct82c710.mod</in>
-        <in>ctr.mod</in>
-        <in>cts.mod</in>
         <in>cuse.mod</in>
         <in>cw1200_core.mod</in>
         <in>cw1200_wlan_sdio.mod</in>
         <in>cw1200_wlan_spi.mod</in>
-        <in>cx18-alsa.mod</in>
         <in>cx18.mod</in>
         <in>cx22700.mod</in>
         <in>cx22702.mod</in>
-        <in>cx231xx-alsa.mod</in>
         <in>cx231xx-dvb.mod</in>
-        <in>cx231xx.mod</in>
-        <in>cx2341x.mod</in>
         <in>cx23885.mod</in>
         <in>cx24110.mod</in>
         <in>cx24113.mod</in>
@@ -697,9 +454,7 @@
         <in>cx24117.mod</in>
         <in>cx24120.mod</in>
         <in>cx24123.mod</in>
-        <in>cx25821-alsa.mod</in>
         <in>cx25821.mod</in>
-        <in>cx25840.mod</in>
         <in>cx82310_eth.mod</in>
         <in>cx88-alsa.mod</in>
         <in>cx88-blackbird.mod</in>
@@ -718,8 +473,6 @@
         <in>cxgb4.mod</in>
         <in>cxgb4i.mod</in>
         <in>cxgb4vf.mod</in>
-        <in>cy8ctmg110_ts.mod</in>
-        <in>cyapatp.mod</in>
         <in>cyber2000fb.mod</in>
         <in>cyberjack.mod</in>
         <in>cyclades.mod</in>
@@ -727,25 +480,16 @@
         <in>cypress_firmware.mod</in>
         <in>cypress_m8.mod</in>
         <in>cytherm.mod</in>
-        <in>cyttsp4_core.mod</in>
         <in>cyttsp4_i2c.mod</in>
-        <in>cyttsp4_spi.mod</in>
-        <in>cyttsp_core.mod</in>
-        <in>cyttsp_i2c.mod</in>
-        <in>cyttsp_i2c_common.mod</in>
-        <in>cyttsp_spi.mod</in>
         <in>da9030_battery.mod</in>
         <in>da9034-ts.mod</in>
         <in>da903x.mod</in>
         <in>da903x_bl.mod</in>
         <in>da9052-battery.mod</in>
-        <in>da9052-hwmon.mod</in>
         <in>da9052-regulator.mod</in>
         <in>da9052_bl.mod</in>
-        <in>da9052_onkey.mod</in>
         <in>da9052_tsi.mod</in>
         <in>da9052_wdt.mod</in>
-        <in>da9055-hwmon.mod</in>
         <in>da9055-regulator.mod</in>
         <in>da9055_onkey.mod</in>
         <in>da9055_wdt.mod</in>
@@ -753,12 +497,10 @@
         <in>da9062-regulator.mod</in>
         <in>da9062_wdt.mod</in>
         <in>da9063-regulator.mod</in>
-        <in>da9063_onkey.mod</in>
         <in>da9063_wdt.mod</in>
         <in>da9150-charger.mod</in>
         <in>da9150-core.mod</in>
         <in>da9150-fg.mod</in>
-        <in>da9150-gpadc.mod</in>
         <in>da9210-regulator.mod</in>
         <in>da9211-regulator.mod</in>
         <in>dac02.mod</in>
@@ -773,37 +515,21 @@
         <in>das6402.mod</in>
         <in>das800.mod</in>
         <in>davicom.mod</in>
-        <in>db9.mod</in>
         <in>dc395x.mod</in>
-        <in>dca.mod</in>
-        <in>dccp.mod</in>
-        <in>dccp_diag.mod</in>
-        <in>dccp_ipv4.mod</in>
-        <in>dccp_ipv6.mod</in>
         <in>dccp_probe.mod</in>
-        <in>dcdbas.mod</in>
         <in>ddbridge.mod</in>
         <in>de2104x.mod</in>
         <in>de4x5.mod</in>
-        <in>decnet.mod</in>
-        <in>deflate.mod</in>
         <in>defxx.mod</in>
         <in>dell-laptop.mod</in>
         <in>dell-rbtn.mod</in>
         <in>dell-smbios.mod</in>
-        <in>dell-smm-hwmon.mod</in>
         <in>dell-smo8800.mod</in>
         <in>dell-wmi-aio.mod</in>
         <in>dell-wmi.mod</in>
-        <in>dell_rbu.mod</in>
         <in>denali.mod</in>
         <in>denali_pci.mod</in>
-        <in>des3_ede-x86_64.mod</in>
-        <in>des_generic.mod</in>
-        <in>designware_i2s.mod</in>
         <in>dgnc.mod</in>
-        <in>dh_generic.mod</in>
-        <in>dht11.mod</in>
         <in>dib0070.mod</in>
         <in>dib0090.mod</in>
         <in>dib3000mb.mod</in>
@@ -814,65 +540,33 @@
         <in>dibx000_common.mod</in>
         <in>digi_acceleport.mod</in>
         <in>diskonchip.mod</in>
-        <in>diva_idi.mod</in>
         <in>diva_mnt.mod</in>
         <in>divacapi.mod</in>
-        <in>divadidd.mod</in>
         <in>divas.mod</in>
         <in>dl2k.mod</in>
         <in>dlci.mod</in>
-        <in>dlm.mod</in>
         <in>dln2.mod</in>
         <in>dm-bio-prison.mod</in>
-        <in>dm-bufio.mod</in>
-        <in>dm-cache-smq.mod</in>
-        <in>dm-cache.mod</in>
-        <in>dm-crypt.mod</in>
-        <in>dm-delay.mod</in>
-        <in>dm-era.mod</in>
-        <in>dm-flakey.mod</in>
-        <in>dm-log-userspace.mod</in>
-        <in>dm-log-writes.mod</in>
-        <in>dm-log.mod</in>
         <in>dm-mirror.mod</in>
         <in>dm-multipath.mod</in>
         <in>dm-persistent-data.mod</in>
-        <in>dm-queue-length.mod</in>
-        <in>dm-raid.mod</in>
-        <in>dm-region-hash.mod</in>
-        <in>dm-round-robin.mod</in>
-        <in>dm-service-time.mod</in>
         <in>dm-snapshot.mod</in>
         <in>dm-switch.mod</in>
-        <in>dm-thin-pool.mod</in>
-        <in>dm-verity.mod</in>
-        <in>dm-zero.mod</in>
         <in>dm1105.mod</in>
         <in>dm9601.mod</in>
-        <in>dme1737.mod</in>
         <in>dmfe.mod</in>
-        <in>dmi-sysfs.mod</in>
         <in>dmm32at.mod</in>
         <in>dmx3191d.mod</in>
-        <in>dn_rtmsg.mod</in>
         <in>dnet.mod</in>
-        <in>docg3.mod</in>
         <in>docg4.mod</in>
         <in>dp83848.mod</in>
         <in>dp83867.mod</in>
         <in>dpt_i2o.mod</in>
-        <in>drbd.mod</in>
-        <in>drbg.mod</in>
         <in>drm.mod</in>
         <in>drm_kms_helper.mod</in>
-        <in>drop_monitor.mod</in>
-        <in>drv260x.mod</in>
-        <in>drv2665.mod</in>
-        <in>drv2667.mod</in>
         <in>drx39xyj.mod</in>
         <in>drxd.mod</in>
         <in>drxk.mod</in>
-        <in>ds1621.mod</in>
         <in>ds1682.mod</in>
         <in>ds1wm.mod</in>
         <in>ds2482.mod</in>
@@ -882,13 +576,8 @@
         <in>ds2781_battery.mod</in>
         <in>ds2782_battery.mod</in>
         <in>ds3000.mod</in>
-        <in>ds620.mod</in>
-        <in>dsbr100.mod</in>
         <in>dscc4.mod</in>
-        <in>dss1_divert.mod</in>
         <in>dst.mod</in>
-        <in>dst_ca.mod</in>
-        <in>dstr.mod</in>
         <in>dt2801.mod</in>
         <in>dt2811.mod</in>
         <in>dt2814.mod</in>
@@ -898,12 +587,8 @@
         <in>dt3000.mod</in>
         <in>dt3155.mod</in>
         <in>dt9812.mod</in>
-        <in>dtl1_cs.mod</in>
         <in>dummy-irq.mod</in>
         <in>dummy.mod</in>
-        <in>dummy_stm.mod</in>
-        <in>dvb-as102.mod</in>
-        <in>dvb-bt8xx.mod</in>
         <in>dvb-core.mod</in>
         <in>dvb-pll.mod</in>
         <in>dvb-ttpci.mod</in>
@@ -948,71 +633,31 @@
         <in>dvb-usb-vp7045.mod</in>
         <in>dvb-usb.mod</in>
         <in>dvb_usb_v2.mod</in>
-        <in>dw_dmac.mod</in>
         <in>dw_wdt.mod</in>
         <in>dwc2_pci.mod</in>
         <in>dwc3-pci.mod</in>
         <in>dwc3.mod</in>
         <in>dwmac-generic.mod</in>
         <in>dyna_pci10xx.mod</in>
-        <in>dynapro.mod</in>
         <in>e100.mod</in>
         <in>e1000.mod</in>
         <in>e1000e.mod</in>
-        <in>e3x0-button.mod</in>
-        <in>e4000.mod</in>
-        <in>e752x_edac.mod</in>
         <in>earth-pt1.mod</in>
         <in>earth-pt3.mod</in>
         <in>eata.mod</in>
         <in>ebt_802_3.mod</in>
-        <in>ebt_among.mod</in>
-        <in>ebt_arp.mod</in>
-        <in>ebt_arpreply.mod</in>
-        <in>ebt_dnat.mod</in>
-        <in>ebt_ip.mod</in>
-        <in>ebt_ip6.mod</in>
-        <in>ebt_limit.mod</in>
-        <in>ebt_log.mod</in>
-        <in>ebt_mark.mod</in>
-        <in>ebt_mark_m.mod</in>
-        <in>ebt_nflog.mod</in>
-        <in>ebt_pkttype.mod</in>
-        <in>ebt_redirect.mod</in>
-        <in>ebt_snat.mod</in>
-        <in>ebt_stp.mod</in>
-        <in>ebt_vlan.mod</in>
         <in>ebtable_broute.mod</in>
-        <in>ebtable_filter.mod</in>
-        <in>ebtable_nat.mod</in>
         <in>ebtables.mod</in>
         <in>ec100.mod</in>
         <in>ec_bhf.mod</in>
-        <in>ec_sys.mod</in>
-        <in>ecdh_generic.mod</in>
-        <in>echainiv.mod</in>
-        <in>echo.mod</in>
         <in>edac_mce_amd.mod</in>
         <in>edt-ft5x06.mod</in>
         <in>eeepc-laptop.mod</in>
         <in>eeepc-wmi.mod</in>
-        <in>eeprom.mod</in>
-        <in>eeprom_93cx6.mod</in>
         <in>eeprom_93xx46.mod</in>
-        <in>eeti_ts.mod</in>
-        <in>efi-pstore.mod</in>
         <in>efi_test.mod</in>
-        <in>efs.mod</in>
         <in>ehset.mod</in>
-        <in>einj.mod</in>
-        <in>elan_i2c.mod</in>
-        <in>elo.mod</in>
-        <in>elsa_cs.mod</in>
-        <in>em28xx-alsa.mod</in>
-        <in>em28xx-dvb.mod</in>
-        <in>em28xx-rc.mod</in>
         <in>em28xx-v4l.mod</in>
-        <in>em28xx.mod</in>
         <in>em_canid.mod</in>
         <in>em_cmp.mod</in>
         <in>em_ipset.mod</in>
@@ -1021,25 +666,18 @@
         <in>em_text.mod</in>
         <in>em_u32.mod</in>
         <in>emc1403.mod</in>
-        <in>emc2103.mod</in>
-        <in>emc6w201.mod</in>
         <in>emi26.mod</in>
         <in>emi62.mod</in>
         <in>empeg.mod</in>
         <in>ems_pci.mod</in>
         <in>ems_pcmcia.mod</in>
         <in>ems_usb.mod</in>
-        <in>emu10k1-gp.mod</in>
         <in>ena.mod</in>
         <in>enc28j60.mod</in>
-        <in>enclosure.mod</in>
         <in>encx24j600-regmap.mod</in>
         <in>encx24j600.mod</in>
         <in>ene_ir.mod</in>
-        <in>eni.mod</in>
         <in>enic.mod</in>
-        <in>epat.mod</in>
-        <in>epia.mod</in>
         <in>epic100.mod</in>
         <in>eql.mod</in>
         <in>esas2r.mod</in>
@@ -1047,30 +685,14 @@
         <in>esd_usb2.mod</in>
         <in>esi-sir.mod</in>
         <in>esp4.mod</in>
-        <in>esp6.mod</in>
         <in>esp_scsi.mod</in>
         <in>et1011c.mod</in>
         <in>et131x.mod</in>
         <in>ethoc.mod</in>
         <in>eurotechwdt.mod</in>
-        <in>evbug.mod</in>
-        <in>exofs.mod</in>
-        <in>extcon-adc-jack.mod</in>
-        <in>extcon-arizona.mod</in>
         <in>extcon-gpio.mod</in>
-        <in>extcon-max14577.mod</in>
-        <in>extcon-max77693.mod</in>
-        <in>extcon-max77843.mod</in>
-        <in>extcon-max8997.mod</in>
-        <in>extcon-palmas.mod</in>
-        <in>extcon-rt8973a.mod</in>
-        <in>extcon-sm5502.mod</in>
-        <in>extcon-usb-gpio.mod</in>
         <in>ezusb.mod</in>
-        <in>f2fs.mod</in>
-        <in>f71805f.mod</in>
         <in>f71808e_wdt.mod</in>
-        <in>f71882fg.mod</in>
         <in>f75375s.mod</in>
         <in>f81232.mod</in>
         <in>fakelb.mod</in>
@@ -1113,54 +735,28 @@
         <in>fbtft_device.mod</in>
         <in>fc0011.mod</in>
         <in>fc0012.mod</in>
-        <in>fc0013.mod</in>
         <in>fc2580.mod</in>
         <in>fcoe.mod</in>
-        <in>fcrypt.mod</in>
         <in>fdomain.mod</in>
         <in>fdomain_cs.mod</in>
-        <in>fdp.mod</in>
-        <in>fdp_i2c.mod</in>
         <in>fealnx.mod</in>
         <in>ff-memless.mod</in>
         <in>fintek-cir.mod</in>
-        <in>firedtv.mod</in>
-        <in>firestream.mod</in>
-        <in>firewire-core.mod</in>
-        <in>firewire-net.mod</in>
-        <in>firewire-ohci.mod</in>
-        <in>firewire-sbp2.mod</in>
         <in>firewire-serial.mod</in>
-        <in>fit2.mod</in>
-        <in>fit3.mod</in>
         <in>fixed.mod</in>
         <in>fjes.mod</in>
         <in>fl512.mod</in>
         <in>flexfb.mod</in>
-        <in>floppy.mod</in>
         <in>fm10k.mod</in>
-        <in>fm801-gp.mod</in>
-        <in>fm_drv.mod</in>
         <in>fmc-chardev.mod</in>
         <in>fmc-fakedev.mod</in>
-        <in>fmc-trivial.mod</in>
-        <in>fmc-write-eeprom.mod</in>
-        <in>fmc.mod</in>
         <in>fmvj18x_cs.mod</in>
         <in>fnic.mod</in>
         <in>forcedeth.mod</in>
-        <in>fore_200e.mod</in>
         <in>fotg210-hcd.mod</in>
         <in>fotg210-udc.mod</in>
         <in>fou.mod</in>
-        <in>fou6.mod</in>
-        <in>fpga-mgr.mod</in>
-        <in>freevxfs.mod</in>
         <in>friq.mod</in>
-        <in>frpw.mod</in>
-        <in>fsa9480.mod</in>
-        <in>fscache.mod</in>
-        <in>fschmd.mod</in>
         <in>fscrypto.mod</in>
         <in>fsl_lpuart.mod</in>
         <in>ftdi-elan.mod</in>
@@ -1170,8 +766,6 @@
         <in>fujitsu-tablet.mod</in>
         <in>fujitsu_ts.mod</in>
         <in>g450_pll.mod</in>
-        <in>g760a.mod</in>
-        <in>g762.mod</in>
         <in>g_acm_ms.mod</in>
         <in>g_audio.mod</in>
         <in>g_cdc.mod</in>
@@ -1188,96 +782,42 @@
         <in>g_webcam.mod</in>
         <in>g_zero.mod</in>
         <in>gadgetfs.mod</in>
-        <in>gamecon.mod</in>
-        <in>gameport.mod</in>
         <in>garmin_gps.mod</in>
-        <in>garp.mod</in>
-        <in>gcm.mod</in>
         <in>gdmtty.mod</in>
         <in>gdmulte.mod</in>
         <in>gdth.mod</in>
-        <in>gen_probe.mod</in>
         <in>generic-adc-battery.mod</in>
         <in>generic.mod</in>
         <in>generic_bl.mod</in>
         <in>genet.mod</in>
         <in>geneve.mod</in>
-        <in>genwqe_card.mod</in>
-        <in>gf128mul.mod</in>
-        <in>gf2k.mod</in>
-        <in>gfs2.mod</in>
-        <in>ghash-clmulni-intel.mod</in>
-        <in>ghash-generic.mod</in>
         <in>gigaset.mod</in>
         <in>girbil-sir.mod</in>
-        <in>gl518sm.mod</in>
-        <in>gl520sm.mod</in>
         <in>gl620a.mod</in>
-        <in>glue_helper.mod</in>
         <in>gluebi.mod</in>
-        <in>gma500_gfx.mod</in>
-        <in>go7007-loader.mod</in>
         <in>go7007-usb.mod</in>
-        <in>go7007.mod</in>
         <in>goku_udc.mod</in>
         <in>goodix.mod</in>
         <in>gp2ap002a00f.mod</in>
-        <in>gp2ap020a00f.mod</in>
         <in>gp8psk-fe.mod</in>
         <in>gpio-addr-flash.mod</in>
-        <in>gpio-adp5520.mod</in>
-        <in>gpio-adp5588.mod</in>
-        <in>gpio-amd8111.mod</in>
-        <in>gpio-amdpt.mod</in>
         <in>gpio-arizona.mod</in>
-        <in>gpio-beeper.mod</in>
         <in>gpio-charger.mod</in>
-        <in>gpio-crystalcove.mod</in>
-        <in>gpio-da9052.mod</in>
         <in>gpio-da9055.mod</in>
-        <in>gpio-dln2.mod</in>
-        <in>gpio-dwapb.mod</in>
-        <in>gpio-f7188x.mod</in>
-        <in>gpio-fan.mod</in>
-        <in>gpio-generic.mod</in>
-        <in>gpio-ich.mod</in>
         <in>gpio-ir-recv.mod</in>
-        <in>gpio-it87.mod</in>
-        <in>gpio-janz-ttl.mod</in>
-        <in>gpio-kempld.mod</in>
-        <in>gpio-lp3943.mod</in>
         <in>gpio-max7300.mod</in>
-        <in>gpio-max7301.mod</in>
-        <in>gpio-max730x.mod</in>
-        <in>gpio-max732x.mod</in>
-        <in>gpio-mc33880.mod</in>
-        <in>gpio-ml-ioh.mod</in>
         <in>gpio-pca953x.mod</in>
-        <in>gpio-pcf857x.mod</in>
-        <in>gpio-rdc321x.mod</in>
         <in>gpio-regulator.mod</in>
-        <in>gpio-sch.mod</in>
-        <in>gpio-sch311x.mod</in>
-        <in>gpio-tps65912.mod</in>
         <in>gpio-twl4030.mod</in>
-        <in>gpio-twl6040.mod</in>
         <in>gpio-ucb1400.mod</in>
-        <in>gpio-viperboard.mod</in>
-        <in>gpio-vx855.mod</in>
-        <in>gpio-wm831x.mod</in>
-        <in>gpio-wm8350.mod</in>
-        <in>gpio-wm8994.mod</in>
         <in>gpio.mod</in>
         <in>gpio_backlight.mod</in>
-        <in>gpio_keys.mod</in>
-        <in>gpio_keys_polled.mod</in>
         <in>gpio_mouse.mod</in>
         <in>gpio_tilt_polled.mod</in>
         <in>gr_udc.mod</in>
         <in>grace.mod</in>
         <in>gre.mod</in>
         <in>grip.mod</in>
-        <in>grip_mp.mod</in>
         <in>gs_fpga.mod</in>
         <in>gs_usb.mod</in>
         <in>gsc_hpdi.mod</in>
@@ -1332,19 +872,11 @@
         <in>gspca_xirlink_cit.mod</in>
         <in>gspca_zc3xx.mod</in>
         <in>gtco.mod</in>
-        <in>guillemot.mod</in>
-        <in>gunze.mod</in>
         <in>gxt4500.mod</in>
         <in>hackrf.mod</in>
         <in>hamachi.mod</in>
         <in>hampshire.mod</in>
-        <in>hangcheck-timer.mod</in>
-        <in>hanwang.mod</in>
-        <in>hci.mod</in>
-        <in>hci_uart.mod</in>
-        <in>hci_vhci.mod</in>
         <in>hdaps.mod</in>
-        <in>hdc100x.mod</in>
         <in>hdlc.mod</in>
         <in>hdlc_cisco.mod</in>
         <in>hdlc_fr.mod</in>
@@ -1357,127 +889,37 @@
         <in>hdm_i2c.mod</in>
         <in>hdm_usb.mod</in>
         <in>hdpvr.mod</in>
-        <in>he.mod</in>
         <in>hecubafb.mod</in>
         <in>helene.mod</in>
         <in>hexium_gemini.mod</in>
         <in>hexium_orion.mod</in>
-        <in>hfc4s8s_l1.mod</in>
         <in>hfc_usb.mod</in>
         <in>hfcmulti.mod</in>
         <in>hfcpci.mod</in>
-        <in>hfcsusb.mod</in>
         <in>hfs.mod</in>
-        <in>hfsplus.mod</in>
         <in>hgafb.mod</in>
-        <in>hi8435.mod</in>
-        <in>hid-a4tech.mod</in>
         <in>hid-alps.mod</in>
-        <in>hid-apple.mod</in>
-        <in>hid-appleir.mod</in>
-        <in>hid-aureal.mod</in>
-        <in>hid-axff.mod</in>
-        <in>hid-belkin.mod</in>
-        <in>hid-betopff.mod</in>
-        <in>hid-cherry.mod</in>
-        <in>hid-chicony.mod</in>
-        <in>hid-corsair.mod</in>
-        <in>hid-cp2112.mod</in>
-        <in>hid-cypress.mod</in>
-        <in>hid-dr.mod</in>
-        <in>hid-elecom.mod</in>
-        <in>hid-elo.mod</in>
-        <in>hid-emsff.mod</in>
-        <in>hid-ezkey.mod</in>
-        <in>hid-gaff.mod</in>
-        <in>hid-gembird.mod</in>
-        <in>hid-generic.mod</in>
-        <in>hid-gfrm.mod</in>
         <in>hid-gt683r.mod</in>
-        <in>hid-gyration.mod</in>
-        <in>hid-holtek-kbd.mod</in>
         <in>hid-holtek-mouse.mod</in>
-        <in>hid-holtekff.mod</in>
-        <in>hid-hyperv.mod</in>
-        <in>hid-icade.mod</in>
-        <in>hid-kensington.mod</in>
-        <in>hid-keytouch.mod</in>
         <in>hid-kye.mod</in>
-        <in>hid-lcpower.mod</in>
-        <in>hid-led.mod</in>
-        <in>hid-lenovo.mod</in>
-        <in>hid-logitech-dj.mod</in>
-        <in>hid-logitech-hidpp.mod</in>
-        <in>hid-logitech.mod</in>
-        <in>hid-magicmouse.mod</in>
-        <in>hid-microsoft.mod</in>
-        <in>hid-monterey.mod</in>
-        <in>hid-multitouch.mod</in>
-        <in>hid-ntrig.mod</in>
-        <in>hid-ortek.mod</in>
-        <in>hid-penmount.mod</in>
-        <in>hid-petalynx.mod</in>
         <in>hid-picolcd.mod</in>
         <in>hid-pl.mod</in>
-        <in>hid-plantronics.mod</in>
-        <in>hid-primax.mod</in>
         <in>hid-prodikeys.mod</in>
-        <in>hid-rmi.mod</in>
-        <in>hid-roccat-arvo.mod</in>
-        <in>hid-roccat-common.mod</in>
-        <in>hid-roccat-isku.mod</in>
-        <in>hid-roccat-kone.mod</in>
         <in>hid-roccat-koneplus.mod</in>
-        <in>hid-roccat-konepure.mod</in>
         <in>hid-roccat-kovaplus.mod</in>
         <in>hid-roccat-lua.mod</in>
         <in>hid-roccat-pyra.mod</in>
         <in>hid-roccat-ryos.mod</in>
         <in>hid-roccat-savu.mod</in>
-        <in>hid-roccat.mod</in>
-        <in>hid-saitek.mod</in>
-        <in>hid-samsung.mod</in>
-        <in>hid-sensor-accel-3d.mod</in>
-        <in>hid-sensor-als.mod</in>
-        <in>hid-sensor-custom.mod</in>
-        <in>hid-sensor-gyro-3d.mod</in>
-        <in>hid-sensor-hub.mod</in>
         <in>hid-sensor-iio-common.mod</in>
-        <in>hid-sensor-incl-3d.mod</in>
-        <in>hid-sensor-magn-3d.mod</in>
         <in>hid-sensor-press.mod</in>
         <in>hid-sensor-prox.mod</in>
         <in>hid-sensor-rotation.mod</in>
-        <in>hid-sensor-trigger.mod</in>
-        <in>hid-sjoy.mod</in>
-        <in>hid-sony.mod</in>
-        <in>hid-speedlink.mod</in>
-        <in>hid-steelseries.mod</in>
-        <in>hid-sunplus.mod</in>
         <in>hid-tivo.mod</in>
-        <in>hid-tmff.mod</in>
-        <in>hid-topseed.mod</in>
         <in>hid-twinhan.mod</in>
-        <in>hid-uclogic.mod</in>
-        <in>hid-waltop.mod</in>
-        <in>hid-wiimote.mod</in>
-        <in>hid-xinmo.mod</in>
-        <in>hid-zpff.mod</in>
-        <in>hid-zydacron.mod</in>
-        <in>hid.mod</in>
-        <in>hidp.mod</in>
-        <in>hih6130.mod</in>
-        <in>hisax.mod</in>
-        <in>hisax_fcpcipnp.mod</in>
-        <in>hisax_isac.mod</in>
-        <in>hisax_st5481.mod</in>
         <in>hisi504_nand.mod</in>
-        <in>hmc5843_core.mod</in>
-        <in>hmc5843_i2c.mod</in>
         <in>hmc5843_spi.mod</in>
-        <in>hmc6352.mod</in>
         <in>hopper.mod</in>
-        <in>horizon.mod</in>
         <in>horus3a.mod</in>
         <in>hostap.mod</in>
         <in>hostap_cs.mod</in>
@@ -1487,170 +929,82 @@
         <in>hp-wmi.mod</in>
         <in>hp100.mod</in>
         <in>hp_accel.mod</in>
-        <in>hpfs.mod</in>
-        <in>hpilo.mod</in>
         <in>hpsa.mod</in>
         <in>hptiop.mod</in>
         <in>hpwdt.mod</in>
-        <in>hsi.mod</in>
-        <in>hsi_char.mod</in>
         <in>hso.mod</in>
-        <in>hsr.mod</in>
         <in>hsu_dma.mod</in>
         <in>htc-pasic3.mod</in>
-        <in>hts221.mod</in>
-        <in>hts221_i2c.mod</in>
         <in>hts221_spi.mod</in>
-        <in>htu21.mod</in>
         <in>huawei_cdc_ncm.mod</in>
-        <in>hv_balloon.mod</in>
         <in>hv_netvsc.mod</in>
         <in>hv_storvsc.mod</in>
-        <in>hv_utils.mod</in>
-        <in>hv_vmbus.mod</in>
         <in>hwa-hc.mod</in>
         <in>hwa-rc.mod</in>
-        <in>hwmon-vid.mod</in>
         <in>hwpoison-inject.mod</in>
         <in>hx8357.mod</in>
-        <in>hyperv-keyboard.mod</in>
         <in>hyperv_fb.mod</in>
-        <in>hysdn.mod</in>
         <in>i1480-dfu-usb.mod</in>
         <in>i1480-est.mod</in>
         <in>i2400m-usb.mod</in>
         <in>i2400m.mod</in>
-        <in>i2c-algo-bit.mod</in>
-        <in>i2c-algo-pca.mod</in>
         <in>i2c-ali1535.mod</in>
         <in>i2c-ali1563.mod</in>
-        <in>i2c-ali15x3.mod</in>
         <in>i2c-amd756-s4882.mod</in>
-        <in>i2c-amd756.mod</in>
-        <in>i2c-amd8111.mod</in>
-        <in>i2c-cbus-gpio.mod</in>
-        <in>i2c-cros-ec-tunnel.mod</in>
         <in>i2c-designware-core.mod</in>
-        <in>i2c-designware-pci.mod</in>
-        <in>i2c-designware-platform.mod</in>
-        <in>i2c-diolan-u2c.mod</in>
         <in>i2c-dln2.mod</in>
-        <in>i2c-emev2.mod</in>
-        <in>i2c-gpio.mod</in>
         <in>i2c-hid.mod</in>
-        <in>i2c-i801.mod</in>
-        <in>i2c-isch.mod</in>
-        <in>i2c-ismt.mod</in>
-        <in>i2c-kempld.mod</in>
         <in>i2c-matroxfb.mod</in>
         <in>i2c-mux-gpio.mod</in>
-        <in>i2c-mux-pca9541.mod</in>
-        <in>i2c-mux-pca954x.mod</in>
-        <in>i2c-mux-pinctrl.mod</in>
-        <in>i2c-mux-reg.mod</in>
-        <in>i2c-mux.mod</in>
-        <in>i2c-nforce2-s4985.mod</in>
-        <in>i2c-nforce2.mod</in>
-        <in>i2c-ocores.mod</in>
-        <in>i2c-parport-light.mod</in>
-        <in>i2c-parport.mod</in>
-        <in>i2c-pca-platform.mod</in>
-        <in>i2c-piix4.mod</in>
-        <in>i2c-robotfuzz-osif.mod</in>
-        <in>i2c-scmi.mod</in>
         <in>i2c-simtec.mod</in>
-        <in>i2c-sis5595.mod</in>
         <in>i2c-sis630.mod</in>
-        <in>i2c-sis96x.mod</in>
-        <in>i2c-smbus.mod</in>
-        <in>i2c-stub.mod</in>
-        <in>i2c-taos-evm.mod</in>
-        <in>i2c-tiny-usb.mod</in>
-        <in>i2c-via.mod</in>
         <in>i2c-viapro.mod</in>
-        <in>i2c-viperboard.mod</in>
-        <in>i2c-xiic.mod</in>
         <in>i3000_edac.mod</in>
-        <in>i3200_edac.mod</in>
         <in>i40e.mod</in>
         <in>i40evf.mod</in>
-        <in>i5000_edac.mod</in>
-        <in>i5100_edac.mod</in>
-        <in>i5400_edac.mod</in>
         <in>i5500_temp.mod</in>
-        <in>i5k_amb.mod</in>
         <in>i6300esb.mod</in>
         <in>i7300_edac.mod</in>
         <in>i740fb.mod</in>
-        <in>i7core_edac.mod</in>
         <in>i82092.mod</in>
-        <in>i82975x_edac.mod</in>
         <in>i915.mod</in>
         <in>iTCO_vendor_support.mod</in>
         <in>iTCO_wdt.mod</in>
         <in>ib700wdt.mod</in>
         <in>ib_cm.mod</in>
-        <in>ib_core.mod</in>
-        <in>ib_ipoib.mod</in>
         <in>ib_iser.mod</in>
-        <in>ib_isert.mod</in>
-        <in>ib_mthca.mod</in>
-        <in>ib_srp.mod</in>
         <in>ib_srpt.mod</in>
         <in>ib_ucm.mod</in>
-        <in>ib_umad.mod</in>
-        <in>ib_uverbs.mod</in>
         <in>ibm_rtl.mod</in>
-        <in>ibmaem.mod</in>
-        <in>ibmasm.mod</in>
         <in>ibmasr.mod</in>
-        <in>ibmpex.mod</in>
         <in>ichxrom.mod</in>
         <in>icp_multi.mod</in>
         <in>icplus.mod</in>
         <in>ics932s401.mod</in>
         <in>ideapad-laptop.mod</in>
-        <in>ideapad_slidebar.mod</in>
-        <in>idma64.mod</in>
         <in>idmouse.mod</in>
-        <in>idt77252.mod</in>
         <in>idt_gen2.mod</in>
         <in>idtcps.mod</in>
-        <in>ie31200_edac.mod</in>
         <in>ie6xx_wdt.mod</in>
-        <in>ieee802154.mod</in>
-        <in>ieee802154_6lowpan.mod</in>
-        <in>ieee802154_socket.mod</in>
         <in>ifb.mod</in>
-        <in>iforce.mod</in>
         <in>igb.mod</in>
         <in>igbvf.mod</in>
         <in>igorplugusb.mod</in>
         <in>iguanair.mod</in>
         <in>ii_pci20kc.mod</in>
         <in>iio-trig-interrupt.mod</in>
-        <in>iio-trig-sysfs.mod</in>
         <in>iio_hwmon.mod</in>
-        <in>ila.mod</in>
         <in>ili210x.mod</in>
         <in>ili922x.mod</in>
         <in>ili9320.mod</in>
         <in>imm.mod</in>
         <in>imon.mod</in>
         <in>ims-pcu.mod</in>
-        <in>imx074.mod</in>
-        <in>ina209.mod</in>
-        <in>ina2xx.mod</in>
         <in>industrialio-buffer-cb.mod</in>
-        <in>industrialio-triggered-buffer.mod</in>
         <in>industrialio-triggered-event.mod</in>
         <in>industrialio.mod</in>
-        <in>inet_diag.mod</in>
-        <in>inexio.mod</in>
         <in>inftl.mod</in>
         <in>initio.mod</in>
-        <in>input-leds.mod</in>
-        <in>input-polldev.mod</in>
         <in>int3400_thermal.mod</in>
         <in>int3402_thermal.mod</in>
         <in>int3403_thermal.mod</in>
@@ -1660,7 +1014,6 @@
         <in>intel-lpss-acpi.mod</in>
         <in>intel-lpss-pci.mod</in>
         <in>intel-lpss.mod</in>
-        <in>intel-rng.mod</in>
         <in>intel-rst.mod</in>
         <in>intel-smartconnect.mod</in>
         <in>intel-vbtn.mod</in>
@@ -1671,7 +1024,6 @@
         <in>intel_pmc_ipc.mod</in>
         <in>intel_powerclamp.mod</in>
         <in>intel_punit_ipc.mod</in>
-        <in>intel_qat.mod</in>
         <in>intel_quark_i2c_gpio.mod</in>
         <in>intel_rapl.mod</in>
         <in>intel_soc_dts_iosf.mod</in>
@@ -1679,44 +1031,25 @@
         <in>intel_telemetry_core.mod</in>
         <in>intel_telemetry_debugfs.mod</in>
         <in>intel_telemetry_pltdrv.mod</in>
-        <in>intel_th.mod</in>
-        <in>intel_th_gth.mod</in>
-        <in>intel_th_msu.mod</in>
-        <in>intel_th_pci.mod</in>
         <in>intel_th_pti.mod</in>
         <in>intel_th_sth.mod</in>
         <in>intel_vr_nor.mod</in>
         <in>intelfb.mod</in>
-        <in>interact.mod</in>
-        <in>interval_tree_test.mod</in>
         <in>io_edgeport.mod</in>
         <in>io_ti.mod</in>
         <in>ioatdma.mod</in>
-        <in>ioc4.mod</in>
         <in>iowarrior.mod</in>
-        <in>ip6_gre.mod</in>
-        <in>ip6_tables.mod</in>
-        <in>ip6_tunnel.mod</in>
-        <in>ip6_udp_tunnel.mod</in>
         <in>ip6_vti.mod</in>
-        <in>ip6t_MASQUERADE.mod</in>
         <in>ip6t_NPT.mod</in>
         <in>ip6t_REJECT.mod</in>
         <in>ip6t_SYNPROXY.mod</in>
-        <in>ip6t_ah.mod</in>
-        <in>ip6t_eui64.mod</in>
-        <in>ip6t_frag.mod</in>
         <in>ip6t_hbh.mod</in>
         <in>ip6t_ipv6header.mod</in>
         <in>ip6t_mh.mod</in>
         <in>ip6t_rpfilter.mod</in>
-        <in>ip6t_rt.mod</in>
         <in>ip6table_filter.mod</in>
-        <in>ip6table_mangle.mod</in>
         <in>ip6table_nat.mod</in>
-        <in>ip6table_raw.mod</in>
         <in>ip6table_security.mod</in>
-        <in>ip_gre.mod</in>
         <in>ip_set.mod</in>
         <in>ip_set_bitmap_ip.mod</in>
         <in>ip_set_bitmap_ipmac.mod</in>
@@ -1734,7 +1067,6 @@
         <in>ip_set_hash_netportnet.mod</in>
         <in>ip_set_list_set.mod</in>
         <in>ip_tables.mod</in>
-        <in>ip_tunnel.mod</in>
         <in>ip_vs.mod</in>
         <in>ip_vs_dh.mod</in>
         <in>ip_vs_fo.mod</in>
@@ -1750,78 +1082,49 @@
         <in>ip_vs_sh.mod</in>
         <in>ip_vs_wlc.mod</in>
         <in>ip_vs_wrr.mod</in>
-        <in>ip_vti.mod</in>
-        <in>ipack.mod</in>
         <in>ipaq.mod</in>
         <in>ipcomp.mod</in>
-        <in>ipcomp6.mod</in>
-        <in>ipddp.mod</in>
-        <in>iphase.mod</in>
         <in>ipheth.mod</in>
-        <in>ipip.mod</in>
-        <in>ipmi_devintf.mod</in>
         <in>ipmi_msghandler.mod</in>
         <in>ipmi_poweroff.mod</in>
-        <in>ipmi_si.mod</in>
-        <in>ipmi_ssif.mod</in>
         <in>ipmi_watchdog.mod</in>
-        <in>ipoctal.mod</in>
         <in>ipr.mod</in>
         <in>ips.mod</in>
-        <in>ipt_CLUSTERIP.mod</in>
         <in>ipt_ECN.mod</in>
-        <in>ipt_MASQUERADE.mod</in>
         <in>ipt_REJECT.mod</in>
         <in>ipt_SYNPROXY.mod</in>
         <in>ipt_ah.mod</in>
-        <in>ipt_rpfilter.mod</in>
         <in>iptable_filter.mod</in>
-        <in>iptable_mangle.mod</in>
         <in>iptable_nat.mod</in>
-        <in>iptable_raw.mod</in>
         <in>iptable_security.mod</in>
         <in>ipvlan.mod</in>
         <in>ipw.mod</in>
         <in>ipw2100.mod</in>
         <in>ipw2200.mod</in>
         <in>ipwireless.mod</in>
-        <in>ipx.mod</in>
         <in>ir-hix5hd2.mod</in>
         <in>ir-jvc-decoder.mod</in>
         <in>ir-kbd-i2c.mod</in>
         <in>ir-lirc-codec.mod</in>
         <in>ir-mce_kbd-decoder.mod</in>
-        <in>ir-nec-decoder.mod</in>
-        <in>ir-rc5-decoder.mod</in>
         <in>ir-rc6-decoder.mod</in>
         <in>ir-sanyo-decoder.mod</in>
         <in>ir-sharp-decoder.mod</in>
         <in>ir-sony-decoder.mod</in>
         <in>ir-usb.mod</in>
         <in>ir-xmp-decoder.mod</in>
-        <in>ircomm-tty.mod</in>
         <in>ircomm.mod</in>
         <in>irda-usb.mod</in>
-        <in>irda.mod</in>
-        <in>irlan.mod</in>
-        <in>irnet.mod</in>
-        <in>irqbypass.mod</in>
         <in>irtty-sir.mod</in>
         <in>isci.mod</in>
         <in>iscsi_boot_sysfs.mod</in>
-        <in>iscsi_ibft.mod</in>
         <in>iscsi_target_mod.mod</in>
         <in>iscsi_tcp.mod</in>
         <in>isdn.mod</in>
         <in>isdn_bsdcomp.mod</in>
-        <in>isdnhdlc.mod</in>
         <in>isicom.mod</in>
         <in>isight_firmware.mod</in>
-        <in>isl29003.mod</in>
-        <in>isl29018.mod</in>
-        <in>isl29020.mod</in>
         <in>isl29028.mod</in>
-        <in>isl29125.mod</in>
         <in>isl6271a-regulator.mod</in>
         <in>isl6405.mod</in>
         <in>isl6421.mod</in>
@@ -1835,18 +1138,12 @@
         <in>it87.mod</in>
         <in>it8712f_wdt.mod</in>
         <in>it87_wdt.mod</in>
-        <in>it913x.mod</in>
         <in>itd1000.mod</in>
         <in>ite-cir.mod</in>
-        <in>itg3200.mod</in>
         <in>iuu_phoenix.mod</in>
         <in>ivtv-alsa.mod</in>
         <in>ivtv.mod</in>
         <in>ivtvfb.mod</in>
-        <in>iw_cm.mod</in>
-        <in>iw_cxgb3.mod</in>
-        <in>iw_cxgb4.mod</in>
-        <in>iw_nes.mod</in>
         <in>iwl3945.mod</in>
         <in>iwl4965.mod</in>
         <in>iwldvm.mod</in>
@@ -1859,65 +1156,37 @@
         <in>ixgbevf.mod</in>
         <in>janz-cmodio.mod</in>
         <in>janz-ican3.mod</in>
-        <in>jc42.mod</in>
-        <in>jedec_probe.mod</in>
-        <in>jffs2.mod</in>
-        <in>jfs.mod</in>
-        <in>jitterentropy_rng.mod</in>
-        <in>jmb38x_ms.mod</in>
         <in>jme.mod</in>
-        <in>joydev.mod</in>
-        <in>joydump.mod</in>
         <in>jr3_pci.mod</in>
-        <in>jsa1212.mod</in>
         <in>jsm.mod</in>
-        <in>k10temp.mod</in>
-        <in>k8temp.mod</in>
-        <in>kafs.mod</in>
         <in>kalmia.mod</in>
         <in>kaweth.mod</in>
         <in>kb3886_bl.mod</in>
         <in>kbic.mod</in>
-        <in>kbtab.mod</in>
         <in>kcomedilib.mod</in>
         <in>ke_counter.mod</in>
         <in>kempld-core.mod</in>
         <in>kempld_wdt.mod</in>
-        <in>kernelcapi.mod</in>
         <in>keyspan.mod</in>
         <in>keyspan_pda.mod</in>
-        <in>keyspan_remote.mod</in>
-        <in>keywrap.mod</in>
-        <in>kfifo_buf.mod</in>
-        <in>khazad.mod</in>
         <in>kingsun-sir.mod</in>
         <in>kl5kusb105.mod</in>
-        <in>kmx61.mod</in>
         <in>kobil_sct.mod</in>
         <in>ks0108.mod</in>
-        <in>ks0127.mod</in>
         <in>ks8842.mod</in>
         <in>ks8851.mod</in>
         <in>ks8851_mll.mod</in>
         <in>ks959-sir.mod</in>
         <in>ksdazzle-sir.mod</in>
         <in>ksz884x.mod</in>
-        <in>ktti.mod</in>
         <in>kvaser_pci.mod</in>
         <in>kvaser_usb.mod</in>
         <in>kvm-amd.mod</in>
-        <in>kvm-intel.mod</in>
-        <in>kvm.mod</in>
         <in>kxcjk-1013.mod</in>
-        <in>kxsd9-i2c.mod</in>
-        <in>kxsd9-spi.mod</in>
-        <in>kxsd9.mod</in>
         <in>kxtj9.mod</in>
         <in>kyrofb.mod</in>
         <in>l1oip.mod</in>
-        <in>l2tp_core.mod</in>
         <in>l2tp_debugfs.mod</in>
-        <in>l2tp_eth.mod</in>
         <in>l2tp_ip.mod</in>
         <in>l2tp_ip6.mod</in>
         <in>l2tp_netlink.mod</in>
@@ -1927,57 +1196,19 @@
         <in>l64781.mod</in>
         <in>lan78xx.mod</in>
         <in>lanai.mod</in>
-        <in>lapb.mod</in>
         <in>lapbether.mod</in>
         <in>latch-addr-flash.mod</in>
-        <in>lattice-ecp3-config.mod</in>
         <in>lcd.mod</in>
         <in>ld9040.mod</in>
         <in>ldusb.mod</in>
-        <in>lec.mod</in>
-        <in>led-class-flash.mod</in>
-        <in>leds-88pm860x.mod</in>
-        <in>leds-adp5520.mod</in>
         <in>leds-bd2802.mod</in>
-        <in>leds-blinkm.mod</in>
-        <in>leds-clevo-mail.mod</in>
-        <in>leds-da903x.mod</in>
-        <in>leds-da9052.mod</in>
-        <in>leds-dac124s085.mod</in>
-        <in>leds-gpio.mod</in>
-        <in>leds-lm3530.mod</in>
-        <in>leds-lm3533.mod</in>
-        <in>leds-lm355x.mod</in>
-        <in>leds-lm3642.mod</in>
-        <in>leds-lp3944.mod</in>
         <in>leds-lp5521.mod</in>
         <in>leds-lp5523.mod</in>
         <in>leds-lp5562.mod</in>
-        <in>leds-lp55xx-common.mod</in>
-        <in>leds-lp8501.mod</in>
-        <in>leds-lp8788.mod</in>
-        <in>leds-lp8860.mod</in>
-        <in>leds-lt3593.mod</in>
-        <in>leds-max8997.mod</in>
         <in>leds-mc13783.mod</in>
-        <in>leds-menf21bmc.mod</in>
-        <in>leds-pca9532.mod</in>
-        <in>leds-pca955x.mod</in>
-        <in>leds-pca963x.mod</in>
         <in>leds-pwm.mod</in>
-        <in>leds-regulator.mod</in>
-        <in>leds-ss4200.mod</in>
         <in>leds-tca6507.mod</in>
         <in>leds-tlc591xx.mod</in>
-        <in>leds-wm831x-status.mod</in>
-        <in>leds-wm8350.mod</in>
-        <in>ledtrig-backlight.mod</in>
-        <in>ledtrig-camera.mod</in>
-        <in>ledtrig-default-on.mod</in>
-        <in>ledtrig-gpio.mod</in>
-        <in>ledtrig-heartbeat.mod</in>
-        <in>ledtrig-oneshot.mod</in>
-        <in>ledtrig-timer.mod</in>
         <in>ledtrig-transient.mod</in>
         <in>legousbtower.mod</in>
         <in>lg-vl600.mod</in>
@@ -1990,9 +1221,7 @@
         <in>lib80211_crypt_ccmp.mod</in>
         <in>lib80211_crypt_tkip.mod</in>
         <in>lib80211_crypt_wep.mod</in>
-        <in>libahci.mod</in>
         <in>libahci_platform.mod</in>
-        <in>libceph.mod</in>
         <in>libcomposite.mod</in>
         <in>libcrc32c.mod</in>
         <in>libcxgb.mod</in>
@@ -2008,46 +1237,21 @@
         <in>libipw.mod</in>
         <in>libiscsi.mod</in>
         <in>libiscsi_tcp.mod</in>
-        <in>libore.mod</in>
         <in>libosd.mod</in>
         <in>libsas.mod</in>
         <in>lightning.mod</in>
-        <in>lineage-pem.mod</in>
-        <in>linear.mod</in>
         <in>liquidio.mod</in>
-        <in>lirc_dev.mod</in>
         <in>lirc_zilog.mod</in>
-        <in>lis3lv02d.mod</in>
-        <in>lis3lv02d_i2c.mod</in>
         <in>litelink-sir.mod</in>
-        <in>lkkbd.mod</in>
-        <in>llc.mod</in>
-        <in>llc2.mod</in>
-        <in>lm25066.mod</in>
-        <in>lm3533-als.mod</in>
         <in>lm3533-core.mod</in>
         <in>lm3533-ctrlbank.mod</in>
         <in>lm3533_bl.mod</in>
         <in>lm3630a_bl.mod</in>
         <in>lm3639_bl.mod</in>
         <in>lm63.mod</in>
-        <in>lm70.mod</in>
-        <in>lm73.mod</in>
-        <in>lm75.mod</in>
         <in>lm77.mod</in>
         <in>lm78.mod</in>
-        <in>lm80.mod</in>
-        <in>lm83.mod</in>
-        <in>lm8323.mod</in>
-        <in>lm8333.mod</in>
-        <in>lm85.mod</in>
-        <in>lm87.mod</in>
-        <in>lm90.mod</in>
-        <in>lm92.mod</in>
         <in>lm93.mod</in>
-        <in>lm95234.mod</in>
-        <in>lm95241.mod</in>
-        <in>lm95245.mod</in>
         <in>lmc.mod</in>
         <in>lms283gf05.mod</in>
         <in>lms501kf03.mod</in>
@@ -2055,8 +1259,6 @@
         <in>lnbp21.mod</in>
         <in>lnbp22.mod</in>
         <in>lockd.mod</in>
-        <in>locktorture.mod</in>
-        <in>lp.mod</in>
         <in>lp3943.mod</in>
         <in>lp3971.mod</in>
         <in>lp3972.mod</in>
@@ -2067,44 +1269,22 @@
         <in>lp8788-buck.mod</in>
         <in>lp8788-charger.mod</in>
         <in>lp8788-ldo.mod</in>
-        <in>lp8788_adc.mod</in>
         <in>lp8788_bl.mod</in>
         <in>lpc_ich.mod</in>
         <in>lpc_sch.mod</in>
-        <in>lpddr_cmds.mod</in>
         <in>lpfc.mod</in>
-        <in>lru_cache.mod</in>
-        <in>lrw.mod</in>
         <in>ltc2941-battery-gauge.mod</in>
-        <in>ltc2945.mod</in>
-        <in>ltc2978.mod</in>
         <in>ltc3589.mod</in>
-        <in>ltc4151.mod</in>
-        <in>ltc4215.mod</in>
-        <in>ltc4222.mod</in>
-        <in>ltc4245.mod</in>
         <in>ltc4260.mod</in>
-        <in>ltc4261.mod</in>
-        <in>ltr501.mod</in>
         <in>ltv350qv.mod</in>
         <in>lv5207lp.mod</in>
         <in>lvstest.mod</in>
         <in>lxt.mod</in>
-        <in>lz4.mod</in>
-        <in>lz4_compress.mod</in>
-        <in>lz4hc.mod</in>
-        <in>lz4hc_compress.mod</in>
-        <in>m25p80.mod</in>
         <in>m2m-deinterlace.mod</in>
-        <in>m52790.mod</in>
         <in>m62332.mod</in>
         <in>m88ds3103.mod</in>
         <in>m88rs2000.mod</in>
-        <in>m88rs6000t.mod</in>
-        <in>mISDN_core.mod</in>
         <in>mISDN_dsp.mod</in>
-        <in>mISDNinfineon.mod</in>
-        <in>mISDNipac.mod</in>
         <in>mISDNisar.mod</in>
         <in>m_can.mod</in>
         <in>ma600-sir.mod</in>
@@ -2119,24 +1299,16 @@
         <in>mac-roman.mod</in>
         <in>mac-romanian.mod</in>
         <in>mac-turkish.mod</in>
-        <in>mac80211.mod</in>
         <in>mac80211_hwsim.mod</in>
-        <in>mac802154.mod</in>
-        <in>mac_hid.mod</in>
         <in>macb.mod</in>
         <in>machzwd.mod</in>
         <in>macmodes.mod</in>
         <in>macvlan.mod</in>
         <in>macvtap.mod</in>
-        <in>mag3110.mod</in>
         <in>magellan.mod</in>
-        <in>mailbox-altera.mod</in>
         <in>mantis.mod</in>
         <in>mantis_core.mod</in>
-        <in>map_absent.mod</in>
         <in>map_funcs.mod</in>
-        <in>map_ram.mod</in>
-        <in>map_rom.mod</in>
         <in>marvell.mod</in>
         <in>matrix-keymap.mod</in>
         <in>matrix_keypad.mod</in>
@@ -2150,84 +1322,54 @@
         <in>matroxfb_maven.mod</in>
         <in>matroxfb_misc.mod</in>
         <in>max1027.mod</in>
-        <in>max1111.mod</in>
-        <in>max11801_ts.mod</in>
-        <in>max1363.mod</in>
         <in>max14577-regulator.mod</in>
         <in>max14577_charger.mod</in>
         <in>max1586.mod</in>
-        <in>max16064.mod</in>
-        <in>max16065.mod</in>
-        <in>max1619.mod</in>
-        <in>max1668.mod</in>
         <in>max17040_battery.mod</in>
         <in>max17042_battery.mod</in>
-        <in>max197.mod</in>
-        <in>max20751.mod</in>
-        <in>max2165.mod</in>
         <in>max3100.mod</in>
-        <in>max31790.mod</in>
         <in>max3421-hcd.mod</in>
         <in>max34440.mod</in>
         <in>max517.mod</in>
         <in>max63xx_wdt.mod</in>
         <in>max6639.mod</in>
-        <in>max6642.mod</in>
-        <in>max6650.mod</in>
         <in>max6697.mod</in>
-        <in>max6875.mod</in>
-        <in>max7359_keypad.mod</in>
-        <in>max77693-haptic.mod</in>
         <in>max77693-regulator.mod</in>
         <in>max77693_charger.mod</in>
         <in>max8649.mod</in>
         <in>max8660.mod</in>
-        <in>max8688.mod</in>
         <in>max8903_charger.mod</in>
         <in>max8907-regulator.mod</in>
         <in>max8907.mod</in>
         <in>max8925-regulator.mod</in>
         <in>max8925_bl.mod</in>
-        <in>max8925_onkey.mod</in>
         <in>max8925_power.mod</in>
         <in>max8952.mod</in>
         <in>max8997-regulator.mod</in>
         <in>max8997_charger.mod</in>
-        <in>max8997_haptic.mod</in>
         <in>max8998.mod</in>
         <in>max8998_charger.mod</in>
         <in>mb862xxfb.mod</in>
         <in>mb86a16.mod</in>
         <in>mb86a20s.mod</in>
         <in>mc13783-adc.mod</in>
-        <in>mc13783-pwrbutton.mod</in>
         <in>mc13783-regulator.mod</in>
-        <in>mc13783_ts.mod</in>
         <in>mc13892-regulator.mod</in>
         <in>mc13xxx-core.mod</in>
         <in>mc13xxx-i2c.mod</in>
         <in>mc13xxx-regulator-core.mod</in>
         <in>mc13xxx-spi.mod</in>
-        <in>mc44s803.mod</in>
         <in>mcb-pci.mod</in>
-        <in>mcb.mod</in>
         <in>mceusb.mod</in>
         <in>mcp2120-sir.mod</in>
         <in>mcp251x.mod</in>
-        <in>mcp3021.mod</in>
         <in>mcp320x.mod</in>
-        <in>mcp3422.mod</in>
-        <in>mcp4531.mod</in>
-        <in>mcp4725.mod</in>
-        <in>mcp4922.mod</in>
-        <in>mcryptd.mod</in>
         <in>mcs5000_ts.mod</in>
         <in>mcs7780.mod</in>
         <in>mcs7830.mod</in>
         <in>mcs_touchkey.mod</in>
         <in>mct_u232.mod</in>
         <in>md-cluster.mod</in>
-        <in>md4.mod</in>
         <in>mdc800.mod</in>
         <in>mdio-bitbang.mod</in>
         <in>mdio-cavium.mod</in>
@@ -2241,14 +1383,9 @@
         <in>megaraid_mbox.mod</in>
         <in>megaraid_mm.mod</in>
         <in>megaraid_sas.mod</in>
-        <in>mei-me.mod</in>
-        <in>mei-txe.mod</in>
-        <in>mei.mod</in>
-        <in>mei_phy.mod</in>
         <in>memory-notifier-error-inject.mod</in>
         <in>memstick.mod</in>
         <in>men_z135_uart.mod</in>
-        <in>men_z188_adc.mod</in>
         <in>mena21_wdt.mod</in>
         <in>menf21bmc.mod</in>
         <in>menf21bmc_hwmon.mod</in>
@@ -2257,28 +1394,18 @@
         <in>metronomefb.mod</in>
         <in>meye.mod</in>
         <in>mf6x4.mod</in>
-        <in>mic_bus.mod</in>
         <in>mic_cosm.mod</in>
         <in>mic_x100_dma.mod</in>
-        <in>michael_mic.mod</in>
         <in>micrel.mod</in>
         <in>microchip.mod</in>
-        <in>microread.mod</in>
-        <in>microread_i2c.mod</in>
         <in>microread_mei.mod</in>
         <in>microtek.mod</in>
         <in>mii.mod</in>
-        <in>minix.mod</in>
-        <in>mip6.mod</in>
         <in>mite.mod</in>
-        <in>mk712.mod</in>
         <in>mkiss.mod</in>
         <in>mlx4_core.mod</in>
         <in>mlx4_en.mod</in>
-        <in>mlx4_ib.mod</in>
         <in>mlx5_core.mod</in>
-        <in>mlx5_ib.mod</in>
-        <in>mlx90614.mod</in>
         <in>mlxsw_core.mod</in>
         <in>mlxsw_i2c.mod</in>
         <in>mlxsw_minimal.mod</in>
@@ -2286,12 +1413,7 @@
         <in>mma8450.mod</in>
         <in>mma8452.mod</in>
         <in>mma9551.mod</in>
-        <in>mma9551_core.mod</in>
-        <in>mma9553.mod</in>
-        <in>mmc35240.mod</in>
-        <in>mmc_block.mod</in>
         <in>mmc_spi.mod</in>
-        <in>mms114.mod</in>
         <in>mn88472.mod</in>
         <in>mn88473.mod</in>
         <in>mos7720.mod</in>
@@ -2300,40 +1422,20 @@
         <in>moxa.mod</in>
         <in>mpc624.mod</in>
         <in>mpl3115.mod</in>
-        <in>mpls_gso.mod</in>
-        <in>mpls_iptunnel.mod</in>
         <in>mpls_router.mod</in>
-        <in>mpoa.mod</in>
-        <in>mpr121_touchkey.mod</in>
         <in>mpt3sas.mod</in>
         <in>mptbase.mod</in>
-        <in>mptctl.mod</in>
-        <in>mptfc.mod</in>
         <in>mptlan.mod</in>
         <in>mptsas.mod</in>
-        <in>mptscsih.mod</in>
-        <in>mptspi.mod</in>
         <in>mrf24j40.mod</in>
-        <in>mrp.mod</in>
         <in>ms5611_core.mod</in>
         <in>ms5611_i2c.mod</in>
         <in>ms5611_spi.mod</in>
         <in>ms5637.mod</in>
-        <in>ms_block.mod</in>
-        <in>ms_sensors_i2c.mod</in>
-        <in>msdos.mod</in>
         <in>msi-laptop.mod</in>
         <in>msi-wmi.mod</in>
-        <in>msi001.mod</in>
         <in>msi2500.mod</in>
-        <in>msp3400.mod</in>
         <in>mspro_block.mod</in>
-        <in>msr.mod</in>
-        <in>mt2060.mod</in>
-        <in>mt2063.mod</in>
-        <in>mt20xx.mod</in>
-        <in>mt2131.mod</in>
-        <in>mt2266.mod</in>
         <in>mt29f_spinand.mod</in>
         <in>mt312.mod</in>
         <in>mt352.mod</in>
@@ -2342,23 +1444,15 @@
         <in>mt6397-regulator.mod</in>
         <in>mt7601u.mod</in>
         <in>mt9m001.mod</in>
-        <in>mt9m111.mod</in>
-        <in>mt9t031.mod</in>
-        <in>mt9t112.mod</in>
         <in>mt9v011.mod</in>
-        <in>mt9v022.mod</in>
         <in>mtd.mod</in>
         <in>mtd_blkdevs.mod</in>
-        <in>mtd_dataflash.mod</in>
         <in>mtdblock.mod</in>
         <in>mtdblock_ro.mod</in>
         <in>mtdoops.mod</in>
-        <in>mtdram.mod</in>
         <in>mtdswap.mod</in>
-        <in>mtip32xx.mod</in>
         <in>mtk-sd.mod</in>
         <in>mtouch.mod</in>
-        <in>multipath.mod</in>
         <in>multiq3.mod</in>
         <in>musb_hdrc.mod</in>
         <in>mv_u3d_core.mod</in>
@@ -2366,19 +1460,15 @@
         <in>mvmdio.mod</in>
         <in>mvsas.mod</in>
         <in>mvumi.mod</in>
-        <in>mwave.mod</in>
         <in>mwifiex.mod</in>
         <in>mwifiex_pcie.mod</in>
         <in>mwifiex_sdio.mod</in>
         <in>mwifiex_usb.mod</in>
         <in>mwl8k.mod</in>
         <in>mxb.mod</in>
-        <in>mxc4005.mod</in>
         <in>mxl111sf-demod.mod</in>
         <in>mxl111sf-tuner.mod</in>
-        <in>mxl301rf.mod</in>
         <in>mxl5005s.mod</in>
-        <in>mxl5007t.mod</in>
         <in>mxm-wmi.mod</in>
         <in>mxser.mod</in>
         <in>mxuport.mod</in>
@@ -2395,20 +1485,10 @@
         <in>nandsim.mod</in>
         <in>national.mod</in>
         <in>natsemi.mod</in>
-        <in>nau7802.mod</in>
         <in>navman.mod</in>
         <in>nb8800.mod</in>
-        <in>nbd.mod</in>
-        <in>nci.mod</in>
-        <in>nci_spi.mod</in>
-        <in>nci_uart.mod</in>
         <in>ncpfs.mod</in>
-        <in>nct6683.mod</in>
-        <in>nct6775.mod</in>
-        <in>nct7802.mod</in>
-        <in>nct7904.mod</in>
         <in>nd_blk.mod</in>
-        <in>nd_btt.mod</in>
         <in>nd_pmem.mod</in>
         <in>ne2k-pci.mod</in>
         <in>neofb.mod</in>
@@ -2416,20 +1496,16 @@
         <in>net2272.mod</in>
         <in>net2280.mod</in>
         <in>netconsole.mod</in>
-        <in>netjet.mod</in>
         <in>netlink_diag.mod</in>
         <in>netrom.mod</in>
         <in>nettel.mod</in>
         <in>netup-unidvb.mod</in>
         <in>netxen_nic.mod</in>
-        <in>newtonkbd.mod</in>
         <in>nf_conntrack.mod</in>
         <in>nf_conntrack_amanda.mod</in>
         <in>nf_conntrack_broadcast.mod</in>
         <in>nf_conntrack_ftp.mod</in>
         <in>nf_conntrack_h323.mod</in>
-        <in>nf_conntrack_ipv4.mod</in>
-        <in>nf_conntrack_ipv6.mod</in>
         <in>nf_conntrack_irc.mod</in>
         <in>nf_conntrack_netbios_ns.mod</in>
         <in>nf_conntrack_netlink.mod</in>
@@ -2440,48 +1516,33 @@
         <in>nf_conntrack_snmp.mod</in>
         <in>nf_conntrack_tftp.mod</in>
         <in>nf_defrag_ipv4.mod</in>
-        <in>nf_defrag_ipv6.mod</in>
         <in>nf_dup_ipv4.mod</in>
         <in>nf_dup_ipv6.mod</in>
         <in>nf_log_arp.mod</in>
-        <in>nf_log_bridge.mod</in>
         <in>nf_log_common.mod</in>
         <in>nf_log_ipv4.mod</in>
         <in>nf_log_ipv6.mod</in>
         <in>nf_nat.mod</in>
         <in>nf_nat_amanda.mod</in>
         <in>nf_nat_ftp.mod</in>
-        <in>nf_nat_h323.mod</in>
-        <in>nf_nat_ipv4.mod</in>
         <in>nf_nat_ipv6.mod</in>
         <in>nf_nat_irc.mod</in>
-        <in>nf_nat_masquerade_ipv4.mod</in>
-        <in>nf_nat_masquerade_ipv6.mod</in>
         <in>nf_nat_pptp.mod</in>
-        <in>nf_nat_proto_gre.mod</in>
         <in>nf_nat_redirect.mod</in>
         <in>nf_nat_sip.mod</in>
-        <in>nf_nat_snmp_basic.mod</in>
         <in>nf_nat_tftp.mod</in>
         <in>nf_reject_ipv4.mod</in>
-        <in>nf_reject_ipv6.mod</in>
         <in>nf_synproxy_core.mod</in>
         <in>nf_tables.mod</in>
-        <in>nf_tables_arp.mod</in>
-        <in>nf_tables_bridge.mod</in>
         <in>nf_tables_inet.mod</in>
-        <in>nf_tables_ipv4.mod</in>
-        <in>nf_tables_ipv6.mod</in>
         <in>nf_tables_netdev.mod</in>
         <in>nfc.mod</in>
-        <in>nfc_digital.mod</in>
         <in>nfcmrvl.mod</in>
         <in>nfcmrvl_i2c.mod</in>
         <in>nfcmrvl_spi.mod</in>
         <in>nfcmrvl_uart.mod</in>
         <in>nfcmrvl_usb.mod</in>
         <in>nfcsim.mod</in>
-        <in>nfit.mod</in>
         <in>nfnetlink.mod</in>
         <in>nfnetlink_acct.mod</in>
         <in>nfnetlink_cthelper.mod</in>
@@ -2498,12 +1559,9 @@
         <in>nfsv4.mod</in>
         <in>nft_chain_nat_ipv4.mod</in>
         <in>nft_chain_nat_ipv6.mod</in>
-        <in>nft_chain_route_ipv4.mod</in>
-        <in>nft_chain_route_ipv6.mod</in>
         <in>nft_compat.mod</in>
         <in>nft_counter.mod</in>
         <in>nft_ct.mod</in>
-        <in>nft_dup_ipv4.mod</in>
         <in>nft_dup_ipv6.mod</in>
         <in>nft_exthdr.mod</in>
         <in>nft_hash.mod</in>
@@ -2513,26 +1571,13 @@
         <in>nft_masq_ipv4.mod</in>
         <in>nft_masq_ipv6.mod</in>
         <in>nft_meta.mod</in>
-        <in>nft_meta_bridge.mod</in>
         <in>nft_nat.mod</in>
         <in>nft_queue.mod</in>
         <in>nft_redir.mod</in>
-        <in>nft_redir_ipv4.mod</in>
-        <in>nft_redir_ipv6.mod</in>
         <in>nft_reject.mod</in>
-        <in>nft_reject_bridge.mod</in>
         <in>nft_reject_inet.mod</in>
-        <in>nft_reject_ipv4.mod</in>
-        <in>nft_reject_ipv6.mod</in>
         <in>nftl.mod</in>
         <in>ngene.mod</in>
-        <in>nhc_dest.mod</in>
-        <in>nhc_fragment.mod</in>
-        <in>nhc_hop.mod</in>
-        <in>nhc_ipv6.mod</in>
-        <in>nhc_mobility.mod</in>
-        <in>nhc_routing.mod</in>
-        <in>nhc_udp.mod</in>
         <in>ni_6527.mod</in>
         <in>ni_65xx.mod</in>
         <in>ni_660x.mod</in>
@@ -2555,9 +1600,7 @@
         <in>ni_tiocmd.mod</in>
         <in>ni_usb6501.mod</in>
         <in>nicpf.mod</in>
-        <in>nicstar.mod</in>
         <in>nicvf.mod</in>
-        <in>nilfs2.mod</in>
         <in>niu.mod</in>
         <in>nlmon.mod</in>
         <in>nls_ascii.mod</in>
@@ -2600,31 +1643,17 @@
         <in>nls_utf8.mod</in>
         <in>nmclan_cs.mod</in>
         <in>nosy.mod</in>
-        <in>notifier-error-inject.mod</in>
         <in>nouveau.mod</in>
         <in>nozomi.mod</in>
-        <in>ns558.mod</in>
         <in>ns83820.mod</in>
         <in>nsc-ircc.mod</in>
-        <in>ntb.mod</in>
-        <in>ntb_hw_amd.mod</in>
         <in>ntb_hw_intel.mod</in>
         <in>ntb_netdev.mod</in>
         <in>ntb_pingpong.mod</in>
-        <in>ntb_tool.mod</in>
-        <in>ntb_transport.mod</in>
-        <in>ntc_thermistor.mod</in>
-        <in>ntfs.mod</in>
-        <in>null_blk.mod</in>
         <in>nuvoton-cir.mod</in>
         <in>nv_tco.mod</in>
         <in>nvidiafb.mod</in>
-        <in>nvme-core.mod</in>
-        <in>nvme.mod</in>
-        <in>nvmem_core.mod</in>
-        <in>nvram.mod</in>
         <in>nxp-nci.mod</in>
-        <in>nxp-nci_i2c.mod</in>
         <in>nxt200x.mod</in>
         <in>nxt6000.mod</in>
         <in>ocfb.mod</in>
@@ -2635,18 +1664,13 @@
         <in>ocfs2_stack_o2cb.mod</in>
         <in>ocfs2_stack_user.mod</in>
         <in>ocfs2_stackglue.mod</in>
-        <in>ocrdma.mod</in>
         <in>of_xilinx_wdt.mod</in>
         <in>old_belkin-sir.mod</in>
         <in>omfs.mod</in>
         <in>omninet.mod</in>
         <in>on20.mod</in>
-        <in>on26.mod</in>
         <in>onenand.mod</in>
         <in>opencores-kbd.mod</in>
-        <in>openvswitch.mod</in>
-        <in>oprofile.mod</in>
-        <in>opt3001.mod</in>
         <in>opticon.mod</in>
         <in>option.mod</in>
         <in>or51132.mod</in>
@@ -2660,32 +1684,20 @@
         <in>osd.mod</in>
         <in>osst.mod</in>
         <in>oti6858.mod</in>
-        <in>ov2640.mod</in>
         <in>ov5642.mod</in>
         <in>ov6650.mod</in>
-        <in>ov7640.mod</in>
-        <in>ov7670.mod</in>
-        <in>ov772x.mod</in>
         <in>ov9640.mod</in>
         <in>ov9740.mod</in>
         <in>overlay.mod</in>
         <in>oxu210hp-hcd.mod</in>
-        <in>p4-clockmod.mod</in>
         <in>p54common.mod</in>
         <in>p54pci.mod</in>
         <in>p54spi.mod</in>
         <in>p54usb.mod</in>
-        <in>p8022.mod</in>
-        <in>p8023.mod</in>
-        <in>pa12203001.mod</in>
-        <in>padlock-aes.mod</in>
-        <in>padlock-sha.mod</in>
         <in>palmas-pwrbutton.mod</in>
         <in>palmas-regulator.mod</in>
         <in>panasonic-laptop.mod</in>
         <in>pandora_bl.mod</in>
-        <in>panel.mod</in>
-        <in>paride.mod</in>
         <in>parkbd.mod</in>
         <in>parport.mod</in>
         <in>parport_ax88796.mod</in>
@@ -2693,70 +1705,29 @@
         <in>parport_pc.mod</in>
         <in>parport_serial.mod</in>
         <in>pata_acpi.mod</in>
-        <in>pata_ali.mod</in>
-        <in>pata_amd.mod</in>
-        <in>pata_artop.mod</in>
-        <in>pata_atiixp.mod</in>
-        <in>pata_atp867x.mod</in>
         <in>pata_cmd640.mod</in>
         <in>pata_cmd64x.mod</in>
-        <in>pata_cypress.mod</in>
         <in>pata_efar.mod</in>
-        <in>pata_hpt366.mod</in>
         <in>pata_hpt37x.mod</in>
-        <in>pata_hpt3x2n.mod</in>
-        <in>pata_hpt3x3.mod</in>
-        <in>pata_it8213.mod</in>
-        <in>pata_it821x.mod</in>
-        <in>pata_jmicron.mod</in>
         <in>pata_legacy.mod</in>
-        <in>pata_marvell.mod</in>
-        <in>pata_mpiix.mod</in>
-        <in>pata_netcell.mod</in>
-        <in>pata_ninja32.mod</in>
-        <in>pata_ns87410.mod</in>
-        <in>pata_ns87415.mod</in>
-        <in>pata_oldpiix.mod</in>
         <in>pata_opti.mod</in>
-        <in>pata_optidma.mod</in>
-        <in>pata_pcmcia.mod</in>
-        <in>pata_pdc2027x.mod</in>
-        <in>pata_pdc202xx_old.mod</in>
-        <in>pata_piccolo.mod</in>
-        <in>pata_platform.mod</in>
-        <in>pata_radisys.mod</in>
-        <in>pata_rdc.mod</in>
         <in>pata_rz1000.mod</in>
-        <in>pata_sch.mod</in>
-        <in>pata_serverworks.mod</in>
-        <in>pata_sil680.mod</in>
-        <in>pata_sl82c105.mod</in>
-        <in>pata_triflex.mod</in>
-        <in>pata_via.mod</in>
         <in>pc300too.mod</in>
-        <in>pc87360.mod</in>
         <in>pc87413_wdt.mod</in>
-        <in>pc87427.mod</in>
         <in>pcap-regulator.mod</in>
         <in>pcap_keys.mod</in>
-        <in>pcap_ts.mod</in>
-        <in>pcbc.mod</in>
-        <in>pcd.mod</in>
         <in>pcf50633-adc.mod</in>
         <in>pcf50633-backlight.mod</in>
         <in>pcf50633-charger.mod</in>
         <in>pcf50633-gpio.mod</in>
-        <in>pcf50633-input.mod</in>
         <in>pcf50633-regulator.mod</in>
         <in>pcf50633.mod</in>
         <in>pcf8574_keypad.mod</in>
-        <in>pcf8591.mod</in>
         <in>pch_udc.mod</in>
         <in>pci-hyperv.mod</in>
         <in>pci-stub.mod</in>
         <in>pci.mod</in>
         <in>pci200syn.mod</in>
-        <in>pcips2.mod</in>
         <in>pcl711.mod</in>
         <in>pcl724.mod</in>
         <in>pcl726.mod</in>
@@ -2775,26 +1746,16 @@
         <in>pcmuio.mod</in>
         <in>pcnet32.mod</in>
         <in>pcnet_cs.mod</in>
-        <in>pcrypt.mod</in>
-        <in>pcspkr.mod</in>
         <in>pcwd_pci.mod</in>
         <in>pcwd_usb.mod</in>
-        <in>pd.mod</in>
         <in>pd6729.mod</in>
         <in>pda_power.mod</in>
-        <in>pdc_adma.mod</in>
         <in>peak_pci.mod</in>
         <in>peak_pcmcia.mod</in>
         <in>peak_usb.mod</in>
         <in>pegasus.mod</in>
-        <in>penmount.mod</in>
-        <in>percpu_test.mod</in>
-        <in>pf.mod</in>
         <in>pfuze100-regulator.mod</in>
-        <in>pg.mod</in>
         <in>phantom.mod</in>
-        <in>phonet.mod</in>
-        <in>phram.mod</in>
         <in>phy-bcm-kona-usb2.mod</in>
         <in>phy-exynos-usb2.mod</in>
         <in>phy-generic.mod</in>
@@ -2808,10 +1769,6 @@
         <in>pinctrl-broxton.mod</in>
         <in>pinctrl-intel.mod</in>
         <in>pinctrl-sunrisepoint.mod</in>
-        <in>pixcir_i2c_ts.mod</in>
-        <in>pkcs7_test_key.mod</in>
-        <in>pktcdvd.mod</in>
-        <in>pktgen.mod</in>
         <in>pl2303.mod</in>
         <in>plat-ram.mod</in>
         <in>plat_nand.mod</in>
@@ -2820,31 +1777,20 @@
         <in>plusb.mod</in>
         <in>pluto2.mod</in>
         <in>plx_pci.mod</in>
-        <in>pm-notifier-error-inject.mod</in>
         <in>pm2fb.mod</in>
         <in>pm3fb.mod</in>
         <in>pm80xx.mod</in>
         <in>pm8941-wled.mod</in>
-        <in>pmbus.mod</in>
-        <in>pmbus_core.mod</in>
-        <in>pmc551.mod</in>
         <in>pmcraid.mod</in>
-        <in>pn544.mod</in>
-        <in>pn544_i2c.mod</in>
         <in>pn544_mei.mod</in>
         <in>pn_pep.mod</in>
         <in>poly1305-x86_64.mod</in>
-        <in>poly1305_generic.mod</in>
-        <in>port100.mod</in>
-        <in>powermate.mod</in>
-        <in>powr1220.mod</in>
         <in>ppa.mod</in>
         <in>ppdev.mod</in>
         <in>ppp_async.mod</in>
         <in>ppp_deflate.mod</in>
         <in>ppp_mppe.mod</in>
         <in>ppp_synctty.mod</in>
-        <in>pppoatm.mod</in>
         <in>pppoe.mod</in>
         <in>pppox.mod</in>
         <in>pps-gpio.mod</in>
@@ -2854,18 +1800,13 @@
         <in>pptp.mod</in>
         <in>prism2_usb.mod</in>
         <in>processor_thermal_device.mod</in>
-        <in>ps2mult.mod</in>
-        <in>psmouse.mod</in>
         <in>psnap.mod</in>
-        <in>pt.mod</in>
         <in>ptp.mod</in>
         <in>ptp_kvm.mod</in>
         <in>pulsedlight-lidar-lite-v2.mod</in>
-        <in>punit_atom_debug.mod</in>
         <in>pvpanic.mod</in>
         <in>pvrusb2.mod</in>
         <in>pwc.mod</in>
-        <in>pwm-beeper.mod</in>
         <in>pwm-lp3943.mod</in>
         <in>pwm-lpss-pci.mod</in>
         <in>pwm-lpss-platform.mod</in>
@@ -2876,12 +1817,7 @@
         <in>pwm-twl.mod</in>
         <in>pwm_bl.mod</in>
         <in>pxa27x_udc.mod</in>
-        <in>qat_dh895xcc.mod</in>
-        <in>qat_dh895xccvf.mod</in>
         <in>qcaux.mod</in>
-        <in>qcom-spmi-iadc.mod</in>
-        <in>qcom-spmi-vadc.mod</in>
-        <in>qcom-vadc-common.mod</in>
         <in>qcom_spmi-regulator.mod</in>
         <in>qcserial.mod</in>
         <in>qed.mod</in>
@@ -2895,28 +1831,22 @@
         <in>qlge.mod</in>
         <in>qlogic_cs.mod</in>
         <in>qlogicfas408.mod</in>
-        <in>qm1d1c0042.mod</in>
         <in>qmi_wwan.mod</in>
         <in>qnx4.mod</in>
         <in>qnx6.mod</in>
         <in>qsemi.mod</in>
-        <in>qt1010.mod</in>
-        <in>qt1070.mod</in>
-        <in>qt2160.mod</in>
         <in>quatech2.mod</in>
         <in>quatech_daqp_cs.mod</in>
         <in>quota_tree.mod</in>
         <in>quota_v1.mod</in>
         <in>quota_v2.mod</in>
         <in>qxl.mod</in>
-        <in>r592.mod</in>
         <in>r6040.mod</in>
         <in>r8152.mod</in>
         <in>r8169.mod</in>
         <in>r8188eu.mod</in>
         <in>r8192e_pci.mod</in>
         <in>r8192u_usb.mod</in>
-        <in>r820t.mod</in>
         <in>r852.mod</in>
         <in>r8712u.mod</in>
         <in>r8a66597-hcd.mod</in>
@@ -2924,31 +1854,15 @@
         <in>radeon.mod</in>
         <in>radeonfb.mod</in>
         <in>radio-bcm2048.mod</in>
-        <in>radio-i2c-si470x.mod</in>
-        <in>radio-keene.mod</in>
-        <in>radio-ma901.mod</in>
         <in>radio-maxiradio.mod</in>
-        <in>radio-mr800.mod</in>
-        <in>radio-platform-si4713.mod</in>
         <in>radio-raremono.mod</in>
-        <in>radio-shark.mod</in>
         <in>radio-si476x.mod</in>
-        <in>radio-tea5764.mod</in>
-        <in>radio-usb-si470x.mod</in>
-        <in>radio-usb-si4713.mod</in>
         <in>radio-wl1273.mod</in>
-        <in>raid0.mod</in>
-        <in>raid1.mod</in>
-        <in>raid10.mod</in>
-        <in>raid456.mod</in>
         <in>raid6_pq.mod</in>
-        <in>raid6test.mod</in>
         <in>raid_class.mod</in>
         <in>ramoops.mod</in>
-        <in>raw.mod</in>
         <in>ray_cs.mod</in>
         <in>rbd.mod</in>
-        <in>rbtree_test.mod</in>
         <in>rc-adstech-dvb-t-pci.mod</in>
         <in>rc-alink-dtu-m.mod</in>
         <in>rc-anysee.mod</in>
@@ -3065,7 +1979,6 @@
         <in>rc-winfast.mod</in>
         <in>rc5t583-regulator.mod</in>
         <in>rdc321x-southbridge.mod</in>
-        <in>rdma_cm.mod</in>
         <in>rdma_ucm.mod</in>
         <in>rds.mod</in>
         <in>rds_rdma.mod</in>
@@ -3073,9 +1986,6 @@
         <in>realtek.mod</in>
         <in>redboot.mod</in>
         <in>redrat3.mod</in>
-        <in>reed_solomon.mod</in>
-        <in>regmap-spmi.mod</in>
-        <in>regulator-haptic.mod</in>
         <in>reiserfs.mod</in>
         <in>remoteproc.mod</in>
         <in>retu-mfd.mod</in>
@@ -3085,33 +1995,23 @@
         <in>rfc1201.mod</in>
         <in>rfcomm.mod</in>
         <in>rfd_ftl.mod</in>
-        <in>rfkill-gpio.mod</in>
         <in>rio-scan.mod</in>
         <in>rio500.mod</in>
         <in>rionet.mod</in>
         <in>rivafb.mod</in>
         <in>rj54n1cb0c.mod</in>
-        <in>rmd128.mod</in>
-        <in>rmd160.mod</in>
-        <in>rmd256.mod</in>
-        <in>rmd320.mod</in>
-        <in>rmi_core.mod</in>
         <in>rndis_host.mod</in>
         <in>rndis_wlan.mod</in>
         <in>rocket.mod</in>
         <in>rohm_bu21023.mod</in>
         <in>romfs.mod</in>
         <in>rose.mod</in>
-        <in>rotary_encoder.mod</in>
         <in>rp2.mod</in>
-        <in>rpcrdma.mod</in>
         <in>rpcsec_gss_krb5.mod</in>
         <in>rpr0521.mod</in>
-        <in>rrpc.mod</in>
         <in>rsi_91x.mod</in>
         <in>rsi_sdio.mod</in>
         <in>rsi_usb.mod</in>
-        <in>rsxx.mod</in>
         <in>rt2400pci.mod</in>
         <in>rt2500pci.mod</in>
         <in>rt2500usb.mod</in>
@@ -3234,22 +2134,17 @@
         <in>rtlwifi.mod</in>
         <in>rts5208.mod</in>
         <in>rtsx_pci.mod</in>
-        <in>rtsx_pci_ms.mod</in>
-        <in>rtsx_pci_sdmmc.mod</in>
         <in>rtsx_usb.mod</in>
         <in>rtsx_usb_ms.mod</in>
         <in>rtsx_usb_sdmmc.mod</in>
         <in>rx51_battery.mod</in>
         <in>rxrpc.mod</in>
         <in>s1d13xxxfb.mod</in>
-        <in>s2250.mod</in>
         <in>s2255drv.mod</in>
         <in>s2io.mod</in>
         <in>s2mpa01.mod</in>
         <in>s2mps11.mod</in>
         <in>s3fb.mod</in>
-        <in>s3fwrn5.mod</in>
-        <in>s3fwrn5_i2c.mod</in>
         <in>s526.mod</in>
         <in>s5h1409.mod</in>
         <in>s5h1411.mod</in>
@@ -3259,41 +2154,19 @@
         <in>s6e63m0.mod</in>
         <in>s921.mod</in>
         <in>saa6588.mod</in>
-        <in>saa6752hs.mod</in>
-        <in>saa7110.mod</in>
-        <in>saa7115.mod</in>
-        <in>saa7127.mod</in>
         <in>saa7134-alsa.mod</in>
         <in>saa7134-dvb.mod</in>
         <in>saa7134-empress.mod</in>
         <in>saa7134-go7007.mod</in>
         <in>saa7134.mod</in>
-        <in>saa7146.mod</in>
-        <in>saa7146_vv.mod</in>
         <in>saa7164.mod</in>
-        <in>saa717x.mod</in>
         <in>saa7185.mod</in>
-        <in>saa7706h.mod</in>
         <in>safe_serial.mod</in>
-        <in>salsa20-x86_64.mod</in>
-        <in>salsa20_generic.mod</in>
         <in>samsung-keypad.mod</in>
         <in>samsung-laptop.mod</in>
         <in>samsung-q10.mod</in>
         <in>samsung-sxgbe.mod</in>
-        <in>sata_inic162x.mod</in>
-        <in>sata_mv.mod</in>
-        <in>sata_nv.mod</in>
-        <in>sata_promise.mod</in>
         <in>sata_qstor.mod</in>
-        <in>sata_sil.mod</in>
-        <in>sata_sil24.mod</in>
-        <in>sata_sis.mod</in>
-        <in>sata_svw.mod</in>
-        <in>sata_sx4.mod</in>
-        <in>sata_uli.mod</in>
-        <in>sata_via.mod</in>
-        <in>sata_vsc.mod</in>
         <in>savagefb.mod</in>
         <in>sb1000.mod</in>
         <in>sb_edac.mod</in>
@@ -3304,44 +2177,29 @@
         <in>sbni.mod</in>
         <in>sbp_target.mod</in>
         <in>sbs-battery.mod</in>
-        <in>sbs.mod</in>
-        <in>sbshc.mod</in>
         <in>sc1200wdt.mod</in>
         <in>sc16is7xx.mod</in>
         <in>sc92031.mod</in>
-        <in>sca3000.mod</in>
         <in>scb2_flash.mod</in>
         <in>sch311x_wdt.mod</in>
-        <in>sch5627.mod</in>
-        <in>sch5636.mod</in>
-        <in>sch56xx-common.mod</in>
         <in>sch_atm.mod</in>
         <in>sch_cbq.mod</in>
         <in>sch_choke.mod</in>
-        <in>sch_codel.mod</in>
         <in>sch_drr.mod</in>
         <in>sch_dsmark.mod</in>
-        <in>sch_fq.mod</in>
         <in>sch_fq_codel.mod</in>
-        <in>sch_gred.mod</in>
-        <in>sch_hfsc.mod</in>
-        <in>sch_hhf.mod</in>
         <in>sch_htb.mod</in>
         <in>sch_ingress.mod</in>
         <in>sch_mqprio.mod</in>
         <in>sch_multiq.mod</in>
         <in>sch_netem.mod</in>
         <in>sch_pie.mod</in>
-        <in>sch_plug.mod</in>
         <in>sch_prio.mod</in>
         <in>sch_qfq.mod</in>
         <in>sch_red.mod</in>
         <in>sch_sfb.mod</in>
         <in>sch_sfq.mod</in>
         <in>sch_tbf.mod</in>
-        <in>sch_teql.mod</in>
-        <in>scif.mod</in>
-        <in>scif_bus.mod</in>
         <in>scsi_debug.mod</in>
         <in>scsi_dh_alua.mod</in>
         <in>scsi_dh_emc.mod</in>
@@ -3355,62 +2213,32 @@
         <in>sctp.mod</in>
         <in>sctp_diag.mod</in>
         <in>sctp_probe.mod</in>
-        <in>sdhci-acpi.mod</in>
-        <in>sdhci-pci.mod</in>
         <in>sdhci-pltfm.mod</in>
-        <in>sdhci.mod</in>
-        <in>sdio_uart.mod</in>
         <in>sdricoh_cs.mod</in>
-        <in>sedlbauer_cs.mod</in>
-        <in>seed.mod</in>
         <in>sensorhub.mod</in>
-        <in>seqiv.mod</in>
-        <in>ser_gigaset.mod</in>
         <in>serial2002.mod</in>
         <in>serial_cs.mod</in>
-        <in>serio_raw.mod</in>
         <in>sermouse.mod</in>
-        <in>serpent-avx-x86_64.mod</in>
         <in>serpent-avx2.mod</in>
-        <in>serpent-sse2-x86_64.mod</in>
-        <in>serpent_generic.mod</in>
-        <in>serport.mod</in>
         <in>ses.mod</in>
         <in>sfc.mod</in>
-        <in>sh_veu.mod</in>
-        <in>sha1-mb.mod</in>
-        <in>sha1-ssse3.mod</in>
-        <in>sha256-ssse3.mod</in>
-        <in>sha512-ssse3.mod</in>
         <in>shark2.mod</in>
         <in>shpchp.mod</in>
-        <in>sht15.mod</in>
-        <in>sht21.mod</in>
-        <in>shtc1.mod</in>
-        <in>si2157.mod</in>
         <in>si2165.mod</in>
         <in>si2168.mod</in>
         <in>si21xx.mod</in>
         <in>si4713.mod</in>
         <in>si476x-core.mod</in>
-        <in>si7005.mod</in>
-        <in>si7020.mod</in>
-        <in>sidewinder.mod</in>
         <in>sierra.mod</in>
         <in>sierra_net.mod</in>
-        <in>sil164.mod</in>
         <in>sir-dev.mod</in>
-        <in>sis-agp.mod</in>
         <in>sis190.mod</in>
-        <in>sis5595.mod</in>
         <in>sis900.mod</in>
         <in>sisfb.mod</in>
         <in>sisusbvga.mod</in>
-        <in>sit.mod</in>
         <in>sja1000.mod</in>
         <in>sja1000_isa.mod</in>
         <in>sja1000_platform.mod</in>
-        <in>skd.mod</in>
         <in>skfp.mod</in>
         <in>skge.mod</in>
         <in>skx_edac.mod</in>
@@ -3423,7 +2251,6 @@
         <in>slcan.mod</in>
         <in>slicoss.mod</in>
         <in>slip.mod</in>
-        <in>slram.mod</in>
         <in>sm501.mod</in>
         <in>sm501fb.mod</in>
         <in>sm712fb.mod</in>
@@ -3437,63 +2264,27 @@
         <in>smsc-ircc2.mod</in>
         <in>smsc.mod</in>
         <in>smsc37b787_wdt.mod</in>
-        <in>smsc47b397.mod</in>
-        <in>smsc47m1.mod</in>
-        <in>smsc47m192.mod</in>
         <in>smsc75xx.mod</in>
         <in>smsc911x.mod</in>
         <in>smsc9420.mod</in>
         <in>smsc95xx.mod</in>
         <in>smscufx.mod</in>
-        <in>smsdvb.mod</in>
-        <in>smsmdtv.mod</in>
-        <in>smssdio.mod</in>
         <in>smsusb.mod</in>
-        <in>snd-ac97-codec.mod</in>
         <in>snd-ad1889.mod</in>
-        <in>snd-ak4113.mod</in>
         <in>snd-ak4114.mod</in>
-        <in>snd-ak4117.mod</in>
-        <in>snd-ak4xxx-adda.mod</in>
         <in>snd-ali5451.mod</in>
-        <in>snd-aloop.mod</in>
-        <in>snd-als300.mod</in>
-        <in>snd-als4000.mod</in>
-        <in>snd-asihpi.mod</in>
         <in>snd-atiixp-modem.mod</in>
-        <in>snd-atiixp.mod</in>
-        <in>snd-au8810.mod</in>
-        <in>snd-au8820.mod</in>
-        <in>snd-au8830.mod</in>
         <in>snd-aw2.mod</in>
         <in>snd-azt3328.mod</in>
         <in>snd-bcd2000.mod</in>
-        <in>snd-bebob.mod</in>
-        <in>snd-bt87x.mod</in>
-        <in>snd-ca0106.mod</in>
-        <in>snd-cmipci.mod</in>
-        <in>snd-compress.mod</in>
         <in>snd-cs4281.mod</in>
         <in>snd-cs46xx.mod</in>
-        <in>snd-cs8427.mod</in>
-        <in>snd-ctxfi.mod</in>
         <in>snd-darla20.mod</in>
         <in>snd-darla24.mod</in>
         <in>snd-dice.mod</in>
-        <in>snd-dummy.mod</in>
         <in>snd-echo3g.mod</in>
         <in>snd-emu10k1-synth.mod</in>
-        <in>snd-emu10k1.mod</in>
         <in>snd-emu10k1x.mod</in>
-        <in>snd-emux-synth.mod</in>
-        <in>snd-ens1370.mod</in>
-        <in>snd-ens1371.mod</in>
-        <in>snd-es1938.mod</in>
-        <in>snd-es1968.mod</in>
-        <in>snd-firewire-digi00x.mod</in>
-        <in>snd-firewire-lib.mod</in>
-        <in>snd-firewire-tascam.mod</in>
-        <in>snd-fireworks.mod</in>
         <in>snd-fm801.mod</in>
         <in>snd-gina20.mod</in>
         <in>snd-gina24.mod</in>
@@ -3510,69 +2301,29 @@
         <in>snd-hda-codec-si3054.mod</in>
         <in>snd-hda-codec-via.mod</in>
         <in>snd-hda-codec.mod</in>
-        <in>snd-hda-core.mod</in>
-        <in>snd-hda-ext-core.mod</in>
         <in>snd-hda-intel.mod</in>
         <in>snd-hdsp.mod</in>
         <in>snd-hdspm.mod</in>
-        <in>snd-hrtimer.mod</in>
-        <in>snd-hwdep.mod</in>
-        <in>snd-i2c.mod</in>
         <in>snd-ice1712.mod</in>
-        <in>snd-ice1724.mod</in>
-        <in>snd-ice17xx-ak4xxx.mod</in>
         <in>snd-indigo.mod</in>
         <in>snd-indigodj.mod</in>
         <in>snd-indigodjx.mod</in>
         <in>snd-indigoio.mod</in>
         <in>snd-indigoiox.mod</in>
         <in>snd-intel-sst-acpi.mod</in>
-        <in>snd-intel-sst-core.mod</in>
-        <in>snd-intel8x0.mod</in>
-        <in>snd-intel8x0m.mod</in>
-        <in>snd-isight.mod</in>
-        <in>snd-korg1212.mod</in>
         <in>snd-layla20.mod</in>
         <in>snd-layla24.mod</in>
-        <in>snd-lola.mod</in>
-        <in>snd-lx6464es.mod</in>
         <in>snd-maestro3.mod</in>
         <in>snd-mia.mod</in>
-        <in>snd-mixart.mod</in>
-        <in>snd-mixer-oss.mod</in>
         <in>snd-mona.mod</in>
-        <in>snd-mpu401-uart.mod</in>
-        <in>snd-mpu401.mod</in>
-        <in>snd-mtpav.mod</in>
-        <in>snd-mts64.mod</in>
         <in>snd-nm256.mod</in>
-        <in>snd-opl3-lib.mod</in>
-        <in>snd-opl3-synth.mod</in>
         <in>snd-oxfw.mod</in>
         <in>snd-oxygen-lib.mod</in>
         <in>snd-oxygen.mod</in>
-        <in>snd-pcm-dmaengine.mod</in>
-        <in>snd-pcm-oss.mod</in>
-        <in>snd-pcm.mod</in>
-        <in>snd-pcsp.mod</in>
-        <in>snd-pcxhr.mod</in>
         <in>snd-pdaudiocf.mod</in>
-        <in>snd-portman2x4.mod</in>
-        <in>snd-pt2258.mod</in>
-        <in>snd-rawmidi.mod</in>
         <in>snd-riptide.mod</in>
-        <in>snd-rme32.mod</in>
-        <in>snd-rme96.mod</in>
         <in>snd-rme9652.mod</in>
         <in>snd-sb-common.mod</in>
-        <in>snd-seq-device.mod</in>
-        <in>snd-seq-dummy.mod</in>
-        <in>snd-seq-midi-emul.mod</in>
-        <in>snd-seq-midi-event.mod</in>
-        <in>snd-seq-midi.mod</in>
-        <in>snd-seq-virmidi.mod</in>
-        <in>snd-seq.mod</in>
-        <in>snd-serial-u16550.mod</in>
         <in>snd-soc-ac97.mod</in>
         <in>snd-soc-adau1701.mod</in>
         <in>snd-soc-ak4104.mod</in>
@@ -3581,7 +2332,6 @@
         <in>snd-soc-ak4642.mod</in>
         <in>snd-soc-ak5386.mod</in>
         <in>snd-soc-alc5623.mod</in>
-        <in>snd-soc-core.mod</in>
         <in>snd-soc-cs35l32.mod</in>
         <in>snd-soc-cs4265.mod</in>
         <in>snd-soc-cs4270.mod</in>
@@ -3597,15 +2347,9 @@
         <in>snd-soc-cs42xx8.mod</in>
         <in>snd-soc-cs4349.mod</in>
         <in>snd-soc-dmic.mod</in>
-        <in>snd-soc-fsl-asrc.mod</in>
-        <in>snd-soc-fsl-esai.mod</in>
-        <in>snd-soc-fsl-sai.mod</in>
-        <in>snd-soc-fsl-spdif.mod</in>
-        <in>snd-soc-fsl-ssi.mod</in>
         <in>snd-soc-gtm601.mod</in>
         <in>snd-soc-hdac-hdmi.mod</in>
         <in>snd-soc-hdmi-codec.mod</in>
-        <in>snd-soc-imx-audmux.mod</in>
         <in>snd-soc-max98090.mod</in>
         <in>snd-soc-pcm1681.mod</in>
         <in>snd-soc-pcm512x-i2c.mod</in>
@@ -3622,10 +2366,6 @@
         <in>snd-soc-si476x.mod</in>
         <in>snd-soc-sigmadsp-i2c.mod</in>
         <in>snd-soc-sigmadsp.mod</in>
-        <in>snd-soc-simple-card-utils.mod</in>
-        <in>snd-soc-simple-card.mod</in>
-        <in>snd-soc-skl-ipc.mod</in>
-        <in>snd-soc-skl.mod</in>
         <in>snd-soc-skl_rt286.mod</in>
         <in>snd-soc-spdif-rx.mod</in>
         <in>snd-soc-spdif-tx.mod</in>
@@ -3633,18 +2373,7 @@
         <in>snd-soc-ssm2602-spi.mod</in>
         <in>snd-soc-ssm2602.mod</in>
         <in>snd-soc-ssm4567.mod</in>
-        <in>snd-soc-sst-acpi.mod</in>
-        <in>snd-soc-sst-atom-hifi2-platform.mod</in>
-        <in>snd-soc-sst-broadwell.mod</in>
-        <in>snd-soc-sst-bytcr-rt5640.mod</in>
         <in>snd-soc-sst-cht-bsw-max98090_ti.mod</in>
-        <in>snd-soc-sst-cht-bsw-rt5645.mod</in>
-        <in>snd-soc-sst-cht-bsw-rt5672.mod</in>
-        <in>snd-soc-sst-dsp.mod</in>
-        <in>snd-soc-sst-firmware.mod</in>
-        <in>snd-soc-sst-haswell-pcm.mod</in>
-        <in>snd-soc-sst-haswell.mod</in>
-        <in>snd-soc-sst-ipc.mod</in>
         <in>snd-soc-sst-match.mod</in>
         <in>snd-soc-sta32x.mod</in>
         <in>snd-soc-sta350.mod</in>
@@ -3678,43 +2407,23 @@
         <in>snd-soc-wm8903.mod</in>
         <in>snd-soc-wm8962.mod</in>
         <in>snd-soc-wm8978.mod</in>
-        <in>snd-soc-xtfpga-i2s.mod</in>
-        <in>snd-sonicvibes.mod</in>
-        <in>snd-timer.mod</in>
         <in>snd-trident.mod</in>
         <in>snd-ua101.mod</in>
-        <in>snd-usb-6fire.mod</in>
-        <in>snd-usb-audio.mod</in>
-        <in>snd-usb-caiaq.mod</in>
-        <in>snd-usb-hiface.mod</in>
-        <in>snd-usb-line6.mod</in>
-        <in>snd-usb-pod.mod</in>
         <in>snd-usb-podhd.mod</in>
-        <in>snd-usb-toneport.mod</in>
         <in>snd-usb-us122l.mod</in>
-        <in>snd-usb-usx2y.mod</in>
         <in>snd-usb-variax.mod</in>
         <in>snd-usbmidi-lib.mod</in>
-        <in>snd-util-mem.mod</in>
-        <in>snd-via82xx-modem.mod</in>
-        <in>snd-via82xx.mod</in>
         <in>snd-virmidi.mod</in>
         <in>snd-virtuoso.mod</in>
-        <in>snd-vx-lib.mod</in>
         <in>snd-vx222.mod</in>
-        <in>snd-vxpocket.mod</in>
         <in>snd-ymfpci.mod</in>
-        <in>snd.mod</in>
         <in>snic.mod</in>
-        <in>soc_button_array.mod</in>
         <in>soc_camera.mod</in>
-        <in>soc_camera_platform.mod</in>
         <in>soc_mediabus.mod</in>
         <in>softdog.mod</in>
         <in>softing.mod</in>
         <in>softing_cs.mod</in>
         <in>solo6x10.mod</in>
-        <in>solos-pci.mod</in>
         <in>sony-btf-mpx.mod</in>
         <in>sony-laptop.mod</in>
         <in>soundcore.mod</in>
@@ -3723,7 +2432,6 @@
         <in>sp8870.mod</in>
         <in>sp887x.mod</in>
         <in>spaceball.mod</in>
-        <in>spaceorb.mod</in>
         <in>sparse-keymap.mod</in>
         <in>spcp8x5.mod</in>
         <in>speakup.mod</in>
@@ -3739,8 +2447,6 @@
         <in>speakup_spkout.mod</in>
         <in>speakup_txprt.mod</in>
         <in>spectrum_cs.mod</in>
-        <in>speedfax.mod</in>
-        <in>speedstep-lib.mod</in>
         <in>speedtch.mod</in>
         <in>spi-altera.mod</in>
         <in>spi-bitbang.mod</in>
@@ -3768,35 +2474,22 @@
         <in>ssb-hcd.mod</in>
         <in>ssb.mod</in>
         <in>ssfdc.mod</in>
-        <in>ssp_accel_sensor.mod</in>
         <in>ssp_gyro_sensor.mod</in>
-        <in>ssp_iio.mod</in>
-        <in>sst25l.mod</in>
         <in>sstfb.mod</in>
         <in>ssu100.mod</in>
         <in>st-nci.mod</in>
         <in>st-nci_i2c.mod</in>
-        <in>st-nci_spi.mod</in>
         <in>st.mod</in>
-        <in>st1232.mod</in>
         <in>st21nfca_hci.mod</in>
         <in>st21nfca_i2c.mod</in>
         <in>st_accel.mod</in>
         <in>st_accel_i2c.mod</in>
-        <in>st_accel_spi.mod</in>
-        <in>st_drv.mod</in>
-        <in>st_gyro.mod</in>
-        <in>st_gyro_i2c.mod</in>
         <in>st_gyro_spi.mod</in>
-        <in>st_magn.mod</in>
-        <in>st_magn_i2c.mod</in>
-        <in>st_magn_spi.mod</in>
         <in>st_pressure.mod</in>
         <in>st_pressure_i2c.mod</in>
         <in>st_pressure_spi.mod</in>
         <in>st_sensors.mod</in>
         <in>st_sensors_i2c.mod</in>
-        <in>st_sensors_spi.mod</in>
         <in>starfire.mod</in>
         <in>stb0899.mod</in>
         <in>stb6000.mod</in>
@@ -3806,16 +2499,11 @@
         <in>stinger.mod</in>
         <in>stir4200.mod</in>
         <in>stk1160.mod</in>
-        <in>stk3310.mod</in>
-        <in>stk8312.mod</in>
-        <in>stk8ba50.mod</in>
         <in>stkwebcam.mod</in>
         <in>stm_console.mod</in>
-        <in>stm_core.mod</in>
         <in>stmmac-platform.mod</in>
         <in>stmmac.mod</in>
         <in>stowaway.mod</in>
-        <in>stp.mod</in>
         <in>streamzap.mod</in>
         <in>stv0288.mod</in>
         <in>stv0297.mod</in>
@@ -3829,20 +2517,14 @@
         <in>sungem.mod</in>
         <in>sungem_phy.mod</in>
         <in>sunhme.mod</in>
-        <in>suni.mod</in>
-        <in>sunkbd.mod</in>
         <in>sunrpc.mod</in>
         <in>sur40.mod</in>
         <in>surfacepro3_button.mod</in>
         <in>svgalib.mod</in>
-        <in>sx8.mod</in>
-        <in>sx8654.mod</in>
         <in>sx9500.mod</in>
         <in>sym53c500_cs.mod</in>
         <in>sym53c8xx.mod</in>
         <in>symbolserial.mod</in>
-        <in>synaptics_i2c.mod</in>
-        <in>synaptics_usb.mod</in>
         <in>synclink.mod</in>
         <in>synclink_cs.mod</in>
         <in>synclink_gt.mod</in>
@@ -3851,7 +2533,6 @@
         <in>sysfillrect.mod</in>
         <in>sysimgblt.mod</in>
         <in>sysv.mod</in>
-        <in>t1pci.mod</in>
         <in>t5403.mod</in>
         <in>tap.mod</in>
         <in>target_core_file.mod</in>
@@ -3859,32 +2540,20 @@
         <in>target_core_mod.mod</in>
         <in>target_core_pscsi.mod</in>
         <in>target_core_user.mod</in>
-        <in>tc74.mod</in>
         <in>tc90522.mod</in>
-        <in>tca6416-keypad.mod</in>
         <in>tca8418_keypad.mod</in>
         <in>tcm_fc.mod</in>
         <in>tcm_loop.mod</in>
         <in>tcm_qla2xxx.mod</in>
         <in>tcm_usb_gadget.mod</in>
-        <in>tcp_bic.mod</in>
-        <in>tcp_cdg.mod</in>
         <in>tcp_dctcp.mod</in>
-        <in>tcp_diag.mod</in>
         <in>tcp_highspeed.mod</in>
         <in>tcp_htcp.mod</in>
         <in>tcp_hybla.mod</in>
-        <in>tcp_illinois.mod</in>
-        <in>tcp_lp.mod</in>
-        <in>tcp_probe.mod</in>
         <in>tcp_scalable.mod</in>
         <in>tcp_vegas.mod</in>
-        <in>tcp_veno.mod</in>
         <in>tcp_westwood.mod</in>
         <in>tcp_yeah.mod</in>
-        <in>tcrypt.mod</in>
-        <in>tcs3414.mod</in>
-        <in>tcs3472.mod</in>
         <in>tda10021.mod</in>
         <in>tda10023.mod</in>
         <in>tda10048.mod</in>
@@ -3892,106 +2561,51 @@
         <in>tda10071.mod</in>
         <in>tda10086.mod</in>
         <in>tda18212.mod</in>
-        <in>tda18218.mod</in>
         <in>tda18271.mod</in>
         <in>tda18271c2dd.mod</in>
         <in>tda665x.mod</in>
-        <in>tda7432.mod</in>
         <in>tda8083.mod</in>
         <in>tda8261.mod</in>
         <in>tda826x.mod</in>
-        <in>tda827x.mod</in>
-        <in>tda8290.mod</in>
-        <in>tda9840.mod</in>
         <in>tda9887.mod</in>
         <in>tda998x.mod</in>
         <in>tdfxfb.mod</in>
         <in>tdo24m.mod</in>
-        <in>tea.mod</in>
         <in>tea575x.mod</in>
-        <in>tea5761.mod</in>
         <in>tea5767.mod</in>
-        <in>tea6415c.mod</in>
-        <in>tea6420.mod</in>
         <in>team.mod</in>
         <in>team_mode_activebackup.mod</in>
         <in>team_mode_broadcast.mod</in>
         <in>team_mode_loadbalance.mod</in>
         <in>team_mode_random.mod</in>
         <in>team_mode_roundrobin.mod</in>
-        <in>tef6862.mod</in>
         <in>tehuti.mod</in>
         <in>tekram-sir.mod</in>
-        <in>teles_cs.mod</in>
         <in>teranetics.mod</in>
-        <in>test-kstrtox.mod</in>
         <in>test-string_helpers.mod</in>
-        <in>test_bpf.mod</in>
-        <in>test_firmware.mod</in>
-        <in>test_hexdump.mod</in>
-        <in>test_module.mod</in>
         <in>test_power.mod</in>
-        <in>test_printf.mod</in>
-        <in>test_static_key_base.mod</in>
-        <in>test_static_keys.mod</in>
-        <in>test_udelay.mod</in>
-        <in>test_user_copy.mod</in>
         <in>tg3.mod</in>
         <in>tgr192.mod</in>
         <in>thinkpad_acpi.mod</in>
-        <in>thmc50.mod</in>
         <in>thunder_bgx.mod</in>
         <in>thunder_xcv.mod</in>
         <in>thunderbolt.mod</in>
-        <in>ti-adc081c.mod</in>
         <in>ti-adc128s052.mod</in>
-        <in>ti_am335x_adc.mod</in>
-        <in>ti_am335x_tsc.mod</in>
         <in>ti_am335x_tscadc.mod</in>
-        <in>ti_dac7512.mod</in>
         <in>ti_usb_3410_5052.mod</in>
-        <in>tifm_7xx1.mod</in>
-        <in>tifm_core.mod</in>
-        <in>tifm_ms.mod</in>
-        <in>tifm_sd.mod</in>
-        <in>timeriomem-rng.mod</in>
         <in>tipc.mod</in>
         <in>tlan.mod</in>
         <in>tlclk.mod</in>
         <in>tm6000-alsa.mod</in>
         <in>tm6000-dvb.mod</in>
         <in>tm6000.mod</in>
-        <in>tmdc.mod</in>
         <in>tmem.mod</in>
-        <in>tmp006.mod</in>
-        <in>tmp102.mod</in>
-        <in>tmp103.mod</in>
-        <in>tmp401.mod</in>
-        <in>tmp421.mod</in>
         <in>toim3232-sir.mod</in>
         <in>topstar-laptop.mod</in>
-        <in>torture.mod</in>
         <in>toshiba-wmi.mod</in>
         <in>toshiba_acpi.mod</in>
         <in>toshiba_bluetooth.mod</in>
         <in>toshiba_haps.mod</in>
-        <in>toshsd.mod</in>
-        <in>touchit213.mod</in>
-        <in>touchright.mod</in>
-        <in>touchwin.mod</in>
-        <in>tpci200.mod</in>
-        <in>tpm-rng.mod</in>
-        <in>tpm_atmel.mod</in>
-        <in>tpm_crb.mod</in>
-        <in>tpm_i2c_atmel.mod</in>
-        <in>tpm_i2c_infineon.mod</in>
-        <in>tpm_i2c_nuvoton.mod</in>
-        <in>tpm_infineon.mod</in>
-        <in>tpm_nsc.mod</in>
-        <in>tpm_st33zp24.mod</in>
-        <in>tpm_st33zp24_i2c.mod</in>
-        <in>tpm_st33zp24_spi.mod</in>
-        <in>tps40422.mod</in>
         <in>tps51632-regulator.mod</in>
         <in>tps6105x-regulator.mod</in>
         <in>tps6105x.mod</in>
@@ -3999,13 +2613,11 @@
         <in>tps65010.mod</in>
         <in>tps65023-regulator.mod</in>
         <in>tps6507x-regulator.mod</in>
-        <in>tps6507x-ts.mod</in>
         <in>tps6507x.mod</in>
         <in>tps65090-charger.mod</in>
         <in>tps65090-regulator.mod</in>
         <in>tps65217_bl.mod</in>
         <in>tps65217_charger.mod</in>
-        <in>tps65218-pwrbutton.mod</in>
         <in>tps65218.mod</in>
         <in>tps6524x-regulator.mod</in>
         <in>tps6586x-regulator.mod</in>
@@ -4017,66 +2629,33 @@
         <in>tridentfb.mod</in>
         <in>ts2020.mod</in>
         <in>ts_bm.mod</in>
-        <in>ts_fsm.mod</in>
         <in>ts_kmp.mod</in>
-        <in>tsc2004.mod</in>
-        <in>tsc2005.mod</in>
-        <in>tsc2007.mod</in>
-        <in>tsc200x-core.mod</in>
         <in>tsc40.mod</in>
         <in>tsi568.mod</in>
         <in>tsi57x.mod</in>
         <in>tsi721_mport.mod</in>
         <in>tsl2550.mod</in>
-        <in>tsl2563.mod</in>
-        <in>tsl2583.mod</in>
         <in>tsl2x7x_core.mod</in>
-        <in>tsl4531.mod</in>
-        <in>tsys01.mod</in>
-        <in>tsys02d.mod</in>
         <in>ttm.mod</in>
         <in>ttpci-eeprom.mod</in>
         <in>ttusb_dec.mod</in>
         <in>ttusbdecfe.mod</in>
         <in>ttusbir.mod</in>
         <in>tua6100.mod</in>
-        <in>tua9001.mod</in>
         <in>tulip.mod</in>
         <in>tuner-simple.mod</in>
-        <in>tuner-types.mod</in>
-        <in>tuner-xc2028.mod</in>
         <in>tuner.mod</in>
-        <in>tunnel4.mod</in>
-        <in>tunnel6.mod</in>
         <in>turbografx.mod</in>
-        <in>tvaudio.mod</in>
-        <in>tveeprom.mod</in>
-        <in>tvp5150.mod</in>
-        <in>tw2804.mod</in>
         <in>tw68.mod</in>
-        <in>tw9903.mod</in>
-        <in>tw9906.mod</in>
-        <in>tw9910.mod</in>
-        <in>twidjoy.mod</in>
         <in>twl-regulator.mod</in>
         <in>twl4030-madc.mod</in>
-        <in>twl4030-pwrbutton.mod</in>
         <in>twl4030-vibra.mod</in>
         <in>twl4030_charger.mod</in>
-        <in>twl4030_keypad.mod</in>
         <in>twl4030_madc_battery.mod</in>
         <in>twl4030_wdt.mod</in>
-        <in>twl6030-gpadc.mod</in>
         <in>twl6030-regulator.mod</in>
-        <in>twl6040-vibra.mod</in>
-        <in>twofish-avx-x86_64.mod</in>
-        <in>twofish-x86_64-3way.mod</in>
-        <in>twofish-x86_64.mod</in>
-        <in>twofish_common.mod</in>
-        <in>twofish_generic.mod</in>
         <in>typhoon.mod</in>
         <in>u132-hcd.mod</in>
-        <in>uPD98402.mod</in>
         <in>u_ether.mod</in>
         <in>u_serial.mod</in>
         <in>uartlite.mod</in>
@@ -4084,22 +2663,17 @@
         <in>ubi.mod</in>
         <in>ubifs.mod</in>
         <in>ucb1400_core.mod</in>
-        <in>ucb1400_ts.mod</in>
-        <in>ucd9000.mod</in>
-        <in>ucd9200.mod</in>
         <in>uda1342.mod</in>
         <in>udc-core.mod</in>
         <in>udf.mod</in>
         <in>udl.mod</in>
         <in>udlfb.mod</in>
-        <in>udp_diag.mod</in>
         <in>udp_tunnel.mod</in>
         <in>ueagle-atm.mod</in>
         <in>ufs.mod</in>
         <in>ufshcd-pci.mod</in>
         <in>ufshcd-pltfrm.mod</in>
         <in>ufshcd.mod</in>
-        <in>uhid.mod</in>
         <in>uio.mod</in>
         <in>uio_aec.mod</in>
         <in>uio_cif.mod</in>
@@ -4113,7 +2687,6 @@
         <in>uli526x.mod</in>
         <in>ulpi.mod</in>
         <in>umc.mod</in>
-        <in>umem.mod</in>
         <in>ums-alauda.mod</in>
         <in>ums-cypress.mod</in>
         <in>ums-datafab.mod</in>
@@ -4128,9 +2701,7 @@
         <in>ums-sddr55.mod</in>
         <in>ums-usbat.mod</in>
         <in>unix_diag.mod</in>
-        <in>upd64031a.mod</in>
         <in>upd64083.mod</in>
-        <in>us5182d.mod</in>
         <in>usb-serial-simple.mod</in>
         <in>usb-storage.mod</in>
         <in>usb3503.mod</in>
@@ -4156,30 +2727,24 @@
         <in>usb_f_uac1.mod</in>
         <in>usb_f_uac2.mod</in>
         <in>usb_f_uvc.mod</in>
-        <in>usb_gigaset.mod</in>
         <in>usb_wwan.mod</in>
         <in>usbatm.mod</in>
         <in>usbdux.mod</in>
         <in>usbduxfast.mod</in>
         <in>usbduxsigma.mod</in>
-        <in>usbhid.mod</in>
         <in>usbip-core.mod</in>
         <in>usbip-host.mod</in>
         <in>usbkbd.mod</in>
         <in>usblcd.mod</in>
         <in>usblp.mod</in>
         <in>usbmon.mod</in>
-        <in>usbmouse.mod</in>
         <in>usbnet.mod</in>
         <in>usbserial.mod</in>
         <in>usbsevseg.mod</in>
         <in>usbtest.mod</in>
         <in>usbtmc.mod</in>
-        <in>usbtouchscreen.mod</in>
         <in>usbtv.mod</in>
         <in>usbvision.mod</in>
-        <in>usdhi6rol0.mod</in>
-        <in>userio.mod</in>
         <in>userspace-consumer.mod</in>
         <in>ushc.mod</in>
         <in>usnic_verbs.mod</in>
@@ -4191,7 +2756,6 @@
         <in>v4l2-dv-timings.mod</in>
         <in>v4l2-flash-led-class.mod</in>
         <in>v4l2-mem2mem.mod</in>
-        <in>v4l2-tpg.mod</in>
         <in>vcan.mod</in>
         <in>vcnl4000.mod</in>
         <in>ves1820.mod</in>
@@ -4209,17 +2773,12 @@
         <in>vhost.mod</in>
         <in>vhost_net.mod</in>
         <in>vhost_scsi.mod</in>
-        <in>via-camera.mod</in>
-        <in>via-cputemp.mod</in>
         <in>via-ircc.mod</in>
         <in>via-rhine.mod</in>
-        <in>via-rng.mod</in>
         <in>via-sdmmc.mod</in>
         <in>via-velocity.mod</in>
-        <in>via686a.mod</in>
         <in>via_wdt.mod</in>
         <in>viafb.mod</in>
-        <in>video.mod</in>
         <in>videobuf-core.mod</in>
         <in>videobuf-dma-sg.mod</in>
         <in>videobuf-dvb.mod</in>
@@ -4233,13 +2792,8 @@
         <in>videobuf2-vmalloc.mod</in>
         <in>videocodec.mod</in>
         <in>videodev.mod</in>
-        <in>vim2m.mod</in>
         <in>viperboard.mod</in>
-        <in>viperboard_adc.mod</in>
-        <in>virt-dma.mod</in>
         <in>virtio-gpu.mod</in>
-        <in>virtio-rng.mod</in>
-        <in>virtio_crypto.mod</in>
         <in>virtio_input.mod</in>
         <in>virtio_scsi.mod</in>
         <in>virtual.mod</in>
@@ -4249,9 +2803,7 @@
         <in>visorinput.mod</in>
         <in>visornic.mod</in>
         <in>vitesse.mod</in>
-        <in>vivid.mod</in>
         <in>vlsi_ir.mod</in>
-        <in>vmac.mod</in>
         <in>vme_ca91cx42.mod</in>
         <in>vme_pio2.mod</in>
         <in>vme_tsi148.mod</in>
@@ -4259,31 +2811,21 @@
         <in>vme_vmivme7805.mod</in>
         <in>vmk80xx.mod</in>
         <in>vmlfb.mod</in>
-        <in>vmw_balloon.mod</in>
         <in>vmw_pvscsi.mod</in>
-        <in>vmw_vmci.mod</in>
         <in>vmw_vsock_vmci_transport.mod</in>
         <in>vmwgfx.mod</in>
         <in>vmxnet3.mod</in>
         <in>vp27smpx.mod</in>
-        <in>vport-geneve.mod</in>
-        <in>vport-gre.mod</in>
         <in>vport-vxlan.mod</in>
-        <in>vpx3220.mod</in>
         <in>vrf.mod</in>
         <in>vringh.mod</in>
         <in>vsock.mod</in>
-        <in>vsxxxaa.mod</in>
-        <in>vt1211.mod</in>
         <in>vt6655_stage.mod</in>
         <in>vt6656_stage.mod</in>
-        <in>vt8231.mod</in>
         <in>vt8623fb.mod</in>
-        <in>vub300.mod</in>
         <in>vx855.mod</in>
         <in>vxge.mod</in>
         <in>vxlan.mod</in>
-        <in>vz89x.mod</in>
         <in>w1-gpio.mod</in>
         <in>w1_bq27000.mod</in>
         <in>w1_ds2406.mod</in>
@@ -4301,31 +2843,16 @@
         <in>w5100.mod</in>
         <in>w5300.mod</in>
         <in>w6692.mod</in>
-        <in>w83627ehf.mod</in>
-        <in>w83627hf.mod</in>
         <in>w83627hf_wdt.mod</in>
-        <in>w83781d.mod</in>
-        <in>w83791d.mod</in>
-        <in>w83792d.mod</in>
-        <in>w83793.mod</in>
-        <in>w83795.mod</in>
         <in>w83877f_wdt.mod</in>
         <in>w83977af_ir.mod</in>
         <in>w83977f_wdt.mod</in>
-        <in>w83l785ts.mod</in>
         <in>w83l786ng.mod</in>
-        <in>wacom.mod</in>
-        <in>wacom_i2c.mod</in>
-        <in>wacom_serial4.mod</in>
-        <in>wacom_w8001.mod</in>
         <in>wafer5823wdt.mod</in>
-        <in>walkera0701.mod</in>
         <in>wanxl.mod</in>
         <in>warrior.mod</in>
-        <in>wbsd.mod</in>
         <in>wcn36xx.mod</in>
         <in>wd719x.mod</in>
-        <in>wdt87xx_i2c.mod</in>
         <in>wdt_pci.mod</in>
         <in>whc-rc.mod</in>
         <in>whci-hcd.mod</in>
@@ -4350,18 +2877,14 @@
         <in>wm831x-hwmon.mod</in>
         <in>wm831x-isink.mod</in>
         <in>wm831x-ldo.mod</in>
-        <in>wm831x-on.mod</in>
-        <in>wm831x-ts.mod</in>
         <in>wm831x_backup.mod</in>
         <in>wm831x_bl.mod</in>
         <in>wm831x_power.mod</in>
         <in>wm831x_wdt.mod</in>
-        <in>wm8350-hwmon.mod</in>
         <in>wm8350-regulator.mod</in>
         <in>wm8350_power.mod</in>
         <in>wm8350_wdt.mod</in>
         <in>wm8400-regulator.mod</in>
-        <in>wm8739.mod</in>
         <in>wm8775.mod</in>
         <in>wm8994-regulator.mod</in>
         <in>wm8994.mod</in>
@@ -4376,45 +2899,28 @@
         <in>x38_edac.mod</in>
         <in>x86_pkg_temp_thermal.mod</in>
         <in>x_tables.mod</in>
-        <in>xc4000.mod</in>
-        <in>xc5000.mod</in>
-        <in>xcbc.mod</in>
-        <in>xen-blkback.mod</in>
         <in>xen-evtchn.mod</in>
         <in>xen-fbfront.mod</in>
         <in>xen-gntalloc.mod</in>
         <in>xen-gntdev.mod</in>
-        <in>xen-kbdfront.mod</in>
         <in>xen-netback.mod</in>
         <in>xen-pciback.mod</in>
         <in>xen-pcifront.mod</in>
         <in>xen-privcmd.mod</in>
         <in>xen-scsiback.mod</in>
         <in>xen-scsifront.mod</in>
-        <in>xen-tpmfront.mod</in>
         <in>xen_wdt.mod</in>
         <in>xenfs.mod</in>
-        <in>xfrm4_mode_beet.mod</in>
-        <in>xfrm4_mode_transport.mod</in>
         <in>xfrm4_mode_tunnel.mod</in>
         <in>xfrm4_tunnel.mod</in>
-        <in>xfrm6_mode_beet.mod</in>
-        <in>xfrm6_mode_ro.mod</in>
-        <in>xfrm6_mode_transport.mod</in>
-        <in>xfrm6_mode_tunnel.mod</in>
-        <in>xfrm6_tunnel.mod</in>
         <in>xfrm_algo.mod</in>
         <in>xfrm_ipcomp.mod</in>
         <in>xfrm_user.mod</in>
         <in>xfs.mod</in>
         <in>xgifb.mod</in>
         <in>xhci-plat-hcd.mod</in>
-        <in>xillybus_core.mod</in>
-        <in>xillybus_pcie.mod</in>
         <in>xirc2ps_cs.mod</in>
         <in>xircom_cb.mod</in>
-        <in>xor.mod</in>
-        <in>xpad.mod</in>
         <in>xsens_mt.mod</in>
         <in>xt_AUDIT.mod</in>
         <in>xt_CHECKSUM.mod</in>
@@ -4486,31 +2992,23 @@
         <in>xt_tcpudp.mod</in>
         <in>xt_time.mod</in>
         <in>xt_u32.mod</in>
-        <in>xtkbd.mod</in>
-        <in>xts.mod</in>
         <in>xusbatm.mod</in>
-        <in>xz_dec_test.mod</in>
         <in>yam.mod</in>
-        <in>yealink.mod</in>
         <in>yellowfin.mod</in>
         <in>yenta_socket.mod</in>
         <in>yurex.mod</in>
-        <in>zatm.mod</in>
         <in>zaurus.mod</in>
         <in>zd1201.mod</in>
         <in>zd1211rw.mod</in>
         <in>zforce_ts.mod</in>
-        <in>zhenhua.mod</in>
         <in>zl10036.mod</in>
         <in>zl10039.mod</in>
         <in>zl10353.mod</in>
-        <in>zl6100.mod</in>
         <in>zr36016.mod</in>
         <in>zr36050.mod</in>
         <in>zr36060.mod</in>
         <in>zr36067.mod</in>
         <in>zr364xx.mod</in>
-        <in>zram.mod</in>
       </df>
       <df name="arch">
         <df name="alpha">
@@ -74676,6 +73174,11 @@
                 </df>
               </df>
               <df name="include">
+                <df name="generated">
+                  <df name="asm">
+                    <in>syscalls_64.c</in>
+                  </df>
+                </df>
                 <in>arch-tests.h</in>
                 <in>dwarf-regs-table.h</in>
                 <in>perf_regs.h</in>
@@ -74797,9 +73300,32 @@
             <in>jsmn.h</in>
             <in>json.c</in>
             <in>json.h</in>
+            <in>pmu-events.c</in>
             <in>pmu-events.h</in>
           </df>
           <df name="python">
+          </df>
+          <df name="python_ext_build">
+            <df name="lib">
+            </df>
+            <df name="tmp">
+              <df name="home">
+                <df name="cwei">
+                  <df name="project">
+                    <df name="linux-4.12.8">
+                      <df name="tools">
+                        <df name="lib">
+                        </df>
+                        <df name="perf">
+                          <df name="util">
+                          </df>
+                        </df>
+                      </df>
+                    </df>
+                  </df>
+                </df>
+              </df>
+            </df>
           </df>
           <df name="scripts">
             <df name="perl">
@@ -74863,6 +73389,10 @@
             <in>is_printable_array.c</in>
             <in>keep-tracking.c</in>
             <in>kmod-path.c</in>
+            <in>llvm-src-base.c</in>
+            <in>llvm-src-kbuild.c</in>
+            <in>llvm-src-prologue.c</in>
+            <in>llvm-src-relocation.c</in>
             <in>llvm.c</in>
             <in>llvm.h</in>
             <in>mmap-basic.c</in>
@@ -74980,6 +73510,7 @@
               <in>dwarf-regs.h</in>
             </df>
             <df name="intel-pt-decoder">
+              <in>inat-tables.c</in>
               <in>inat.c</in>
               <in>inat.h</in>
               <in>inat_types.h</in>
@@ -75067,6 +73598,8 @@
             <in>evsel.c</in>
             <in>evsel.h</in>
             <in>evsel_fprintf.c</in>
+            <in>expr-bison.c</in>
+            <in>expr-bison.h</in>
             <in>expr.h</in>
             <in>find-vdso-map.c</in>
             <in>genelf.c</in>
@@ -75108,6 +73641,10 @@
             <in>ordered-events.h</in>
             <in>parse-branch-options.c</in>
             <in>parse-branch-options.h</in>
+            <in>parse-events-bison.c</in>
+            <in>parse-events-bison.h</in>
+            <in>parse-events-flex.c</in>
+            <in>parse-events-flex.h</in>
             <in>parse-events.c</in>
             <in>parse-events.h</in>
             <in>parse-regs-options.c</in>
@@ -75119,6 +73656,10 @@
             <in>perf-hooks.h</in>
             <in>perf_regs.c</in>
             <in>perf_regs.h</in>
+            <in>pmu-bison.c</in>
+            <in>pmu-bison.h</in>
+            <in>pmu-flex.c</in>
+            <in>pmu-flex.h</in>
             <in>pmu.c</in>
             <in>pmu.h</in>
             <in>print_binary.c</in>
@@ -75237,6 +73778,7 @@
           <in>builtin-trace.c</in>
           <in>builtin-version.c</in>
           <in>builtin.h</in>
+          <in>common-cmds.h</in>
           <in>perf-read-vdso.c</in>
           <in>perf-sys.h</in>
           <in>perf.c</in>

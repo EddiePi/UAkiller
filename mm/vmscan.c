@@ -2779,7 +2779,7 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 			unsigned long scanned;
 
             //beofre we do any reclaim, we evaluate if we need to kill some badness to avoid system thrashing
-            //memcg_thrash_evaluate(memcg); 
+            memcg_thrash_evaluate(memcg); 
 
 			if (mem_cgroup_low(root, memcg)) {
 				if (!sc->memcg_low_reclaim) {

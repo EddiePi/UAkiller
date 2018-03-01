@@ -1272,6 +1272,7 @@ static bool mem_cgroup_out_of_memory(struct mem_cgroup *memcg, gfp_t gfp_mask,
 //to keep found mem_cg during iteration
 struct oom_score_memcg{
   int oom_points;
+  int task_nums;
   struct mem_cgroup *memcg;
 };
 
@@ -1283,6 +1284,12 @@ struct task_struct *task;
 struct css_task_iter it;
 int total_pages=totalram_pages + total_swap_pages;
 
+//count how many tasks in this cgroup
+int task_numes=0;
+
+//if this cgroup is chosen
+bool chosen=false;
+
 css_task_iter_start(&memcg->css, &it);
 while(task=css_task_iter_next(&it)){
    //TODO we only consider leaf nodes
@@ -1290,6 +1297,8 @@ while(task=css_task_iter_next(&it)){
    if(oom_unkillable_task(task, NULL, NULL))
       continue;
  
+   task_numes++;
+
    int oom_points=oom_badness(task,NULL, NULL,total_pages);
    //printk("memcg-score %d %d",memcg->id.id,oom_points);
    //the OOM_SCORE_ADJ_MAX is 1000, we only consider those tasks whose oom score is larger than is value
@@ -1297,9 +1306,12 @@ while(task=css_task_iter_next(&it)){
    if(oom_points > total_pages && oom_points > score_memcg->oom_points){
         score_memcg->memcg=memcg;
         score_memcg->oom_points=oom_points;
-        break;      
+        chosen=true;
     }
 }
+
+if(chosen)
+   score_memcg->task_nums=task_numes;
 
 css_task_iter_end(&it);
 }
@@ -1309,8 +1321,10 @@ void mem_cgroup_by_oom_score(){
 
 struct mem_cgroup *iter;
 struct mem_cgroup *find;
+
 struct oom_score_memcg score_memcg={
            .oom_points=0,
+           .task_nums=0,
            .memcg=NULL,
 };
 
@@ -1321,8 +1335,11 @@ for_each_mem_cgroup_tree(iter,root_mem_cgroup) {
  //printk("cg find: %d    %d",score_memcg.memcg->id.id,score_memcg.oom_points);
  //if we find one
  if(score_memcg.memcg != NULL){
-    //printk("cg to kill find: %d    %d",score_memcg.memcg->id.id,score_memcg.oom_points);
-    mem_cgroup_out_of_memory(score_memcg.memcg, GFP_KERNEL, 0);
+    printk("cg to kill find: %d  oom_score  %d # of tasks %d",score_memcg.memcg->id.id,score_memcg.oom_points,score_memcg.task_nums);
+    //kill every task in  this cgroup
+    int i;
+    for(i=0;i<score_memcg.task_nums;i++)
+       mem_cgroup_out_of_memory(score_memcg.memcg, GFP_KERNEL, 0);
   }
 }
 
