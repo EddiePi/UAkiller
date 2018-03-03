@@ -203,7 +203,7 @@ unsigned long oom_badness(struct task_struct *p, struct mem_cgroup *memcg,
 		atomic_long_read(&p->mm->nr_ptes) + mm_nr_pmds(p->mm);
 	task_unlock(p);
 
-    //printk("pid %d points %d adj %d total pages %d",p->pid,points,adj,totalpages);
+        //printk("pid %d points %d adj %d total pages %d",p->pid,points,adj,totalpages);
 	/*
 	 * Root processes get 3% bonus, just like the __vm_enough_memory()
 	 * implementation used by LSMs.
@@ -214,13 +214,59 @@ unsigned long oom_badness(struct task_struct *p, struct mem_cgroup *memcg,
 	/* Normalize to oom_score_adj units */
 	adj *= totalpages / 1000;
 	points += adj;
-    //printk("pid %d final points %d",p->pid,points);
+        //printk("pid %d final points %d",p->pid,points);
 
 	/*
 	 * Never return 0 for an eligible task regardless of the root bonus and
 	 * oom_score_adj (oom_score_adj can't be OOM_SCORE_ADJ_MIN here).
 	 */
 	return points > 0 ? points : 1;
+}
+
+
+unsigned long oom_badness_by_adj_score(struct task_struct *p, struct mem_cgroup *memcg,
+			  const nodemask_t *nodemask, unsigned long totalpages)
+{
+    long points;
+	long adj;
+
+	if (oom_unkillable_task(p, memcg, nodemask))
+		return 0;
+
+	p = find_lock_task_mm(p);
+	if (!p)
+		return 0;
+
+	/*
+	 * Do not even consider tasks which are explicitly marked oom
+	 * unkillable or have been already oom reaped or the are in
+	 * the middle of vfork
+	 */
+	adj = (long)p->signal->oom_score_adj;
+	if (adj == OOM_SCORE_ADJ_MIN ||
+			test_bit(MMF_OOM_SKIP, &p->mm->flags) ||
+			in_vfork(p)) {
+		task_unlock(p);
+		return 0;
+	}
+
+	/*
+	 * The baseline for the badness score is the adjscore
+	 * the priority is totally decided by users.
+	 */
+	points = adj;
+        
+	task_unlock(p);
+
+        //printk("pid %d points %d adj %d total pages %d",p->pid,points,adj,totalpages);
+	/*
+	 * Root processes get 3% bonus, just like the __vm_enough_memory()
+	 * implementation used by LSMs.
+	 */
+	if (has_capability_noaudit(p, CAP_SYS_ADMIN))
+		points -= (points * 3) / 100;
+        
+       return points > 0 ? points : 1;
 }
 
 enum oom_constraint {
