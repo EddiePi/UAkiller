@@ -2796,15 +2796,16 @@ static bool shrink_node(pg_data_t *pgdat, struct scan_control *sc)
 			node_lru_pages += lru_pages;
             if (memcg)
 			      shrink_slab(sc->gfp_mask, pgdat->node_id, memcg, sc->nr_scanned - scanned, lru_pages);
-            if(0){       
+            if(1){       
                         //only dump cgroup that has pages on lru
+                        pr_cont_cgroup_path(memcg->css.cgroup);
                         printk("memcg %d scaned %d reclaimed %d total lru %d",
                         memcg_id,
                         sc->nr_scanned - scanned,
                         sc->nr_reclaimed - reclaimed,
                         lru_pages
                         );
-                  }
+                 }
 			/* Record the group's reclaim efficiency */
 		   vmpressure(sc->gfp_mask, memcg, false, sc->nr_scanned - scanned, sc->nr_reclaimed - reclaimed);
 

@@ -1304,7 +1304,7 @@ while(task=css_task_iter_next(&it)){
    //printk("memcg-score %d %d",memcg->id.id,oom_points);
    //the OOM_SCORE_ADJ_MAX is 1000, we only consider those tasks whose oom score is larger than is value
    //this heuristic comes from if the oom_socre_adj == 1000, then its oom_score will be added a term total_pages
-   if(oom_points > score_memcg->oom_points){
+   if(oom_points > 850 && oom_points > score_memcg->oom_points){
         score_memcg->memcg=memcg;
         score_memcg->oom_points=oom_points;
         chosen=true;
