@@ -13,7 +13,9 @@
             <file>file:/home/cwei/project/linux-4.12.8/kernel/sched/cputime.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/truncate.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/include/linux/sched.h</file>
+            <file>file:/home/cwei/project/linux-4.12.8/fs/xfs/kmem.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/nfsd/vfs.c</file>
+            <file>file:/home/cwei/project/linux-4.12.8/kernel/acct.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/gfs2/aops.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/drivers/md/bcache/btree.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/mempolicy.c</file>
@@ -28,6 +30,7 @@
             <file>file:/home/cwei/project/linux-4.12.8/mm/swap.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/readahead.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/list_lru.c</file>
+            <file>file:/home/cwei/project/linux-4.12.8/kernel/cpu.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/block/blk-core.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/proc/meminfo.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/block/blk-lib.c</file>
@@ -44,6 +47,7 @@
             <file>file:/home/cwei/project/linux-4.12.8/fs/proc/base.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/include/trace/events/mmflags.h</file>
             <file>file:/home/cwei/project/linux-4.12.8/include/linux/memcontrol.h</file>
+            <file>file:/home/cwei/project/linux-4.12.8/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/include/linux/swap.h</file>
             <file>file:/home/cwei/project/linux-4.12.8/Documentation/ABI/obsolete/proc-sys-vm-nr_pdflush_threads</file>
             <file>file:/home/cwei/project/linux-4.12.8/net/core/dev.c</file>
@@ -54,12 +58,15 @@
             <file>file:/home/cwei/project/linux-4.12.8/fs/cifs/file.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/include/linux/tracehook.h</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/frontswap.c</file>
+            <file>file:/home/cwei/project/linux-4.12.8/kernel/bpf/helpers.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/khugepaged.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/kernel/sysctl.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/shmem.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/kernel/power/swap.c</file>
+            <file>file:/home/cwei/project/linux-4.12.8/kernel/capability.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/compaction.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/Documentation/cgroup-v1/memory.txt</file>
+            <file>file:/home/cwei/project/linux-4.12.8/fs/exec.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/net/rds/page.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/afs/internal.h</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/backing-dev.c</file>
@@ -69,7 +76,9 @@
             <file>file:/home/cwei/project/linux-4.12.8/drivers/base/node.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/dax.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/buffer.c</file>
+            <file>file:/home/cwei/project/linux-4.12.8/fs/proc/array.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/fs/fs-writeback.c</file>
+            <file>file:/home/cwei/project/linux-4.12.8/net/ax25/af_ax25.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/kernel/cgroup/cgroup.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/memcontrol.c</file>
             <file>file:/home/cwei/project/linux-4.12.8/mm/swap_state.c</file>

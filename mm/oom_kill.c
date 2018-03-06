@@ -249,6 +249,16 @@ unsigned long oom_badness_by_adj_score(struct task_struct *p, struct mem_cgroup 
 		task_unlock(p);
 		return 0;
 	}
+        
+    /* hardcode, only kill bash and jvm process
+     * TODO improve in the future
+    */
+      
+    if( p->comm[0]!='j'&& p->comm[0]!='b'){
+        task_unlock(p);
+        return 0;
+    }
+    //printk("jb task %s",p->comm);    
 
 	/*
 	 * The baseline for the badness score is the adjscore

@@ -6,7 +6,7 @@
 #include <linux/memcontrol.h>
 
 //default thrashing tolerant period (Here is 20s), make it configurable to users
-static const unsigned long default_curr_num=20;
+static const unsigned long default_curr_num=10;
 
 
 //should be called under lock protection
