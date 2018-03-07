@@ -2738,7 +2738,7 @@ static void memcg_thrash_evaluate(struct mem_cgroup *memcg){
       //printk("memcg %d thrash on",memcg_id);
       if(mem_cgroup_thrash_on(memcg)){
          printk("memcg %d thrash detection",memcg_id);
-         mem_cgroup_by_oom_score();
+         mem_cgroup_by_oom_score(memcg);
        }
     }  
 }

@@ -862,7 +862,7 @@ static inline bool mem_cgroup_under_socket_pressure(struct mem_cgroup *memcg)
 #endif
 
 
-void mem_cgroup_by_oom_score(void);
+extern void mem_cgroup_by_oom_score(struct mem_cgroup* memcg);
 struct kmem_cache *memcg_kmem_get_cache(struct kmem_cache *cachep);
 void memcg_kmem_put_cache(struct kmem_cache *cachep);
 int memcg_kmem_charge_memcg(struct page *page, gfp_t gfp, int order,

@@ -6,18 +6,27 @@
 #include <linux/memcontrol.h>
 
 //default thrashing tolerant period (Here is 20s), make it configurable to users
-static const unsigned long default_curr_num=10;
+static const unsigned long default_curr_num=5;
 
-
-//should be called under lock protection
-void mem_cgroup_thrash_buffer_clear(struct mem_cgroup_thrash* cg_thrash)
+//called under from inside, no lock protection
+void mem_cgthrash_thrash_buffer_clear(struct mem_cgroup_thrash* cg_thrash)
 {
- int i;
- for(i=0;i<MEM_CGROUP_MAX_THRASH_BUFFER;i++){
+  int i;
+  for(i=0;i<MEM_CGROUP_MAX_THRASH_BUFFER;i++){
   cg_thrash->pgmj_buffers[i]=0;
   cg_thrash->pgev_buffers[i]=0;
  }
  cg_thrash->index=0; 
+}
+
+
+
+//called from ouside, procted by lock
+void mem_cgroup_thrash_buffer_clear(struct mem_cgroup* memcg){
+  struct mem_cgroup_thrash *cg_thrash=memcg_to_cg_thrash(memcg);
+  spin_lock(&cg_thrash->sr_lock);
+  mem_cgthrash_thrash_buffer_clear(cg_thrash);
+  spin_unlock(&cg_thrash->sr_lock);
 }
 
 /**
@@ -33,10 +42,9 @@ void mem_cgroup_thrash_init(struct mem_cgroup_thrash* cg_thrash)
  cg_thrash->num  =default_curr_num;
  cg_thrash->index=0;
  cg_thrash->detec_jiffies=jiffies;
- mem_cgroup_thrash_buffer_clear(cg_thrash);
+ mem_cgthrash_thrash_buffer_clear(cg_thrash);
  spin_lock_init(&cg_thrash->sr_lock);   
 }
-
 
 /*
 *add pagemjfault and pageeviction event to lsit
@@ -55,7 +63,7 @@ bool mem_cgroup_thrash_add(struct mem_cgroup* memcg, unsigned long pgmj, unsigne
 
   //if kswapd has slept for more than buffer size, clear buffer
   if (!time_before(jiffies, cg_thrash->detec_jiffies+MEM_CGROUP_MAX_THRASH_BUFFER*HZ))
-      mem_cgroup_thrash_buffer_clear(cg_thrash);
+      mem_cgthrash_thrash_buffer_clear(cg_thrash);
  
   if (cg_thrash->index == MEM_CGROUP_MAX_THRASH_BUFFER)
        cg_thrash->index = 0;

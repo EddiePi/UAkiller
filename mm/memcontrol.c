@@ -1318,7 +1318,11 @@ css_task_iter_end(&it);
 }
 
 
-void mem_cgroup_by_oom_score(){
+/*
+*@memcg : the memcgroup identified under thrashing
+*clear the thrahsing after some tasks are chosen to kill
+*/
+void mem_cgroup_by_oom_score(struct mem_cgroup* memcg){
 
 struct mem_cgroup *iter;
 struct mem_cgroup *find;
@@ -1341,6 +1345,9 @@ for_each_mem_cgroup_tree(iter,root_mem_cgroup) {
     //int i;
     //for(i=0;i<score_memcg.task_nums;i++)
     mem_cgroup_out_of_memory(score_memcg.memcg, GFP_KERNEL, 0);
+    //clear buffer after one task is identified
+    //printk("cg to clear memcg");
+    mem_cgroup_thrash_buffer_clear(memcg);
   }
 }
 

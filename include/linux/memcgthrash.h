@@ -25,6 +25,7 @@ struct mem_cgroup_thrash{
 
 #ifdef CONFIG_MEMCG
 
+extern void mem_cgroup_thrash_buffer_clear(struct mem_cgroup* memcg);
 extern struct mem_cgroup_thrash* memcg_to_cg_thrash(struct mem_cgroup* memcg); 
 extern void mem_cgroup_thrash_init(struct mem_cgroup_thrash* cg_thrash);
 extern bool mem_cgroup_thrash_add(struct mem_cgroup* memcg, unsigned long pgmj, unsigned long pgev);
