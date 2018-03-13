@@ -4,9 +4,10 @@
 #include <linux/slab.h>
 #include <linux/gfp.h>
 #include <linux/memcontrol.h>
+//#include <linux/sysctl.h>
 
 //default thrashing tolerant period (Here is 20s), make it configurable to users
-static const unsigned long default_curr_num=5;
+unsigned int default_curr_num=3;
 
 //called under from inside, no lock protection
 void mem_cgthrash_thrash_buffer_clear(struct mem_cgroup_thrash* cg_thrash)
@@ -43,7 +44,8 @@ void mem_cgroup_thrash_init(struct mem_cgroup_thrash* cg_thrash)
  cg_thrash->index=0;
  cg_thrash->detec_jiffies=jiffies;
  mem_cgthrash_thrash_buffer_clear(cg_thrash);
- spin_lock_init(&cg_thrash->sr_lock);   
+ spin_lock_init(&cg_thrash->sr_lock);  
+ printk("cg thrash tolerance: %d",default_curr_num); 
 }
 
 /*

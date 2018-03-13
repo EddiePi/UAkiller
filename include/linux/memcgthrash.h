@@ -7,6 +7,9 @@
 //addded by wei
 //used to detect cgroup thrashing in kernel.
 
+
+extern unsigned int default_curr_num;
+
 #define MEM_CGROUP_MAX_THRASH_BUFFER 60
 
 struct mem_cgroup_thrash{

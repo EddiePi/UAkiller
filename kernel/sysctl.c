@@ -21,6 +21,7 @@
 #include <linux/module.h>
 #include <linux/aio.h>
 #include <linux/mm.h>
+#include <linux/memcgthrash.h>
 #include <linux/swap.h>
 #include <linux/slab.h>
 #include <linux/sysctl.h>
@@ -1327,6 +1328,15 @@ static struct ctl_table vm_table[] = {
 		.procname	= "swappiness",
 		.data		= &vm_swappiness,
 		.maxlen		= sizeof(vm_swappiness),
+		.mode		= 0644,
+		.proc_handler	= proc_dointvec_minmax,
+		.extra1		= &zero,
+		.extra2		= &one_hundred,
+	},
+        {
+		.procname	= "default_curr_num",
+		.data		= &default_curr_num,
+		.maxlen		= sizeof(default_curr_num),
 		.mode		= 0644,
 		.proc_handler	= proc_dointvec_minmax,
 		.extra1		= &zero,
