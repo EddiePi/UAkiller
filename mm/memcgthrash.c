@@ -127,5 +127,11 @@ bool mem_cgroup_thrash_on(struct mem_cgroup* memcg){
   bool thrash_pgmj=buffers_increase(num,index,cg_thrash->pgmj_buffers);
   bool thrash_pgev=buffers_increase(num,index,cg_thrash->pgev_buffers);
 
+  if(thrash_pgmj)
+    printk("pgmj thrash");
+
+  if(thrash_pgev)
+    printk("pgev thrash");
+  
   return thrash_pgmj||thrash_pgev; 
 }
